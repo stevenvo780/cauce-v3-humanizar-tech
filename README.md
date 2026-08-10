@@ -44,3 +44,22 @@ node interaction-check.mjs
 ```
 
 La revisión visual se puede hacer en desktop y móvil con un navegador moderno.
+
+## Dónde está desplegado
+
+Producción: <https://humanizar.tech>
+
+El proyecto de Vercel (`cauce-v3-humanizar-tech`) está conectado a este
+repositorio, así que **un push a `main` despliega solo**. No hay paso manual, y
+por lo tanto no existe el estado intermedio de "mergeado pero no publicado":
+lo que está en `main` es lo que sirve el dominio.
+
+Para comprobarlo desde fuera, sin acceso a la cuenta, basta comparar el fichero
+publicado aquí con el que devuelve el dominio:
+
+```sh
+diff <(curl -s https://raw.githubusercontent.com/stevenvo780/cauce-v3-humanizar-tech/main/index.html) \
+     <(curl -s https://humanizar.tech/)
+```
+
+Sin salida = producción coincide con `main`.
