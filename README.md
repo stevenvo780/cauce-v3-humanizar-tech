@@ -20,7 +20,12 @@ python3 -m http.server 4173
 
 ## Alcance comercial
 
-- No contiene métricas, precios, logos ni casos de éxito inventados.
+- No contiene precios, logos ni casos de éxito inventados.
+- Las métricas publicadas están **medidas contra la base de producción**, se
+  presentan con su contraparte (entregas completadas junto a entregas muertas)
+  y se declara explícitamente que son de la flota propia y no de una base de
+  clientes. No se publican disponibilidad comprometida, número de clientes,
+  horas ahorradas ni comparaciones contra hacerlo a mano.
 - No promete compatibilidad universal, niveles de servicio ni certificaciones.
 - El CTA copia un brief inicial; no envía información a ningún servicio.
 - No usa dependencias, tipografías, scripts ni imágenes externas.

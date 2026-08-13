@@ -3,6 +3,8 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawn } from "node:child_process";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const profile = await mkdtemp(join(tmpdir(), "cauce-chrome-"));
 const chrome = spawn("google-chrome", [
@@ -67,8 +69,11 @@ await send("Emulation.setDeviceMetricsOverride", {
   mobile: true
 }, sessionId);
 
+// La ruta era ABSOLUTA y apuntaba a un directorio de artefactos que ya no
+// existe: el verificador fallaba por su propia ruta, no por la pagina. Se
+// resuelve relativa al script, igual que hace validate.mjs.
 await send("Page.navigate", {
-  url: "file:///workspace/_artifacts/cauce-v3-landing-20260805/index.html"
+  url: pathToFileURL(resolve(dirname(fileURLToPath(import.meta.url)), "index.html")).href
 }, sessionId);
 await new Promise((resolve) => setTimeout(resolve, 700));
 

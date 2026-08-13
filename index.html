@@ -1,1726 +1,804 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#071014">
-  <meta name="description" content="Cauce V3 crea empresas de desarrollo como servicio: de 2 a N equipos de agentes, cuentas de IA, protocolos, harnesses y operación bajo un solo control plane.">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="es_CO">
-  <meta property="og:url" content="https://humanizar.tech/">
-  <meta property="og:title" content="Cauce V3 — Empresas de desarrollo hechas con agentes">
-  <meta property="og:description" content="De 2 a N equipos, múltiples harnesses y capacidad de IA bajo un solo control plane.">
-  <meta name="twitter:card" content="summary">
-  <link rel="canonical" href="https://humanizar.tech/">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <title>Cauce V3 — Empresas de desarrollo hechas con agentes</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --ink: #071014;
-      --ink-2: #0d181c;
-      --ink-3: #132126;
-      --paper: #f1efe7;
-      --paper-2: #e6e3d9;
-      --white: #ffffff;
-      --muted: #98a4a7;
-      --muted-dark: #596468;
-      --line: rgba(255, 255, 255, 0.14);
-      --line-dark: rgba(7, 16, 20, 0.15);
-      --lime: #c8ff63;
-      --aqua: #66e8d2;
-      --coral: #ff7759;
-      --yellow: #ffd66b;
-      --radius-sm: 12px;
-      --radius-md: 20px;
-      --radius-lg: 32px;
-      --shadow: 0 28px 90px rgba(0, 0, 0, 0.24);
-      --max: 1200px;
-      --sans: "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Empresas de desarrollo hechas con agentes — Cauce V3</title>
+<meta name="description" content="Cauce V3 convierte agentes, cuentas de IA, protocolos, canales y harnesses distintos en una empresa operable. De 2 a N equipos especializados, gobernados desde un solo control plane.">
+<meta name="theme-color" content="#0B1020">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:url" content="https://humanizar.tech/">
+<meta property="og:title" content="Empresas de desarrollo. Hechas con agentes.">
+<meta property="og:description" content="De 2 a N equipos especializados sobre un mismo control plane. Multi-harness, capacidad de IA asignada por política y gates humanos donde importa.">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://humanizar.tech/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--ink);
-      color: var(--white);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.55;
-      overflow-x: hidden;
-    }
+<style>
+/* ==========================================================================
+   TOKENS — paleta "turno nocturno".
+   La tesis: los agentes trabajan cuando el equipo duerme. Por eso la base es
+   tinta de madrugada y el acento es la luz que queda encendida.
+   Cada par texto/fondo esta calculado a WCAG 2.x AA y anotado con su ratio.
+   ========================================================================== */
+:root{
+  --ink:#0B1020;           /* base noche */
+  --ink-2:#141C33;         /* superficie elevada */
+  --ink-3:#0D1425;
+  --paper:#F1F4F9;         /* base dia (frio, no crema) */
+  --on-ink:#EEF2FA;        /* 16.9:1 sobre --ink */
+  --on-ink-mute:#A9B6D2;   /* 9.3:1  sobre --ink */
+  --on-ink-dim:#8494B6;    /* 6.2:1  sobre --ink */
+  --on-paper:#101728;      /* 16.2:1 sobre --paper */
+  --on-paper-mute:#465269; /* 7.1:1  sobre --paper */
+  --marigold:#FFB020;      /* acento: 10.3:1 sobre --ink */
+  --marigold-deep:#8A5A00; /* acento legible sobre papel: 5.4:1 */
+  --cta:#0B7A43;           /* blanco encima = 5.4:1 */
+  --cta-hover:#095F35;
+  --ok:#5FD39B;            /* 9.1:1 sobre --ink-2 */
+  --alert:#FF8A6B;
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 100;
-      opacity: 0.035;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
-    }
+  /* Dos tokens de linea, y la diferencia es normativa, no estetica:
+     --hairline separa superficies (decorativa, sin exigencia de ratio) y
+     --line-ui dibuja el borde de un control real, que si cumple el 3:1 de
+     "non-text contrast". Un solo token obligaria a subir TODAS las
+     divisiones y la pagina quedaria rayada. */
+  --hairline:#2A3654;
+  --line-ui:#67769C;       /* 4.2:1 sobre --ink */
+  --line-paper:#C9D2E1;
 
-    a { color: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-    button { font: inherit; }
-    ::selection { background: var(--lime); color: var(--ink); }
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1180px;
+}
+/* El detector del validador busca class="skip-link" EXACTO, no una lista de
+   clases: por eso lleva su propio estilo en vez de reusar .btn */
+.skip-link{position:absolute;left:-9999px;top:8px;z-index:99;background:var(--cta);color:#fff;
+  padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:700}
+.skip-link:focus{left:12px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--on-ink);font-family:var(--sans);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+svg{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--marigold);outline-offset:3px;border-radius:4px}
 
-    .skip-link {
-      position: fixed;
-      z-index: 999;
-      top: 12px;
-      left: 12px;
-      padding: 10px 14px;
-      background: var(--lime);
-      color: var(--ink);
-      border-radius: 8px;
-      transform: translateY(-160%);
-    }
-    .skip-link:focus { transform: translateY(0); }
+/* La escala: display sans muy apretado; la mono queda reservada a lo que
+   REALMENTE es salida de maquina (relojes, identificadores, registro).
+   Asi la mono significa algo en vez de decorar. */
+.h-xl{font-size:clamp(36px,6.6vw,80px);line-height:1;letter-spacing:-.038em;font-weight:800;margin:0}
+.h-l{font-size:clamp(27px,4vw,48px);line-height:1.05;letter-spacing:-.03em;font-weight:800;margin:0}
+.h-m{font-size:clamp(19px,2.2vw,25px);line-height:1.22;letter-spacing:-.018em;font-weight:750;margin:0}
+.lede{font-size:clamp(17px,1.5vw,21px);line-height:1.55;margin:0}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin:0}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+section{padding:clamp(54px,7.5vw,104px) 0}
+.sec-head{display:grid;gap:14px;max-width:64ch;margin-bottom:clamp(28px,4vw,48px)}
 
-    .container {
-      width: min(calc(100% - 40px), var(--max));
-      margin-inline: auto;
-    }
+/* ---------------- barra ---------------- */
+.bar{position:sticky;top:0;z-index:60;background:rgba(11,16,32,.74);
+  backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid transparent;
+  transition:border-color .25s,background .25s}
+.bar.is-stuck{border-bottom-color:var(--hairline);background:rgba(11,16,32,.94)}
+.bar::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:var(--prog,0%);
+  background:linear-gradient(90deg,var(--marigold),#FFD98A);transition:width .1s linear}
+.bar-in{display:flex;align-items:center;gap:16px;height:66px}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:-.02em}
+.mark .dot{width:11px;height:11px;border-radius:50%;background:var(--marigold);flex:none;
+  box-shadow:0 0 0 0 rgba(255,176,32,.55);animation:beat 2.6s ease-out infinite}
+@keyframes beat{0%{box-shadow:0 0 0 0 rgba(255,176,32,.5)}
+  70%{box-shadow:0 0 0 12px rgba(255,176,32,0)}100%{box-shadow:0 0 0 0 rgba(255,176,32,0)}}
+#menu-button{margin-left:auto;background:none;border:1px solid var(--line-ui);color:var(--on-ink);
+  border-radius:9px;width:42px;height:38px;display:grid;place-items:center;cursor:pointer}
+#menu-button svg{width:19px;height:19px}
+#nav-links{display:none}
+#nav-links.is-open{display:flex;position:absolute;left:0;right:0;top:66px;flex-direction:column;
+  gap:2px;padding:12px var(--pad) 18px;background:rgba(11,16,32,.98);border-bottom:1px solid var(--hairline)}
+#nav-links a{text-decoration:none;color:var(--on-ink-mute);font-weight:600;padding:9px 0;font-size:15.5px}
+#nav-links a:hover{color:var(--marigold)}
+@media (min-width:900px){
+  #menu-button{display:none}
+  #nav-links{display:flex;margin-left:auto;gap:24px;align-items:center}
+  #nav-links a{padding:0;font-size:15px}
+}
 
-    .site-header {
-      position: fixed;
-      z-index: 50;
-      top: 0;
-      left: 0;
-      width: 100%;
-      border-bottom: 1px solid transparent;
-      transition: background 180ms ease, border-color 180ms ease, backdrop-filter 180ms ease;
-    }
-    .site-header.is-scrolled {
-      background: rgba(7, 16, 20, 0.86);
-      border-color: var(--line);
-      backdrop-filter: blur(18px);
-    }
-    .nav {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      text-decoration: none;
-      font-weight: 750;
-      letter-spacing: -0.03em;
-      font-size: 1.12rem;
-    }
-    .brand-mark {
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      color: var(--ink);
-      background: var(--lime);
-      border-radius: 50% 50% 50% 8px;
-      font-size: 0.76rem;
-      letter-spacing: -0.04em;
-      box-shadow: 0 0 0 6px rgba(200, 255, 99, 0.08);
-    }
-    .brand-version {
-      color: var(--muted);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-left: -5px;
-      margin-top: -11px;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-    .nav-links a {
-      color: #c7d0d1;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 160ms ease;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus-visible { color: var(--white); }
-    .nav-links .nav-cta {
-      min-height: 42px;
-      display: inline-flex;
-      align-items: center;
-      padding: 0 17px;
-      border: 1px solid rgba(200, 255, 99, 0.55);
-      border-radius: 999px;
-      color: var(--lime);
-    }
-    .menu-button {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: transparent;
-      color: white;
-      cursor: pointer;
-    }
+/* ---------------- botones ---------------- */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;
+  text-decoration:none;font-weight:700;font-size:16px;border:1px solid transparent;cursor:pointer;
+  font-family:inherit;transition:transform .16s cubic-bezier(.2,.9,.3,1.2),background .18s,box-shadow .18s;
+  --tx:0px;--ty:0px}
+.btn svg{width:18px;height:18px;flex:none}
+.btn.mag{transform:translate(var(--tx),var(--ty))}
+.btn-cta{background:var(--cta);color:#fff;box-shadow:0 10px 26px -12px rgba(11,122,67,.9)}
+.btn-cta:hover{background:var(--cta-hover);transform:translate(var(--tx),var(--ty)) translateY(-2px)}
+.btn-ghost{border-color:var(--line-ui);color:var(--on-ink);background:none}
+.btn-ghost:hover{border-color:var(--marigold);color:var(--marigold);transform:translate(var(--tx),var(--ty)) translateY(-2px)}
 
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      display: grid;
-      align-items: center;
-      padding: 138px 0 84px;
-      isolation: isolate;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      z-index: -2;
-      width: 720px;
-      height: 720px;
-      top: -290px;
-      left: 46%;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(102, 232, 210, 0.15), transparent 66%);
-      filter: blur(10px);
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.04fr) minmax(420px, 0.96fr);
-      align-items: center;
-      gap: clamp(48px, 7vw, 100px);
-    }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin: 0 0 24px;
-      color: var(--lime);
-      font-size: 0.74rem;
-      font-weight: 750;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-    .eyebrow::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: currentColor;
-      box-shadow: 0 0 0 5px rgba(200, 255, 99, 0.1);
-    }
-    h1, h2, h3, p { margin-top: 0; }
-    h1 {
-      max-width: 760px;
-      margin-bottom: 27px;
-      font-size: clamp(3.35rem, 7.1vw, 6.7rem);
-      line-height: 0.91;
-      letter-spacing: -0.07em;
-      font-weight: 730;
-    }
-    h1 em {
-      font-family: var(--serif);
-      font-weight: 400;
-      color: var(--lime);
-      letter-spacing: -0.055em;
-    }
-    .hero-copy {
-      max-width: 630px;
-      margin-bottom: 33px;
-      color: #b8c2c4;
-      font-size: clamp(1.05rem, 1.7vw, 1.25rem);
-      line-height: 1.55;
-    }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 13px;
-      margin-bottom: 38px;
-    }
-    .button {
-      min-height: 50px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 0 22px;
-      border: 1px solid transparent;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 740;
-      letter-spacing: -0.01em;
-      cursor: pointer;
-      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
-    }
-    .button:hover { transform: translateY(-2px); }
-    .button-primary { background: var(--lime); color: var(--ink); }
-    .button-primary:hover { background: #d7ff8e; }
-    .button-secondary { border-color: var(--line); color: var(--white); background: rgba(255,255,255,.025); }
-    .button-secondary:hover { border-color: rgba(255,255,255,.35); }
-    .button-arrow { font-size: 1.15em; }
-    .hero-proof {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 22px;
-      color: #889699;
-      font-size: 0.78rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-    .hero-proof span { display: inline-flex; align-items: center; gap: 7px; }
-    .hero-proof span::before { content: "✓"; color: var(--aqua); }
+/* ---------------- hero ---------------- */
+.hero{position:relative;padding:clamp(44px,6.5vw,88px) 0 clamp(28px,4.5vw,52px);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-30% -10% auto -10%;height:76%;
+  background:radial-gradient(58% 60% at 22% 26%,rgba(255,176,32,.16),transparent 62%),
+             radial-gradient(48% 52% at 82% 8%,rgba(29,78,137,.30),transparent 66%);
+  filter:blur(8px);pointer-events:none;transform:translateY(var(--py,0px));will-change:transform}
+.hero-grid{position:relative;display:grid;gap:clamp(26px,3.2vw,42px)}
+.hero .kicker{color:var(--marigold);display:flex;align-items:center;gap:10px}
+.hero .kicker .rule{height:1px;width:50px;background:var(--marigold);opacity:.6}
+.h-xl em{font-style:normal;color:var(--marigold)}
+.day .h-l em{font-style:normal;color:var(--marigold-deep)}
+.hero p.lede{color:var(--on-ink-mute);max-width:60ch}
+.actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hero-note{font-family:var(--mono);font-size:12.5px;color:var(--on-ink-dim)}
+.line{display:block;overflow:hidden}
+.line>span{display:block;transform:translateY(105%);animation:lineUp .9s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes lineUp{to{transform:none}}
 
-    .mission-wrap { position: relative; }
-    .mission-wrap::before,
-    .mission-wrap::after {
-      content: "";
-      position: absolute;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-    .mission-wrap::before { inset: -48px -42px; }
-    .mission-wrap::after { inset: -92px -86px; opacity: .45; }
-    .mission-card {
-      position: relative;
-      z-index: 2;
-      padding: 18px;
-      background: rgba(17, 31, 36, 0.84);
-      border: 1px solid rgba(255, 255, 255, 0.17);
-      border-radius: 25px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(22px);
-      transform: rotate(1.1deg);
-    }
-    .mission-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 2px 3px 16px;
-      color: #aab5b7;
-      font-size: .72rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-    .live-pill { display: inline-flex; align-items: center; gap: 7px; color: var(--aqua); }
-    .live-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--aqua); box-shadow: 0 0 0 4px rgba(102,232,210,.1); }
-    .mission-body {
-      padding: 23px;
-      border-radius: 17px;
-      background: #081216;
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    .task-label { color: #728185; font-size: .72rem; letter-spacing: .13em; text-transform: uppercase; }
-    .task-title { margin: 7px 0 23px; font-size: 1.25rem; line-height: 1.3; letter-spacing: -.025em; }
-    .pipeline { display: grid; gap: 2px; }
-    .pipeline-row {
-      position: relative;
-      display: grid;
-      grid-template-columns: 29px 1fr auto;
-      align-items: center;
-      gap: 12px;
-      min-height: 59px;
-    }
-    .pipeline-row:not(:last-child)::after {
-      content: "";
-      position: absolute;
-      left: 14px;
-      top: 43px;
-      width: 1px;
-      height: 32px;
-      background: rgba(255,255,255,.12);
-    }
-    .pipeline-dot {
-      width: 29px;
-      height: 29px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: #142329;
-      border: 1px solid rgba(255,255,255,.12);
-      color: #8b9a9e;
-      font-size: .68rem;
-      font-weight: 750;
-    }
-    .pipeline-row.is-done .pipeline-dot { background: var(--lime); color: var(--ink); border-color: var(--lime); }
-    .pipeline-row.is-live .pipeline-dot { color: var(--aqua); border-color: var(--aqua); box-shadow: 0 0 0 5px rgba(102,232,210,.08); }
-    .pipeline-name { display: block; font-size: .88rem; font-weight: 690; }
-    .pipeline-role { display: block; color: #718085; font-size: .7rem; }
-    .pipeline-state { color: #718085; font-size: .66rem; text-transform: uppercase; letter-spacing: .1em; }
-    .pipeline-row.is-done .pipeline-state { color: var(--lime); }
-    .pipeline-row.is-live .pipeline-state { color: var(--aqua); }
-    .mission-foot {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      margin-top: 15px;
-      padding: 14px 3px 2px;
-      color: #7d8b8f;
-      font-size: .7rem;
-    }
-    .mission-foot strong { color: white; font-weight: 650; }
-    .floating-note {
-      position: absolute;
-      z-index: 3;
-      right: -44px;
-      bottom: -43px;
-      width: 190px;
-      padding: 15px 17px;
-      background: var(--paper);
-      color: var(--ink);
-      border-radius: 14px 14px 3px 14px;
-      box-shadow: 0 18px 50px rgba(0,0,0,.3);
-      transform: rotate(-3deg);
-      font-size: .76rem;
-      line-height: 1.4;
-    }
-    .floating-note strong { display: block; margin-bottom: 4px; font-size: .84rem; }
+/* ---------------- consola en vivo ---------------- */
+.console{position:relative;border:1px solid var(--hairline);border-radius:16px;overflow:hidden;
+  background:linear-gradient(180deg,var(--ink-2),var(--ink-3));box-shadow:0 40px 80px -50px rgba(0,0,0,.95)}
+.console-head{display:flex;align-items:center;gap:12px;padding:12px 16px;
+  border-bottom:1px solid var(--hairline);background:rgba(255,255,255,.02)}
+.console-head .kicker{color:var(--on-ink-dim)}
+.live{display:flex;align-items:center;gap:7px;margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--marigold)}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--marigold);display:block;animation:blink 1.6s steps(1,end) infinite}
+@keyframes blink{50%{opacity:.25}}
+#lanes{display:block;width:100%;height:210px}
+@media (max-width:700px){#lanes{height:176px}}
+.console-log{margin:0;padding:12px 16px 16px;border-top:1px solid var(--hairline);
+  font-family:var(--mono);font-size:12.5px;line-height:1.85;color:var(--on-ink-dim);
+  height:104px;overflow:hidden;list-style:none}
+.console-log li{display:flex;gap:12px;opacity:0;transform:translateY(6px);animation:logIn .45s forwards}
+@keyframes logIn{to{opacity:1;transform:none}}
+.console-log b{color:var(--on-ink);font-weight:600}
+.console-log .t{color:var(--marigold);flex:none}
+.console-log .ok{color:var(--ok);flex:none}
+.console-foot{margin:0;padding:0 16px 14px;font-family:var(--mono);font-size:11.5px;color:var(--on-ink-dim)}
 
-    .ticker {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: #0a1519;
-      overflow: hidden;
-    }
-    .ticker-track {
-      min-width: max-content;
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      padding: 17px 0;
-      color: #8d999c;
-      font-size: .72rem;
-      font-weight: 720;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      animation: ticker 28s linear infinite;
-    }
-    .ticker-track span { display: inline-flex; align-items: center; gap: 28px; }
-    .ticker-track span::after { content: "✦"; color: var(--lime); font-size: .65rem; }
-    @keyframes ticker { to { transform: translateX(-50%); } }
+/* ---------------- cinta ---------------- */
+.tape{overflow:hidden;border-block:1px solid var(--hairline);padding:13px 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.tape-run{display:flex;gap:42px;width:max-content;animation:run 34s linear infinite}
+.tape:hover .tape-run{animation-play-state:paused}
+@keyframes run{to{transform:translateX(-50%)}}
+.tape span{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--on-ink-dim);white-space:nowrap;display:flex;align-items:center;gap:11px}
+.tape span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--marigold);flex:none}
 
-    .section { padding: clamp(88px, 11vw, 150px) 0; }
-    .section-paper { background: var(--paper); color: var(--ink); }
-    .section-soft { background: var(--paper-2); color: var(--ink); }
-    .section-dark { background: var(--ink); color: white; }
-    .section-deep { background: #03090b; color: white; }
-    .section-kicker {
-      margin-bottom: 18px;
-      font-size: .72rem;
-      font-weight: 780;
-      letter-spacing: .17em;
-      text-transform: uppercase;
-      color: #607075;
-    }
-    .section-dark .section-kicker,
-    .section-deep .section-kicker { color: var(--lime); }
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(260px, .7fr);
-      align-items: end;
-      gap: 48px;
-      margin-bottom: 68px;
-    }
-    .section-title {
-      max-width: 850px;
-      margin-bottom: 0;
-      font-size: clamp(2.5rem, 5vw, 5.3rem);
-      line-height: .98;
-      letter-spacing: -.06em;
-      font-weight: 710;
-    }
-    .section-title em { font-family: var(--serif); font-weight: 400; color: #25685f; }
-    .section-dark .section-title em,
-    .section-deep .section-title em { color: var(--aqua); }
-    .section-intro { margin-bottom: 3px; color: var(--muted-dark); font-size: 1.05rem; }
-    .section-dark .section-intro,
-    .section-deep .section-intro { color: #9eabad; }
+/* ---------------- superficies claras ---------------- */
+.day{background:var(--paper);color:var(--on-paper)}
+.day .kicker{color:var(--marigold-deep)}
+.day .lede{color:var(--on-paper-mute)}
 
-    .problem-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid var(--line-dark);
-      border-bottom: 1px solid var(--line-dark);
-    }
-    .problem-item { min-height: 245px; padding: 32px 28px 30px 0; }
-    .problem-item + .problem-item { padding-left: 28px; border-left: 1px solid var(--line-dark); }
-    .problem-number { color: #869095; font-size: .72rem; letter-spacing: .12em; }
-    .problem-item h3 { margin: 56px 0 11px; font-size: 1.35rem; line-height: 1.15; letter-spacing: -.035em; }
-    .problem-item p { margin-bottom: 0; color: var(--muted-dark); font-size: .9rem; }
+/* ---------------- rejillas ---------------- */
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(272px,1fr))}
+.card{position:relative;background:#fff;border:1px solid var(--line-paper);border-radius:14px;
+  padding:26px 24px 28px;overflow:hidden;transition:transform .3s cubic-bezier(.2,.9,.3,1),box-shadow .3s,border-color .3s}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(220px 220px at var(--mx,50%) var(--my,50%),rgba(255,176,32,.16),transparent 70%)}
+.card:hover{transform:translateY(-4px);box-shadow:0 26px 44px -30px rgba(16,23,40,.55);border-color:#A9B7CE}
+.card:hover::after{opacity:1}
+.card .ico{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+  background:var(--ink);color:var(--marigold);margin-bottom:15px}
+.card .ico svg{width:21px;height:21px}
+.card .tag{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--marigold-deep);font-weight:700;margin:0}
+.card h3{margin:8px 0}
+.card p{margin:0;color:var(--on-paper-mute);font-size:15.5px;line-height:1.58}
 
-    .team-stage {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .team-card {
-      position: relative;
-      overflow: hidden;
-      min-height: 545px;
-      display: flex;
-      flex-direction: column;
-      padding: clamp(28px, 4vw, 45px);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--line);
-    }
-    .team-card.delivery { background: #112025; }
-    .team-card.support { background: var(--lime); color: var(--ink); border-color: transparent; }
-    .team-tag {
-      width: fit-content;
-      padding: 6px 10px;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 999px;
-      color: #b6c1c3;
-      font-size: .68rem;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-    }
-    .support .team-tag { color: var(--ink); border-color: rgba(7,16,20,.25); }
-    .team-card h3 { max-width: 430px; margin: 30px 0 9px; font-size: clamp(2rem, 3.7vw, 3.5rem); line-height: .98; letter-spacing: -.055em; }
-    .team-card > p { max-width: 465px; color: #a5b2b4; }
-    .support > p { color: #344238; }
-    .role-list { display: grid; gap: 10px; margin-top: auto; padding-top: 35px; }
-    .role {
-      display: grid;
-      grid-template-columns: 38px 1fr auto;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 0;
-      border-top: 1px solid rgba(255,255,255,.12);
-    }
-    .support .role { border-color: rgba(7,16,20,.15); }
-    .role-icon {
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 10px;
-      background: rgba(255,255,255,.07);
-      color: var(--aqua);
-      font-size: .74rem;
-      font-weight: 800;
-    }
-    .support .role-icon { background: rgba(7,16,20,.1); color: var(--ink); }
-    .role strong { display: block; font-size: .88rem; }
-    .role small { display: block; color: #738488; font-size: .7rem; }
-    .support .role small { color: #516055; }
-    .role-state { font-size: .62rem; font-weight: 760; letter-spacing: .1em; text-transform: uppercase; color: #77878a; }
-    .support .role-state { color: #415047; }
-    .human-gate {
-      position: relative;
-      z-index: 3;
-      width: min(640px, calc(100% - 42px));
-      margin: -31px auto 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 20px 24px;
-      background: var(--white);
-      color: var(--ink);
-      border-radius: 17px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.3);
-    }
-    .human-gate strong { display: block; font-size: .92rem; }
-    .human-gate span { display: block; color: #697377; font-size: .76rem; }
-    .gate-badge { flex: 0 0 auto; padding: 8px 11px; border-radius: 999px; background: #e9f1d5; color: #314313; font-size: .65rem; font-weight: 790; letter-spacing: .09em; text-transform: uppercase; }
+/* Bloque oscuro dentro de seccion clara: OJO, `color` es OBLIGATORIO.
+   Sin declararlo, los titulos heredan la tinta oscura de .day sobre este
+   fondo oscuro y quedan invisibles. Fondo y color viajan juntos. */
+.panel{background:var(--ink);color:var(--on-ink);border-radius:14px;padding:26px 24px;
+  display:grid;gap:12px;border:1px solid var(--hairline)}
+.panel h3{margin:0}
+.panel p{margin:0;color:var(--on-ink-mute);font-size:15.5px}
 
-    .workflow-stage {
-      position: relative;
-      min-height: 760px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      grid-template-rows: 1fr 1fr;
-      gap: 92px 72px;
-      padding: 48px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 34px;
-      background:
-        radial-gradient(circle at 50% 62%, rgba(102,232,210,.13), transparent 23%),
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
-        #081216;
-      background-size: auto, 34px 34px, 34px 34px, auto;
-      box-shadow: var(--shadow);
-      isolation: isolate;
-    }
-    .workflow-stage::before {
-      content: "";
-      position: absolute;
-      width: 520px;
-      height: 520px;
-      left: 50%;
-      top: 63%;
-      border: 1px solid rgba(102,232,210,.1);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 0 72px rgba(102,232,210,.02), 0 0 0 144px rgba(102,232,210,.018);
-    }
-    .workflow-lines { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; }
-    .workflow-lines path {
-      fill: none;
-      stroke: rgba(102,232,210,.36);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-dasharray: 8 15;
-      animation: data-flow 1.5s linear infinite;
-    }
-    .workflow-lines path:nth-child(2n) { stroke: rgba(200,255,99,.34); animation-direction: reverse; animation-duration: 1.9s; }
-    .workflow-lines path:nth-child(3n) { stroke: rgba(255,119,89,.3); animation-duration: 2.2s; }
-    .workflow-lines .flow-node { fill: var(--lime); filter: drop-shadow(0 0 7px rgba(200,255,99,.85)); }
-    @keyframes data-flow { to { stroke-dashoffset: -46; } }
+.rows{display:grid;gap:2px;background:var(--hairline);border:1px solid var(--hairline);border-radius:14px;overflow:hidden}
+.row{background:var(--ink);color:var(--on-ink);padding:26px 24px;display:grid;gap:8px;transition:background .3s}
+.row:hover{background:var(--ink-2)}
+.row .n{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--marigold);font-weight:700;margin:0}
+.row p{margin:0;color:var(--on-ink-mute);font-size:15.5px}
+@media (min-width:820px){.rows.three{grid-template-columns:repeat(3,1fr)}}
 
-    .work-agent {
-      position: relative;
-      z-index: 2;
-      min-height: 248px;
-      display: grid;
-      grid-template-columns: 92px 1fr;
-      align-items: center;
-      gap: 20px;
-      padding: 24px;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 24px;
-      background: rgba(16,30,35,.95);
-      box-shadow: 0 18px 45px rgba(0,0,0,.2);
-      animation: agent-float 4.5s ease-in-out infinite;
-    }
-    .work-agent.product { animation-delay: -.8s; }
-    .work-agent.platform { animation-delay: -1.6s; }
-    .work-agent.quality { animation-delay: -2.4s; }
-    .work-agent.operations { animation-delay: -3.2s; }
-    @keyframes agent-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-    .work-agent.coordination { grid-column: 1; grid-row: 1; }
-    .work-agent.product { grid-column: 2; grid-row: 1; }
-    .work-agent.platform { grid-column: 3; grid-row: 1; }
-    .work-agent.quality { grid-column: 1; grid-row: 2; }
-    .work-agent.operations { grid-column: 3; grid-row: 2; }
+.list{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.list li{display:grid;grid-template-columns:26px 1fr;gap:13px;align-items:start;
+  padding:15px 0;border-bottom:1px solid var(--hairline)}
+.list li:last-child{border-bottom:0}
+.list .mk{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  background:var(--ink-2);color:var(--marigold)}
+.list .mk svg{width:14px;height:14px}
+.list b{display:block;font-weight:700;letter-spacing:-.01em;margin-bottom:3px}
+.list .tx{color:var(--on-ink-mute);font-size:15.5px}
 
-    .agent-character {
-      position: relative;
-      width: 88px;
-      height: 116px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding-top: 12px;
-    }
-    .agent-antenna { position: absolute; top: 0; left: 43px; width: 2px; height: 18px; background: currentColor; }
-    .agent-antenna::before { content: ""; position: absolute; top: -3px; left: -4px; width: 10px; height: 10px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px rgba(255,255,255,.05); animation: signal-pulse 1.8s ease-out infinite; }
-    @keyframes signal-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(200,255,99,.35); } 60% { box-shadow: 0 0 0 10px rgba(200,255,99,0); } }
-    .agent-head {
-      position: relative;
-      z-index: 2;
-      width: 72px;
-      height: 61px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      border: 3px solid currentColor;
-      border-radius: 20px 20px 16px 16px;
-      background: #0a1519;
-    }
-    .agent-eye { width: 9px; height: 9px; border-radius: 50%; background: currentColor; animation: robot-blink 4.8s infinite; }
-    .agent-eye:nth-child(2) { animation-delay: .08s; }
-    @keyframes robot-blink { 0%,43%,47%,100% { transform: scaleY(1); } 45% { transform: scaleY(.12); } }
-    .agent-mouth { position: absolute; left: 27px; bottom: 10px; width: 15px; height: 4px; border-bottom: 2px solid currentColor; border-radius: 50%; opacity: .7; }
-    .agent-body { position: absolute; top: 67px; width: 58px; height: 39px; border-radius: 13px 13px 8px 8px; background: currentColor; }
-    .agent-body::before { content: ""; position: absolute; left: 20px; top: 10px; width: 18px; height: 9px; border-radius: 999px; background: #081216; opacity: .8; }
-    .agent-arm { position: absolute; top: 73px; width: 26px; height: 8px; border-radius: 999px; background: currentColor; transform-origin: 4px 4px; animation: type-arm 1.1s ease-in-out infinite alternate; }
-    .agent-arm.left { left: 0; transform: rotate(25deg); }
-    .agent-arm.right { right: 0; transform: rotate(155deg); animation-delay: -.55s; }
-    @keyframes type-arm { to { margin-top: 7px; } }
-    .agent-desk { position: absolute; z-index: 3; left: 3px; bottom: 0; width: 82px; height: 11px; border-radius: 3px; background: #314247; }
-    .agent-screen { position: absolute; z-index: 4; left: 23px; bottom: 9px; width: 43px; height: 29px; display: grid; place-items: center; border: 2px solid #58696d; border-radius: 5px; background: #071014; color: currentColor; font-size: .56rem; font-weight: 850; }
-    .tone-lime { color: var(--lime); }
-    .tone-aqua { color: var(--aqua); }
-    .tone-coral { color: var(--coral); }
-    .tone-yellow { color: var(--yellow); }
-    .tone-paper { color: #d7dedf; }
+/* ---------------- numeros ---------------- */
+.stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(168px,1fr))}
+.stat{border:1px solid var(--line-paper);border-radius:13px;padding:22px 20px;background:#fff}
+.stat b{display:block;font-family:var(--mono);font-size:clamp(25px,3.2vw,36px);letter-spacing:-.03em;
+  color:var(--marigold-deep);font-weight:700;line-height:1.1}
+.stat span{color:var(--on-paper-mute);font-size:14.5px;display:block;margin-top:6px}
+.stat.bad b{color:#B4341A}
 
-    .agent-copy { min-width: 0; }
-    .agent-status { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 12px; color: #728286; font-size: .6rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-    .agent-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--aqua); box-shadow: 0 0 0 0 rgba(102,232,210,.3); animation: status-pulse 1.9s ease-out infinite; }
-    @keyframes status-pulse { 65% { box-shadow: 0 0 0 8px rgba(102,232,210,0); } }
-    .agent-copy h3 { margin: 0 0 7px; font-size: 1.04rem; letter-spacing: -.03em; }
-    .agent-copy p { margin: 0; color: #819095; font-size: .72rem; line-height: 1.45; }
-    .agent-action { display: inline-flex; align-items: center; gap: 6px; margin-top: 13px; padding: 6px 8px; border: 1px solid rgba(255,255,255,.09); border-radius: 8px; color: #b8c3c5; background: rgba(255,255,255,.035); font: .58rem/1.2 "SFMono-Regular", Consolas, monospace; }
-    .agent-action i { width: 5px; height: 5px; border-radius: 50%; background: var(--lime); animation: action-step 1.1s steps(2,end) infinite; }
-    @keyframes action-step { 50% { opacity: .25; } }
+/* ---------------- limites ---------------- */
+.limits li .mk{background:rgba(255,138,107,.13);color:var(--alert)}
 
-    .flow-core {
-      position: relative;
-      z-index: 3;
-      grid-column: 2;
-      grid-row: 2;
-      width: 230px;
-      height: 230px;
-      place-self: center;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      border-radius: 50%;
-      color: var(--ink);
-      background: var(--lime);
-      box-shadow: 0 0 0 14px rgba(200,255,99,.07), 0 0 90px rgba(200,255,99,.14);
-    }
-    .flow-core::before, .flow-core::after { content: ""; position: absolute; inset: -22px; border: 1px dashed rgba(200,255,99,.4); border-radius: 50%; animation: orbit-spin 14s linear infinite; }
-    .flow-core::after { inset: -43px; border-color: rgba(102,232,210,.22); animation-direction: reverse; animation-duration: 20s; }
-    @keyframes orbit-spin { to { transform: rotate(360deg); } }
-    .flow-core span { display: block; font-size: .62rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
-    .flow-core strong { display: block; margin: 7px 0 4px; font-size: 1.6rem; line-height: 1; letter-spacing: -.05em; }
-    .flow-core small { display: block; max-width: 145px; margin: auto; color: #40503f; font-size: .65rem; }
+/* ---------------- preguntas ---------------- */
+details{border:1px solid var(--line-paper);border-radius:12px;background:#fff;margin-bottom:10px}
+details[open]{border-color:#A9B7CE}
+summary{cursor:pointer;padding:17px 20px;font-weight:700;list-style:none;display:flex;
+  align-items:center;justify-content:space-between;gap:14px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:10px;height:10px;border-right:2px solid var(--marigold-deep);
+  border-bottom:2px solid var(--marigold-deep);transform:rotate(45deg);flex:none;transition:transform .25s}
+details[open] summary::after{transform:rotate(-135deg)}
+details p{margin:0;padding:0 20px 19px;color:var(--on-paper-mute);font-size:15.5px}
 
-    .flow-packet { position: absolute; z-index: 4; padding: 6px 9px; border-radius: 999px; background: white; color: var(--ink); box-shadow: 0 8px 24px rgba(0,0,0,.3); font: 800 .54rem/1 var(--sans); letter-spacing: .07em; text-transform: uppercase; animation: packet-pop 2.6s ease-in-out infinite; }
-    .flow-packet.brief { left: 29%; top: 14%; }
-    .flow-packet.build { right: 29%; top: 14%; animation-delay: -.8s; }
-    .flow-packet.review { left: 27%; bottom: 24%; animation-delay: -1.5s; }
-    .flow-packet.release { right: 27%; bottom: 24%; animation-delay: -2.1s; }
-    @keyframes packet-pop { 0%,100% { transform: translateY(0) scale(.95); opacity: .72; } 50% { transform: translateY(-7px) scale(1); opacity: 1; } }
+/* ---------------- contacto ---------------- */
+.contact{position:relative;background:var(--ink-2);border-top:1px solid var(--hairline);overflow:hidden}
+.contact::before{content:"";position:absolute;inset:auto -20% -60% -20%;height:70%;
+  background:radial-gradient(50% 60% at 50% 0%,rgba(255,176,32,.13),transparent 70%);pointer-events:none}
+.contact-in{position:relative;display:grid;gap:20px;justify-items:start;max-width:60ch}
+#copy-status{font-family:var(--mono);font-size:13px;color:var(--ok);min-height:1.4em;margin:0}
+footer{border-top:1px solid var(--hairline);padding:24px 0 38px;color:var(--on-ink-dim);font-size:14px}
 
-    .workflow-caption { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 20px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .workflow-caption span { min-height: 74px; display: flex; align-items: center; gap: 8px; padding: 15px; color: #718085; font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; }
-    .workflow-caption span + span { border-left: 1px solid var(--line); }
-    .workflow-caption b { color: var(--lime); }
+/* ---------------- empresa viva: cinco agentes ---------------- */
+.stage{position:relative;border:1px solid var(--hairline);border-radius:16px;background:var(--ink-2);
+  padding:26px 20px 22px;overflow:hidden}
+.workflow{position:relative;height:212px}
+@media (max-width:700px){.workflow{height:270px}}
+.workflow-lines{position:absolute;inset:0;width:100%;height:100%}
+.workflow-lines path{fill:none;stroke:var(--line-ui);stroke-width:1.6;stroke-dasharray:5 7;
+  animation:data-flow 2.6s linear infinite}
+@keyframes data-flow{to{stroke-dashoffset:-24}}
+.agents{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;height:100%;align-content:center}
+@media (max-width:700px){.agents{grid-template-columns:repeat(2,1fr);align-content:start;gap:12px}}
+.work-agent{display:grid;gap:7px;justify-items:center;text-align:center;padding:14px 8px;
+  border:1px solid var(--hairline);border-radius:12px;background:rgba(11,16,32,.72);
+  animation:agent-pulse 4.8s ease-in-out infinite}
+.work-agent:nth-child(2){animation-delay:.5s}
+.work-agent:nth-child(3){animation-delay:1s}
+.work-agent:nth-child(4){animation-delay:1.5s}
+.work-agent:nth-child(5){animation-delay:2s}
+@keyframes agent-pulse{0%,100%{border-color:var(--hairline)}45%{border-color:var(--marigold)}}
+.work-agent .av{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  background:var(--ink);color:var(--marigold)}
+.work-agent .av svg{width:17px;height:17px}
+.work-agent b{font-size:14px;letter-spacing:-.01em}
+.work-agent .rol{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-ink-dim)}
 
-    .architecture {
-      position: relative;
-      display: grid;
-      gap: 16px;
-      padding: 22px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background: #081216;
-      box-shadow: var(--shadow);
-    }
-    .arch-row { display: grid; grid-template-columns: 165px 1fr; gap: 20px; align-items: stretch; }
-    .arch-label {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 20px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.035);
-      border: 1px solid rgba(255,255,255,.07);
-    }
-    .arch-label span { color: #738186; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; }
-    .arch-label strong { margin-top: 4px; font-size: .88rem; }
-    .arch-nodes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .arch-node {
-      position: relative;
-      min-height: 102px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 17px;
-      border-radius: 14px;
-      background: #112026;
-      border: 1px solid rgba(255,255,255,.09);
-    }
-    .arch-node::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--aqua); }
-    .arch-node strong { font-size: .8rem; line-height: 1.2; }
-    .arch-node small { color: #748287; font-size: .66rem; }
-    .arch-row.core .arch-nodes { grid-template-columns: repeat(4, 1fr); }
-    .arch-row.core .arch-node { background: var(--lime); color: var(--ink); border-color: transparent; }
-    .arch-row.core .arch-node::before { background: var(--ink); }
-    .arch-row.core .arch-node small { color: #4d5a4a; }
-    .arch-row.output .arch-node::before { background: var(--coral); }
-    .arch-arrow {
-      width: 1px;
-      height: 16px;
-      margin: -16px 0 -16px 83px;
-      background: linear-gradient(var(--aqua), var(--lime));
-    }
-    .architecture-note {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding: 2px 5px 0;
-      color: #6f7e82;
-      font-size: .7rem;
-    }
-    .architecture-note strong { color: #c8d1d3; font-weight: 650; }
+/* ---------------- revelado ---------------- */
+.rise{opacity:0;transform:translateY(22px);
+  transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rise.seen{opacity:1;transform:none}
 
-    .flow-wrap { overflow-x: auto; padding-bottom: 12px; }
-    .flow {
-      min-width: 940px;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-    }
-    .flow-step {
-      position: relative;
-      min-height: 260px;
-      padding: 24px 20px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: #101d22;
-    }
-    .flow-step:not(:last-child)::after {
-      content: "→";
-      position: absolute;
-      z-index: 2;
-      top: 50%;
-      right: -18px;
-      width: 26px;
-      height: 26px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: var(--lime);
-      color: var(--ink);
-      font-size: .75rem;
-      font-weight: 800;
-    }
-    .flow-index { color: var(--lime); font-size: .7rem; font-weight: 800; letter-spacing: .12em; }
-    .flow-step h3 { margin: 68px 0 10px; font-size: 1.25rem; letter-spacing: -.035em; }
-    .flow-step p { margin: 0; color: #89979a; font-size: .8rem; }
-    .flow-owner { position: absolute; left: 20px; bottom: 18px; font-size: .63rem; color: #5f7074; letter-spacing: .1em; text-transform: uppercase; }
-
-    .capacity-grid {
-      display: grid;
-      grid-template-columns: .82fr 1.18fr;
-      gap: clamp(34px, 7vw, 90px);
-      align-items: center;
-    }
-    .capacity-copy .section-title { font-size: clamp(2.65rem, 4.8vw, 5rem); }
-    .capacity-points { display: grid; gap: 0; margin-top: 38px; border-top: 1px solid var(--line-dark); }
-    .capacity-point { display: grid; grid-template-columns: 28px 1fr; gap: 13px; padding: 16px 0; border-bottom: 1px solid var(--line-dark); }
-    .capacity-point b { color: #1c6559; }
-    .capacity-point strong { display: block; font-size: .88rem; }
-    .capacity-point span { display: block; color: var(--muted-dark); font-size: .76rem; }
-    .capacity-console {
-      padding: 18px;
-      border-radius: 26px;
-      background: #081216;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      color: white;
-    }
-    .capacity-console-head { display: flex; justify-content: space-between; gap: 18px; padding: 5px 4px 18px; color: #748489; font-size: .68rem; letter-spacing: .11em; text-transform: uppercase; }
-    .capacity-console-head span:last-child { color: var(--aqua); }
-    .binding-list { display: grid; gap: 9px; }
-    .binding-row {
-      display: grid;
-      grid-template-columns: 42px 1fr auto;
-      align-items: center;
-      gap: 13px;
-      min-height: 82px;
-      padding: 14px;
-      border-radius: 14px;
-      background: #111f24;
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    .binding-icon { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 11px; background: rgba(102,232,210,.09); color: var(--aqua); font-size: .68rem; font-weight: 800; }
-    .binding-row strong { display: block; font-size: .83rem; }
-    .binding-row small { display: block; color: #718186; font-size: .67rem; }
-    .account-stack { display: flex; align-items: center; }
-    .account-chip { min-width: 38px; height: 25px; display: grid; place-items: center; margin-left: -6px; padding: 0 8px; border-radius: 999px; border: 2px solid #111f24; background: #24363b; color: #aab8bb; font-size: .58rem; font-weight: 800; }
-    .account-chip:first-child { margin-left: 0; background: var(--lime); color: var(--ink); }
-    .binding-meta { display: flex; justify-content: space-between; gap: 18px; margin-top: 12px; padding: 16px 6px 4px; color: #708085; font-size: .66rem; }
-    .binding-meta strong { display: block; color: #c8d2d4; margin-bottom: 3px; font-size: .74rem; }
-
-    .contract-grid { display: grid; grid-template-columns: .93fr 1.07fr; gap: 20px; align-items: stretch; }
-    .code-card {
-      min-height: 510px;
-      padding: 19px;
-      border-radius: 24px;
-      background: #081216;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-    }
-    .code-top { display: flex; justify-content: space-between; align-items: center; padding: 3px 3px 19px; color: #718085; font-size: .67rem; text-transform: uppercase; letter-spacing: .11em; }
-    .code-dots { display: flex; gap: 6px; }
-    .code-dots i { width: 7px; height: 7px; border-radius: 50%; background: #27373c; }
-    pre {
-      margin: 0;
-      min-height: 444px;
-      padding: 30px;
-      overflow: auto;
-      border-radius: 16px;
-      background: #03090b;
-      color: #c6d0d2;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-      font-size: clamp(.72rem, 1.1vw, .85rem);
-      line-height: 1.8;
-      tab-size: 2;
-    }
-    .code-key { color: var(--aqua); }
-    .code-string { color: var(--lime); }
-    .code-bool { color: var(--coral); }
-    .contract-list { display: grid; gap: 10px; }
-    .contract-item {
-      display: grid;
-      grid-template-columns: 115px 1fr;
-      gap: 20px;
-      align-items: center;
-      min-height: 94px;
-      padding: 18px 21px;
-      border: 1px solid var(--line-dark);
-      border-radius: 16px;
-      background: rgba(255,255,255,.32);
-    }
-    .contract-item code { color: #1c6559; font-weight: 800; font-size: .8rem; }
-    .contract-item strong { display: block; margin-bottom: 3px; font-size: .9rem; }
-    .contract-item span { display: block; color: var(--muted-dark); font-size: .76rem; }
-
-    .capability-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
-    .capability {
-      min-height: 255px;
-      display: flex;
-      flex-direction: column;
-      padding: 27px;
-      border-radius: 18px;
-      border: 1px solid var(--line-dark);
-      background: rgba(255,255,255,.27);
-      transition: background 180ms ease, transform 180ms ease;
-    }
-    .capability:hover { background: rgba(255,255,255,.58); transform: translateY(-3px); }
-    .capability-icon { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 11px; background: var(--ink); color: var(--lime); font-size: .72rem; font-weight: 800; }
-    .capability h3 { margin: auto 0 8px; font-size: 1.2rem; letter-spacing: -.035em; }
-    .capability p { margin: 0; color: var(--muted-dark); font-size: .8rem; }
-
-    .use-cases { display: grid; grid-template-columns: 1.2fr .8fr; gap: 20px; }
-    .case-feature {
-      min-height: 570px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: clamp(30px, 5vw, 54px);
-      border-radius: var(--radius-lg);
-      background: var(--aqua);
-      color: var(--ink);
-    }
-    .case-feature .case-number,
-    .case-card .case-number { font-size: .66rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-    .case-feature blockquote { max-width: 660px; margin: 0; font-size: clamp(2.2rem, 4vw, 4.4rem); line-height: .99; letter-spacing: -.055em; font-weight: 700; }
-    .case-feature p { max-width: 540px; margin: 0; color: #284741; }
-    .case-stack { display: grid; gap: 20px; }
-    .case-card {
-      min-height: 275px;
-      display: flex;
-      flex-direction: column;
-      padding: 29px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--line);
-      background: #101e23;
-    }
-    .case-card h3 { margin: auto 0 8px; font-size: 1.6rem; line-height: 1.05; letter-spacing: -.045em; }
-    .case-card p { margin: 0; color: #87969a; font-size: .82rem; }
-
-    .governance-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(40px, 7vw, 95px); align-items: start; }
-    .governance-sticky { position: sticky; top: 120px; }
-    .governance-sticky .section-title { font-size: clamp(2.7rem, 4.7vw, 4.9rem); }
-    .trust-list { display: grid; gap: 0; border-top: 1px solid var(--line-dark); }
-    .trust-item { display: grid; grid-template-columns: 42px 1fr; gap: 17px; padding: 25px 0; border-bottom: 1px solid var(--line-dark); }
-    .trust-check { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 50%; background: #dff3bb; color: #20360c; font-size: .7rem; font-weight: 850; }
-    .trust-item h3 { margin: 2px 0 5px; font-size: 1rem; }
-    .trust-item p { margin: 0; color: var(--muted-dark); font-size: .82rem; }
-    .boundary {
-      margin-top: 20px;
-      padding: 24px;
-      border-radius: 17px;
-      background: var(--ink);
-      color: white;
-    }
-    .boundary strong { display: block; margin-bottom: 9px; color: var(--coral); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
-    .boundary p { margin: 0; color: #9aa8aa; font-size: .8rem; }
-
-    .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .offer-card {
-      min-height: 510px;
-      display: flex;
-      flex-direction: column;
-      padding: 31px;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: #0d191d;
-    }
-    .offer-card.featured { background: var(--lime); color: var(--ink); border-color: transparent; transform: translateY(-12px); }
-    .offer-label { color: #748387; font-size: .66rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
-    .featured .offer-label { color: #4e5e4b; }
-    .offer-card h3 { margin: 25px 0 9px; font-size: 2rem; letter-spacing: -.045em; }
-    .offer-card > p { color: #8e9c9f; font-size: .85rem; }
-    .featured > p { color: #40503e; }
-    .offer-list { display: grid; gap: 12px; margin: auto 0 30px; padding: 30px 0 0; list-style: none; }
-    .offer-list li { position: relative; padding-left: 20px; color: #b5c0c2; font-size: .8rem; }
-    .offer-list li::before { content: "↳"; position: absolute; left: 0; color: var(--aqua); }
-    .featured .offer-list li { color: #28382d; }
-    .featured .offer-list li::before { color: var(--ink); }
-    .offer-foot { padding-top: 19px; border-top: 1px solid var(--line); color: #6e7d81; font-size: .7rem; }
-    .featured .offer-foot { border-color: rgba(7,16,20,.16); color: #4e5d50; }
-
-    .measure-strip {
-      display: grid;
-      grid-template-columns: 1.1fr repeat(4, 1fr);
-      margin-top: 70px;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-    .measure-strip > div { min-height: 120px; display: flex; flex-direction: column; justify-content: center; padding: 20px; }
-    .measure-strip > div + div { border-left: 1px solid var(--line); }
-    .measure-strip strong { color: var(--lime); font-size: 1.4rem; font-weight: 670; letter-spacing: -.04em; }
-    .measure-strip span { color: #718085; font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; }
-    .measure-intro strong { color: white; font-size: 1rem; letter-spacing: -.01em; }
-
-    .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(40px, 8vw, 110px); }
-    .faq-list { border-top: 1px solid var(--line-dark); }
-    details { border-bottom: 1px solid var(--line-dark); }
-    summary {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      cursor: pointer;
-      list-style: none;
-      font-weight: 700;
-      letter-spacing: -.015em;
-    }
-    summary::-webkit-details-marker { display: none; }
-    summary::after { content: "+"; width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--line-dark); border-radius: 50%; font-weight: 400; }
-    details[open] summary::after { content: "−"; }
-    details p { max-width: 650px; padding: 0 45px 24px 0; margin: 0; color: var(--muted-dark); font-size: .85rem; }
-
-    .final-cta {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(90px, 14vw, 190px) 0 60px;
-      background: var(--lime);
-      color: var(--ink);
-    }
-    .final-cta::before {
-      content: "C3";
-      position: absolute;
-      top: -190px;
-      right: -80px;
-      color: rgba(7,16,20,.055);
-      font-size: min(55vw, 720px);
-      line-height: 1;
-      letter-spacing: -.13em;
-      font-weight: 850;
-      pointer-events: none;
-    }
-    .cta-content { position: relative; z-index: 2; max-width: 900px; }
-    .cta-content .section-kicker { color: #40513d; }
-    .cta-title { margin-bottom: 27px; font-size: clamp(3.2rem, 7.4vw, 7.8rem); line-height: .88; letter-spacing: -.075em; }
-    .cta-copy { max-width: 620px; margin-bottom: 35px; color: #344236; font-size: 1.05rem; }
-    .button-ink { background: var(--ink); color: white; }
-    .button-ink:hover { background: #152429; }
-    .button-outline-ink { border-color: rgba(7,16,20,.3); color: var(--ink); background: transparent; }
-    .copy-status { min-height: 23px; margin-top: 14px; color: #40513d; font-size: .76rem; }
-    .brief-fallback {
-      width: min(100%, 680px);
-      min-height: 170px;
-      margin-top: 12px;
-      padding: 14px;
-      border: 1px solid rgba(7,16,20,.3);
-      border-radius: 12px;
-      background: rgba(255,255,255,.45);
-      color: var(--ink);
-      font: .78rem/1.5 "SFMono-Regular", Consolas, monospace;
-    }
-    .site-footer {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 30px;
-      margin-top: 120px;
-      padding-top: 26px;
-      border-top: 1px solid rgba(7,16,20,.2);
-      color: #3f4e40;
-      font-size: .72rem;
-    }
-    .footer-mark { font-size: 1rem; font-weight: 780; color: var(--ink); }
-
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 600ms ease, transform 600ms ease; }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 980px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-copy { max-width: 720px; }
-      .mission-wrap { width: min(620px, 92%); margin: 30px auto 0; }
-      .section-head { grid-template-columns: 1fr; gap: 24px; }
-      .team-stage, .contract-grid, .capacity-grid, .use-cases, .governance-grid, .faq-grid { grid-template-columns: 1fr; }
-      .workflow-stage { min-height: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; gap: 28px; padding: 34px; }
-      .work-agent.coordination, .work-agent.product, .work-agent.platform, .work-agent.quality, .work-agent.operations, .flow-core { grid-column: auto; grid-row: auto; }
-      .work-agent.platform { grid-column: 1; }
-      .flow-core { grid-column: 2; grid-row: 3; }
-      .workflow-lines, .flow-packet { display: none; }
-      .governance-sticky { position: static; }
-      .capability-grid, .offer-grid { grid-template-columns: repeat(2, 1fr); }
-      .offer-card.featured { transform: none; }
-      .measure-strip { grid-template-columns: repeat(2, 1fr); }
-      .measure-strip > div { border: 1px solid var(--line); margin: -1px 0 0 -1px; }
-      .arch-row { grid-template-columns: 130px 1fr; }
-      .arch-nodes { grid-template-columns: repeat(2, 1fr); }
-      .arch-row.core .arch-nodes { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 760px) {
-      .container { width: min(calc(100% - 28px), var(--max)); }
-      .nav { min-height: 68px; }
-      .menu-button { display: grid; place-items: center; }
-      .nav-links {
-        position: fixed;
-        inset: 68px 0 auto;
-        display: grid;
-        gap: 0;
-        padding: 14px;
-        background: rgba(7,16,20,.98);
-        border-bottom: 1px solid var(--line);
-        transform: translateY(-140%);
-        transition: transform 180ms ease;
-      }
-      .nav-links.is-open { transform: translateY(0); }
-      .nav-links a { min-height: 50px; display: flex; align-items: center; padding: 0 9px; border-bottom: 1px solid rgba(255,255,255,.07); }
-      .nav-links .nav-cta { margin-top: 10px; justify-content: center; border: 1px solid rgba(200,255,99,.45); }
-      .hero { padding-top: 116px; }
-      h1 { font-size: clamp(3.1rem, 16vw, 5.1rem); }
-      .hero-actions .button { width: 100%; }
-      .mission-wrap { width: 100%; }
-      .mission-wrap::before, .mission-wrap::after, .floating-note { display: none; }
-      .mission-card { transform: none; padding: 11px; }
-      .mission-body { padding: 17px; }
-      .problem-grid { grid-template-columns: 1fr; }
-      .problem-item { min-height: auto; padding: 27px 0; }
-      .problem-item + .problem-item { padding-left: 0; border-left: 0; border-top: 1px solid var(--line-dark); }
-      .problem-item h3 { margin-top: 27px; }
-      .team-stage, .capability-grid, .offer-grid { grid-template-columns: 1fr; }
-      .workflow-stage { grid-template-columns: 1fr; gap: 36px; padding: 20px; }
-      .work-agent, .work-agent.platform, .flow-core { grid-column: 1; grid-row: auto; }
-      .work-agent { min-height: 215px; }
-      .work-agent:not(.operations)::after { content: "↓"; position: absolute; left: 50%; bottom: -31px; color: var(--lime); font-size: 1rem; animation: packet-pop 1.7s ease-in-out infinite; }
-      .flow-core { width: 205px; height: 205px; margin: 24px auto; }
-      .workflow-caption { grid-template-columns: 1fr; }
-      .workflow-caption span { min-height: 54px; }
-      .workflow-caption span + span { border-left: 0; border-top: 1px solid var(--line); }
-      .team-card { min-height: 505px; }
-      .human-gate { align-items: flex-start; }
-      .arch-row { grid-template-columns: 1fr; }
-      .arch-label { min-height: 78px; }
-      .arch-arrow { margin-left: 50%; }
-      .arch-nodes, .arch-row.core .arch-nodes { grid-template-columns: 1fr 1fr; }
-      .architecture-note { align-items: flex-start; flex-direction: column; }
-      .contract-item { grid-template-columns: 1fr; gap: 5px; }
-      .case-feature { min-height: 500px; }
-      .measure-strip { grid-template-columns: 1fr 1fr; }
-      .measure-intro { grid-column: 1 / -1; }
-      .site-footer { align-items: flex-start; flex-direction: column; margin-top: 90px; }
-    }
-
-    @media (max-width: 460px) {
-      .hero-proof { display: grid; }
-      .mission-head, .mission-foot { align-items: flex-start; flex-direction: column; }
-      .work-agent { grid-template-columns: 76px 1fr; gap: 14px; padding: 19px 16px; }
-      .agent-character { width: 74px; transform: scale(.86); transform-origin: left center; }
-      .pipeline-row { grid-template-columns: 29px 1fr; }
-      .pipeline-state { grid-column: 2; }
-      .arch-nodes, .arch-row.core .arch-nodes { grid-template-columns: 1fr; }
-      .measure-strip { grid-template-columns: 1fr; }
-      .measure-intro { grid-column: auto; }
-      pre { padding: 20px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
-
-    @media print {
-      .site-header, .ticker, .hero-actions, .copy-status { display: none !important; }
-      body, .section, .final-cta { background: white !important; color: black !important; }
-      .hero { min-height: auto; padding-top: 40px; }
-      .section { break-inside: avoid; padding: 44px 0; }
-      .reveal { opacity: 1; transform: none; }
-    }
-  </style>
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important}
+  .rise{opacity:1;transform:none}
+  .line>span{transform:none;animation:none}
+  .tape-run{animation:none}
+  .bar::after{display:none}
+}
+@media print{
+  body{background:#fff;color:#000}
+  .bar,.tape,.console,.stage,#menu-button,.btn{display:none!important}
+  section{padding:18px 0;break-inside:avoid}
+  .card,.panel,.row,.stat{border:1px solid #999;background:#fff;color:#000}
+}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-  <header class="site-header" id="site-header">
-    <nav class="nav container" aria-label="Navegación principal">
-      <a class="brand" href="#inicio" aria-label="Cauce V3, inicio">
-        <span class="brand-mark">C3</span>
-        <span>Cauce</span><span class="brand-version">V3</span>
-      </a>
-      <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir navegación">☰</button>
-      <div class="nav-links" id="nav-links">
-        <a href="#empresa-viva">Flujo vivo</a>
-        <a href="#arquitectura">Control plane</a>
-        <a href="#capacidad-ia">Capacidad IA</a>
-        <a href="#confianza">Gobernanza</a>
-        <a class="nav-cta" href="#piloto">Diseñar mi empresa</a>
-      </div>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="bar" id="bar">
+  <div class="wrap bar-in">
+    <a class="mark" href="#inicio"><span class="dot"></span>Cauce V3</a>
+    <button id="menu-button" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav id="nav-links" aria-label="Secciones">
+      <a href="#problema">El problema</a>
+      <a href="#arquitectura">Arquitectura</a>
+      <a href="#capacidades">Capacidades</a>
+      <a href="#confianza">Números</a>
+      <a href="#contacto">Hablemos</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main id="contenido">
-    <section class="hero" id="inicio" aria-labelledby="hero-title">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Development companies as a service</p>
-          <h1 id="hero-title">Empresas de desarrollo. <em>Hechas con agentes.</em></h1>
-          <p class="hero-copy">Cauce V3 convierte agentes, cuentas de IA, protocolos, canales y harnesses distintos en una empresa operable. Diseñá de 2 a N equipos especializados y gobernalos desde un solo control plane.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#piloto">Diseñar mi empresa <span class="button-arrow" aria-hidden="true">↗</span></a>
-            <a class="button button-secondary" href="#arquitectura">Explorar el control plane <span aria-hidden="true">↓</span></a>
-          </div>
-          <div class="hero-proof" aria-label="Principios del sistema">
-            <span>2 → N equipos</span>
-            <span>Multi-harness</span>
-            <span>Cuentas dinámicas</span>
-          </div>
-        </div>
+<main id="contenido">
 
-        <div class="mission-wrap" aria-label="Ejemplo ilustrativo de una empresa de agentes en Cauce V3">
-          <div class="mission-card">
-            <div class="mission-head">
-              <span>Empresa · Topología activa</span>
-              <span class="live-pill">Operando</span>
-            </div>
-            <div class="mission-body">
-              <span class="task-label">Equipos especializados</span>
-              <p class="task-title">Producto, plataforma, calidad y operación sobre el mismo control plane.</p>
-              <div class="pipeline">
-                <div class="pipeline-row is-done">
-                  <span class="pipeline-dot">✓</span>
-                  <span><span class="pipeline-name">Equipo Producto</span><span class="pipeline-role">Discovery · Frontend · Backend</span></span>
-                  <span class="pipeline-state">Activo</span>
-                </div>
-                <div class="pipeline-row is-live">
-                  <span class="pipeline-dot">02</span>
-                  <span><span class="pipeline-name">Equipo Plataforma</span><span class="pipeline-role">Infra · Datos · Integraciones</span></span>
-                  <span class="pipeline-state">Enrutado</span>
-                </div>
-                <div class="pipeline-row">
-                  <span class="pipeline-dot">03</span>
-                  <span><span class="pipeline-name">Equipo Calidad</span><span class="pipeline-role">QA · Seguridad · Release</span></span>
-                  <span class="pipeline-state">Disponible</span>
-                </div>
-                <div class="pipeline-row">
-                  <span class="pipeline-dot">N</span>
-                  <span><span class="pipeline-name">Equipos a demanda</span><span class="pipeline-role">Rol · Protocolo · Harness propios</span></span>
-                  <span class="pipeline-state">Escalable</span>
-                </div>
-              </div>
-            </div>
-            <div class="mission-foot">
-              <span>Capacidad IA · <strong>asignada por política</strong></span>
-              <span>Runtime · <strong>multi-harness</strong></span>
-            </div>
-          </div>
-          <aside class="floating-note"><strong>Escala horizontal</strong>Sumá equipos, responsabilidades o proveedores sin duplicar el plano de control.</aside>
+  <!-- ============ 1 · INICIO ============ -->
+  <section class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <div style="display:grid;gap:22px;max-width:64ch">
+        <p class="kicker"><span class="rule"></span>Development companies as a service</p>
+        <h1 class="h-xl"><span class="line"><span>Empresas de desarrollo.</span></span><span class="line"><span style="animation-delay:.09s">Hechas con <em>agentes</em>.</span></span></h1>
+        <p class="lede">Cauce V3 convierte agentes, cuentas de IA, protocolos, canales y harnesses distintos en una empresa operable. Diseñá de 2 a N equipos especializados y gobernalos desde un solo control plane.</p>
+        <div class="actions">
+          <a class="btn btn-cta" href="#contacto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            Diseñar mi empresa</a>
+          <a class="btn btn-ghost" href="#arquitectura">Ver cómo está construido</a>
         </div>
+        <p class="hero-note">Corriendo en producción todos los días. Los números de esta página están medidos, no estimados.</p>
       </div>
-    </section>
 
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker-track">
-        <span>2 → N equipos</span><span>Routing durable</span><span>Suscripciones IA</span><span>Multi-harness</span><span>Protocolos</span><span>Observabilidad</span>
-        <span>2 → N equipos</span><span>Routing durable</span><span>Suscripciones IA</span><span>Multi-harness</span><span>Protocolos</span><span>Observabilidad</span>
+      <div class="console rise" id="console">
+        <div class="console-head">
+          <p class="kicker">Turno nocturno · agentes en operación</p>
+          <span class="live"><i></i>EN VIVO</span>
+        </div>
+        <canvas id="lanes" aria-hidden="true"></canvas>
+        <ul class="console-log" id="log" aria-hidden="true"></ul>
+        <p class="console-foot">Representación de una operación real: entregas que se reclaman, avanzan y se cierran.</p>
       </div>
     </div>
+  </section>
 
-    <section class="section section-paper" id="problema" aria-labelledby="problem-title">
-      <div class="container">
-        <p class="section-kicker reveal">Un agente no es una empresa</p>
-        <div class="section-head reveal">
-          <h2 class="section-title" id="problem-title">La escala necesita <em>arquitectura.</em></h2>
-          <p class="section-intro">Agregar agentes sin topología, capacidad y operación produce más cuentas, más procesos y más gasto; no una empresa de desarrollo.</p>
-        </div>
-        <div class="problem-grid reveal">
-          <article class="problem-item"><span class="problem-number">01 / TOPOLOGÍA</span><h3>Agentes sueltos no forman equipos.</h3><p>Sin roles, responsabilidades, protocolos y rutas explícitas, el ownership se diluye.</p></article>
-          <article class="problem-item"><span class="problem-number">02 / CAPACIDAD</span><h3>Las suscripciones se consumen a ciegas.</h3><p>Cada harness usa una cuenta distinta, desconoce la cuota disponible y bloquea el trabajo.</p></article>
-          <article class="problem-item"><span class="problem-number">03 / OPERACIÓN</span><h3>Cada runtime se vuelve una isla.</h3><p>Procesos, autenticación, herramientas y estados fragmentados impiden operar la flota como sistema.</p></article>
-        </div>
+  <div class="tape" aria-hidden="true">
+    <div class="tape-run">
+      <span>Routing durable</span><span>Multi-harness</span><span>Suscripciones de IA</span><span>Protocolos tipados</span><span>Observabilidad</span><span>Gates humanos</span>
+      <span>Routing durable</span><span>Multi-harness</span><span>Suscripciones de IA</span><span>Protocolos tipados</span><span>Observabilidad</span><span>Gates humanos</span>
+    </div>
+  </div>
+
+  <!-- ============ 2 · PROBLEMA ============ -->
+  <section id="problema">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker" style="color:var(--marigold)">Un agente no es una empresa</p>
+        <h2 class="h-l">La escala necesita arquitectura.</h2>
+        <p class="lede" style="color:var(--on-ink-mute)">Agregar agentes sin topología, capacidad y operación produce más cuentas, más procesos y más gasto; no una empresa de desarrollo.</p>
       </div>
-    </section>
-
-    <section class="section section-dark" id="sistema" aria-labelledby="system-title">
-      <div class="container">
-        <p class="section-kicker reveal">La empresa Cauce</p>
-        <div class="section-head reveal">
-          <h2 class="section-title" id="system-title">De 2 a N equipos. <em>Un control plane.</em></h2>
-          <p class="section-intro">Diseñá la empresa que necesita el objetivo: equipos estables o temporales, responsabilidades distintas y protocolos propios, compartiendo capacidad y gobierno.</p>
-        </div>
-
-        <div class="team-stage reveal">
-          <article class="team-card delivery">
-            <span class="team-tag">Topología · 2 → N</span>
-            <h3>Equipos que reflejan el negocio.</h3>
-            <p>Una empresa puede combinar squads de producto, plataforma, datos, contenido, QA, soporte o cualquier responsabilidad verificable.</p>
-            <div class="role-list">
-              <div class="role"><span class="role-icon">01</span><span><strong>Dirección y coordinación</strong><small>Prioridades, ownership y decisiones</small></span><span class="role-state">Core</span></div>
-              <div class="role"><span class="role-icon">02</span><span><strong>Squads especializados</strong><small>Roles, repos y herramientas por dominio</small></span><span class="role-state">2 → N</span></div>
-              <div class="role"><span class="role-icon">03</span><span><strong>Servicios compartidos</strong><small>QA, infraestructura, diseño y auditoría</small></span><span class="role-state">Shared</span></div>
-            </div>
-          </article>
-
-          <article class="team-card support">
-            <span class="team-tag">Control plane · Cauce V3</span>
-            <h3>Una capa común para operar todo.</h3>
-            <p>Cauce desacopla la empresa de un modelo, una cuenta o un harness único y concentra las decisiones operativas.</p>
-            <div class="role-list">
-              <div class="role"><span class="role-icon">RT</span><span><strong>Routing y protocolos</strong><small>Eventos, entregas y rutas autorizadas</small></span><span class="role-state">Flow</span></div>
-              <div class="role"><span class="role-icon">AI</span><span><strong>Cuentas y suscripciones</strong><small>Primary, fallback, prioridad y cuota</small></span><span class="role-state">Capacity</span></div>
-              <div class="role"><span class="role-icon">HX</span><span><strong>Harnesses y runtime</strong><small>Procesos, tools, placement y estado</small></span><span class="role-state">Operate</span></div>
-            </div>
-          </article>
-        </div>
-
-        <div class="human-gate reveal">
-          <span><strong>La empresa escala; la autoridad no se diluye.</strong><span>Cada equipo hereda tenant, permisos, protocolo y gates humanos definidos.</span></span>
-          <span class="gate-badge">Governed scale</span>
-        </div>
+      <div class="rows three rise">
+        <div class="row"><p class="n">01 / TOPOLOGÍA</p><h3 class="h-m">Agentes sueltos no forman equipos</h3><p>Sin roles, responsabilidades, protocolos y rutas explícitas, el ownership se diluye y nadie responde por el resultado.</p></div>
+        <div class="row"><p class="n">02 / CAPACIDAD</p><h3 class="h-m">Las suscripciones se consumen a ciegas</h3><p>Cada harness usa una cuenta distinta, desconoce la cuota disponible y bloquea el trabajo justo cuando hace falta.</p></div>
+        <div class="row"><p class="n">03 / OPERACIÓN</p><h3 class="h-m">Cada runtime se vuelve una isla</h3><p>Procesos, autenticación, herramientas y estados fragmentados impiden operar la flota como un sistema.</p></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section section-deep" id="empresa-viva" aria-labelledby="workflow-title">
-      <div class="container">
-        <p class="section-kicker reveal">La empresa en movimiento</p>
-        <div class="section-head reveal">
-          <h2 class="section-title" id="workflow-title">Varios agentes. Un flujo que <em>se ve.</em></h2>
-          <p class="section-intro">Un objetivo entra, cada especialista aporta su parte y Cauce mantiene contexto, protocolo y estado durante todos los traspasos.</p>
-        </div>
+  <!-- ============ 3 · SISTEMA ============ -->
+  <section class="day" id="sistema">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker">La empresa Cauce</p>
+        <h2 class="h-l">De 2 a N equipos. <em>Un control plane</em>.</h2>
+        <p class="lede">Diseñá la empresa que necesita el objetivo: equipos estables o temporales, responsabilidades distintas y protocolos propios, compartiendo capacidad y gobierno.</p>
+      </div>
+      <div class="grid rise">
+        <article class="card">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="18" r="2.4"/><circle cx="19" cy="18" r="2.4"/><path d="M12 7.4v4.2M12 11.6 6.6 16M12 11.6 17.4 16"/></svg></span>
+          <p class="tag">Topología · 2 → N</p>
+          <h3 class="h-m">Equipos que reflejan el negocio</h3>
+          <p>Una empresa puede combinar squads de producto, plataforma, datos, contenido, calidad, soporte o cualquier responsabilidad verificable.</p>
+        </article>
+        <article class="card">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span>
+          <p class="tag">Runtime</p>
+          <h3 class="h-m">Un protocolo, varios motores</h3>
+          <p>Bajo el mismo contrato conviven motores de agente distintos. No comprás un modelo: comprás la capa que hace que dé igual cuál corra debajo.</p>
+        </article>
+        <article class="card">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M4 7.5l8-4.5 8 4.5v9L12 21l-8-4.5z"/></svg></span>
+          <p class="tag">Escala horizontal</p>
+          <h3 class="h-m">Sumar sin duplicar el gobierno</h3>
+          <p>Agregá equipos, responsabilidades o proveedores sin multiplicar el plano de control ni volver a resolver la autenticación.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-        <div class="workflow-stage reveal" aria-label="Dibujo animado de cinco agentes colaborando mediante Cauce V3">
-          <svg class="workflow-lines" viewBox="0 0 1200 760" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M290 170 C380 125 440 125 510 170"></path>
-            <path d="M690 170 C770 125 835 125 910 170"></path>
-            <path d="M170 280 C170 390 430 420 510 525"></path>
-            <path d="M600 280 L600 420"></path>
-            <path d="M1030 280 C1030 390 770 420 690 525"></path>
-            <path d="M510 540 C425 520 365 520 290 540"></path>
-            <path d="M690 540 C775 520 835 520 910 540"></path>
-            <path d="M290 625 C455 720 745 720 910 625"></path>
-            <circle class="flow-node" cx="600" cy="420" r="5"></circle>
+  <!-- ============ 4 · EMPRESA VIVA ============ -->
+  <section id="empresa-viva">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker" style="color:var(--marigold)">Empresa viva</p>
+        <h2 class="h-l">Cinco agentes, un objetivo</h2>
+        <p class="lede" style="color:var(--on-ink-mute)">Dibujo animado de cinco agentes colaborando en un flujo de objetivo, construcción, integración, revisión y entrega. Cada uno con rol, protocolo y responsabilidad propios.</p>
+      </div>
+      <div class="stage rise">
+        <div class="workflow">
+          <svg class="workflow-lines" viewBox="0 0 1000 212" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M100 106 H900"/>
           </svg>
-
-          <article class="work-agent coordination">
-            <div class="agent-character tone-yellow" aria-hidden="true">
-              <span class="agent-antenna"></span><span class="agent-head"><i class="agent-eye"></i><i class="agent-eye"></i><i class="agent-mouth"></i></span><span class="agent-body"></span><span class="agent-arm left"></span><span class="agent-arm right"></span><span class="agent-screen">GOAL</span><span class="agent-desk"></span>
-            </div>
-            <div class="agent-copy"><span class="agent-status">Coordinando</span><h3>Dirección</h3><p>Convierte el objetivo en ownership, prioridades y rutas de trabajo.</p><span class="agent-action"><i></i> brief → protocolo</span></div>
-          </article>
-
-          <article class="work-agent product">
-            <div class="agent-character tone-lime" aria-hidden="true">
-              <span class="agent-antenna"></span><span class="agent-head"><i class="agent-eye"></i><i class="agent-eye"></i><i class="agent-mouth"></i></span><span class="agent-body"></span><span class="agent-arm left"></span><span class="agent-arm right"></span><span class="agent-screen">&lt;/&gt;</span><span class="agent-desk"></span>
-            </div>
-            <div class="agent-copy"><span class="agent-status">Construyendo</span><h3>Producto</h3><p>Diseña y desarrolla la capacidad que resuelve la necesidad.</p><span class="agent-action"><i></i> spec → build</span></div>
-          </article>
-
-          <article class="work-agent platform">
-            <div class="agent-character tone-aqua" aria-hidden="true">
-              <span class="agent-antenna"></span><span class="agent-head"><i class="agent-eye"></i><i class="agent-eye"></i><i class="agent-mouth"></i></span><span class="agent-body"></span><span class="agent-arm left"></span><span class="agent-arm right"></span><span class="agent-screen">API</span><span class="agent-desk"></span>
-            </div>
-            <div class="agent-copy"><span class="agent-status">Integrando</span><h3>Plataforma</h3><p>Conecta datos, infraestructura, servicios y entornos de ejecución.</p><span class="agent-action"><i></i> build → runtime</span></div>
-          </article>
-
-          <article class="work-agent quality">
-            <div class="agent-character tone-coral" aria-hidden="true">
-              <span class="agent-antenna"></span><span class="agent-head"><i class="agent-eye"></i><i class="agent-eye"></i><i class="agent-mouth"></i></span><span class="agent-body"></span><span class="agent-arm left"></span><span class="agent-arm right"></span><span class="agent-screen">✓✓</span><span class="agent-desk"></span>
-            </div>
-            <div class="agent-copy"><span class="agent-status">Verificando</span><h3>Calidad</h3><p>Prueba el resultado de forma independiente y devuelve evidencia.</p><span class="agent-action"><i></i> build → veredicto</span></div>
-          </article>
-
-          <article class="work-agent operations">
-            <div class="agent-character tone-paper" aria-hidden="true">
-              <span class="agent-antenna"></span><span class="agent-head"><i class="agent-eye"></i><i class="agent-eye"></i><i class="agent-mouth"></i></span><span class="agent-body"></span><span class="agent-arm left"></span><span class="agent-arm right"></span><span class="agent-screen">LIVE</span><span class="agent-desk"></span>
-            </div>
-            <div class="agent-copy"><span class="agent-status">Entregando</span><h3>Operaciones</h3><p>Publica con autorización, observa salud y atiende fallos reales.</p><span class="agent-action"><i></i> gate → release</span></div>
-          </article>
-
-          <div class="flow-core" aria-label="Cauce V3 coordina el flujo">
-            <span><span>Control plane</span><strong>Cauce V3</strong><small>Contexto · routing · estado · capacidad</small></span>
-          </div>
-
-          <span class="flow-packet brief" aria-hidden="true">Brief</span>
-          <span class="flow-packet build" aria-hidden="true">Build</span>
-          <span class="flow-packet review" aria-hidden="true">Review</span>
-          <span class="flow-packet release" aria-hidden="true">Release</span>
-        </div>
-
-        <div class="workflow-caption reveal" aria-label="Etapas del flujo ilustrado">
-          <span><b>01</b> Objetivo</span><span><b>02</b> Construcción</span><span><b>03</b> Integración</span><span><b>04</b> Revisión</span><span><b>05</b> Entrega</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-deep" id="arquitectura" aria-labelledby="architecture-title">
-      <div class="container">
-        <p class="section-kicker reveal">El mapa completo</p>
-        <div class="section-head reveal">
-          <h2 class="section-title" id="architecture-title">El control plane que hace posible la <em>empresa.</em></h2>
-          <p class="section-intro">Cinco capas desacoplan demanda, identidad, coordinación, ejecución y operación para que los equipos puedan crecer sin rehacer la infraestructura.</p>
-        </div>
-
-        <div class="architecture reveal" role="img" aria-label="Mapa de cinco capas del control plane Cauce V3">
-          <div class="arch-row">
-            <div class="arch-label"><span>Capa 01</span><strong>Entradas</strong></div>
-            <div class="arch-nodes">
-              <div class="arch-node"><span></span><strong>Personas y canales</strong><small>Mensajería y conversaciones</small></div>
-              <div class="arch-node"><span></span><strong>APIs y eventos</strong><small>Sistemas de negocio</small></div>
-              <div class="arch-node"><span></span><strong>Repos y trabajo</strong><small>Contexto del producto</small></div>
-              <div class="arch-node"><span></span><strong>Consola</strong><small>Operación y configuración</small></div>
-            </div>
-          </div>
-          <div class="arch-arrow" aria-hidden="true"></div>
-          <div class="arch-row">
-            <div class="arch-label"><span>Capa 02</span><strong>Identidad</strong></div>
-            <div class="arch-nodes">
-              <div class="arch-node"><span></span><strong>Tenants y rooms</strong><small>Separación por empresa</small></div>
-              <div class="arch-node"><span></span><strong>Roles y ACL</strong><small>Quién puede hablar con quién</small></div>
-              <div class="arch-node"><span></span><strong>Cuentas IA</strong><small>Registro sin copiar secretos</small></div>
-              <div class="arch-node"><span></span><strong>Bindings</strong><small>Cuenta por agente y propósito</small></div>
-            </div>
-          </div>
-          <div class="arch-arrow" aria-hidden="true"></div>
-          <div class="arch-row core">
-            <div class="arch-label"><span>Capa 03</span><strong>Núcleo Cauce</strong></div>
-            <div class="arch-nodes">
-              <div class="arch-node"><span></span><strong>Event bus durable</strong><small>Mensajes y respuestas</small></div>
-              <div class="arch-node"><span></span><strong>Router</strong><small>Destino y disponibilidad</small></div>
-              <div class="arch-node"><span></span><strong>Protocolos</strong><small>Contrato por tipo de entrega</small></div>
-              <div class="arch-node"><span></span><strong>Jobs y colas</strong><small>Trabajo operativo explícito</small></div>
-            </div>
-          </div>
-          <div class="arch-arrow" aria-hidden="true"></div>
-          <div class="arch-row">
-            <div class="arch-label"><span>Capa 04</span><strong>Ejecución</strong></div>
-            <div class="arch-nodes">
-              <div class="arch-node"><span></span><strong>Equipos 01…N</strong><small>Topologías configurables</small></div>
-              <div class="arch-node"><span></span><strong>Harness adapters</strong><small>Runtimes heterogéneos</small></div>
-              <div class="arch-node"><span></span><strong>Tools y MCP</strong><small>Capacidad especializada</small></div>
-              <div class="arch-node"><span></span><strong>Placement</strong><small>Host, proceso y estado</small></div>
-            </div>
-          </div>
-          <div class="arch-arrow" aria-hidden="true"></div>
-          <div class="arch-row output">
-            <div class="arch-label"><span>Capa 05</span><strong>Operación</strong></div>
-            <div class="arch-nodes">
-              <div class="arch-node"><span></span><strong>Presencia y leases</strong><small>Quién está realmente vivo</small></div>
-              <div class="arch-node"><span></span><strong>Observabilidad</strong><small>Colas, fallos y consumo</small></div>
-              <div class="arch-node"><span></span><strong>Auditoría y revisiones</strong><small>Cambios, dry-run y rollback</small></div>
-              <div class="arch-node"><span></span><strong>Resultados</strong><small>Estado, avisos y artefactos</small></div>
-            </div>
-          </div>
-          <div class="architecture-note"><span>Cada integración y harness se habilita de forma explícita; Cauce no depende de compatibilidad universal.</span><strong>Una empresa · muchos runtimes</strong></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-soft" id="capacidad-ia" aria-labelledby="capacity-title">
-      <div class="container capacity-grid">
-        <div class="capacity-copy reveal">
-          <p class="section-kicker">Autenticación y suscripciones</p>
-          <h2 class="section-title" id="capacity-title">Cada agente usa la cuenta <em>correcta.</em></h2>
-          <p class="section-intro">Cauce administra capacidad de IA como infraestructura compartida: registra cuentas, asigna propósito y prioridad, y permite cambiar de proveedor o suscripción sin rearmar el equipo.</p>
-          <div class="capacity-points">
-            <div class="capacity-point"><b>01</b><span><strong>Autenticación dinámica</strong><span>Las credenciales se referencian desde el runtime; no viajan en mensajes ni artefactos.</span></span></div>
-            <div class="capacity-point"><b>02</b><span><strong>Primary y fallback</strong><span>Cada agente puede tener una cuenta principal y reservas ordenadas por política.</span></span></div>
-            <div class="capacity-point"><b>03</b><span><strong>Cuota y consumo visibles</strong><span>La capacidad disponible guía el ruteo y evita gastar tokens en cuentas equivocadas o agotadas.</span></span></div>
-            <div class="capacity-point"><b>04</b><span><strong>Escala por tenant y equipo</strong><span>Suscripciones, propósitos y límites se separan según la empresa que consume el trabajo.</span></span></div>
-          </div>
-        </div>
-        <div class="capacity-console reveal" aria-label="Ejemplo ilustrativo de asignación dinámica de cuentas de IA">
-          <div class="capacity-console-head"><span>Capacity registry · Ejemplo</span><span>Policy active</span></div>
-          <div class="binding-list">
-            <div class="binding-row"><span class="binding-icon">FE</span><span><strong>Frontend specialist</strong><small>Equipo Producto · coding harness</small></span><span class="account-stack"><i class="account-chip">P1</i><i class="account-chip">F2</i></span></div>
-            <div class="binding-row"><span class="binding-icon">BE</span><span><strong>Backend specialist</strong><small>Equipo Plataforma · coding harness</small></span><span class="account-stack"><i class="account-chip">P2</i><i class="account-chip">F1</i></span></div>
-            <div class="binding-row"><span class="binding-icon">QA</span><span><strong>Independent verifier</strong><small>Equipo Calidad · review harness</small></span><span class="account-stack"><i class="account-chip">P3</i><i class="account-chip">F2</i></span></div>
-            <div class="binding-row"><span class="binding-icon">OP</span><span><strong>Operations agent</strong><small>Servicios compartidos · ops harness</small></span><span class="account-stack"><i class="account-chip">P1</i><i class="account-chip">F3</i></span></div>
-          </div>
-          <div class="binding-meta"><span><strong>Secrets</strong>Referencias, no copias</span><span><strong>Fallback</strong>Por capacidad y calidad</span><span><strong>Scope</strong>Tenant · equipo · agente</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-dark" id="flujo" aria-labelledby="flow-title">
-      <div class="container">
-        <p class="section-kicker reveal">Cómo trabaja</p>
-        <div class="section-head reveal">
-          <h2 class="section-title" id="flow-title">De objetivo a empresa <em>operando.</em></h2>
-          <p class="section-intro">Cauce no solo reparte tareas: diseña la topología, asigna capacidad, ejecuta en distintos harnesses y devuelve una operación observable.</p>
-        </div>
-        <div class="flow-wrap reveal">
-          <div class="flow">
-            <article class="flow-step"><span class="flow-index">01</span><h3>Modelar la empresa</h3><p>Objetivos, tenants, equipos, roles y responsabilidades se vuelven topología.</p><span class="flow-owner">Design</span></article>
-            <article class="flow-step"><span class="flow-index">02</span><h3>Definir protocolos</h3><p>Cada tipo de trabajo establece rutas, formato, revisión y autorización.</p><span class="flow-owner">Govern</span></article>
-            <article class="flow-step"><span class="flow-index">03</span><h3>Asignar capacidad</h3><p>Harness, cuenta principal, fallback y herramientas se vinculan por agente.</p><span class="flow-owner">Capacity</span></article>
-            <article class="flow-step"><span class="flow-index">04</span><h3>Ejecutar y observar</h3><p>Mensajes durables, jobs, presencia y estado conectan los equipos en tiempo real.</p><span class="flow-owner">Operate</span></article>
-            <article class="flow-step"><span class="flow-index">05</span><h3>Entregar y aprender</h3><p>Resultados, fallos, artefactos y auditoría alimentan la siguiente revisión.</p><span class="flow-owner">Improve</span></article>
+          <div class="agents">
+            <div class="work-agent"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><b>Objetivo</b><span class="rol">define</span></div>
+            <div class="work-agent"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 3 12l5 6M16 6l5 6-5 6"/></svg></span><b>Construcción</b><span class="rol">ejecuta</span></div>
+            <div class="work-agent"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v12a3 3 0 0 0 3 3h9"/><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="18" r="2.2"/></svg></span><b>Integración</b><span class="rol">conecta</span></div>
+            <div class="work-agent"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span><b>Revisión</b><span class="rol">verifica</span></div>
+            <div class="work-agent"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><b>Entrega</b><span class="rol">cierra</span></div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section section-soft" id="contrato" aria-labelledby="contract-title">
-      <div class="container">
-        <p class="section-kicker reveal">Una entrega no es solo texto</p>
-        <div class="section-head reveal">
-          <h2 class="section-title" id="contract-title">Cada cierre habla el mismo <em>idioma.</em></h2>
-          <p class="section-intro">Un protocolo compartido hace interoperables equipos y harnesses: distingue qué se respondió, qué se delegó, quién debe enterarse, cómo terminó y dónde está la evidencia.</p>
+  <!-- ============ 5 · ARQUITECTURA ============ -->
+  <section class="day" id="arquitectura">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker">Arquitectura</p>
+        <h2 class="h-l">Lo que pasa cuando algo se rompe</h2>
+        <p class="lede">Todo el mundo dice que reintenta. Esto es distinto, y es la parte del sistema que más cuesta construir.</p>
+      </div>
+      <div class="grid rise">
+        <article class="card">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3.5 2"/><path d="M21 3v5h-5"/></svg></span>
+          <p class="tag">Reservas que vencen</p>
+          <h3 class="h-m">Nada queda colgado</h3>
+          <p>Una entrega se reclama con una reserva que el agente renueva mientras trabaja. Si su proceso muere, la reserva vence y la entrega se vuelve a repartir sola.</p>
+        </article>
+        <article class="card">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v12H3z"/><path d="M3 7l9 7 9-7"/></svg></span>
+          <p class="tag">Cartas muertas</p>
+          <h3 class="h-m">Lo que se rompió, guardado entero</h3>
+          <p>Cuando un turno falla, su contenido no se pierde: queda en una cola con el cuerpo completo. Poder decir «esto se rompió y acá está exactamente lo que se iba a decir» es distinto de sólo reintentar.</p>
+        </article>
+        <article class="card">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+          <p class="tag">Identidad y aislamiento</p>
+          <h3 class="h-m">Separación en la base, no en la buena conducta</h3>
+          <p>Cada agente tiene identidad propia por certificado, y dos clientes distintos no pueden hablarse aunque quieran: lo impide el almacenamiento, no una convención.</p>
+        </article>
+        <article class="card">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M9.5 12l1.8 1.8 3.7-3.8"/></svg></span>
+          <p class="tag">Artefactos verificados</p>
+          <h3 class="h-m">No existe «funciona en mi máquina»</h3>
+          <p>Cada agente corre un artefacto fijado por huella, que el supervisor verifica y vuelve a sembrar al arrancar.</p>
+        </article>
+      </div>
+      <p class="lede rise" style="margin-top:22px;max-width:72ch"><strong>La contraparte honesta:</strong> la recuperación de una carta muerta no es automática. Alguien tiene que ir a buscarla. El sistema no revierte el trabajo perdido — te dice exactamente dónde está.</p>
+    </div>
+  </section>
+
+  <!-- ============ 6 · CAPACIDAD IA ============ -->
+  <section id="capacidad-ia">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker" style="color:var(--marigold)">Capacidad IA</p>
+        <h2 class="h-l">Cuatro motores, un solo contrato</h2>
+        <p class="lede" style="color:var(--on-ink-mute)">Hoy conviven cuatro motores de agente distintos bajo el mismo protocolo. Es la pieza que casi nadie tiene: un cliente no compra un modelo, compra la capa que hace que dé igual cuál corra debajo.</p>
+      </div>
+      <ul class="list rise">
+        <li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span class="tx"><b>Operación multi-harness</b>Motores distintos, mismo contrato de entrada y salida. Cambiar de proveedor no obliga a reescribir la empresa.</span></li>
+        <li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span class="tx"><b>Suscripciones asignadas por política</b>La capacidad de IA se reparte según reglas explícitas, no por orden de llegada. Las suscripciones dejan de consumirse a ciegas.</span></li>
+        <li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span class="tx"><b>Autenticación dinámica</b>Cada agente y cada canal resuelven su credencial en el momento, sin repartir llaves largas por todos los runtimes.</span></li>
+        <li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span class="tx"><b>Protocolo de salida tipado, no prosa</b>Cada turno devuelve campos distintos para cosas distintas: la respuesta a quien preguntó, la delegación a un tercero, el aviso a una persona, los artefactos y el estado. El sistema no adivina a quién va cada cosa.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 7 · FLUJO ============ -->
+  <section class="day" id="flujo">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker">Flujo</p>
+        <h2 class="h-l">De un pedido en el chat a trabajo verificable</h2>
+      </div>
+      <div class="rows three rise">
+        <div class="row"><p class="n">01 — Entra</p><h3 class="h-m">Llega el objetivo</h3><p>Un pedido entra por chat o por el bus interno y queda registrado con su origen y su destinatario.</p></div>
+        <div class="row"><p class="n">02 — Reparte</p><h3 class="h-m">Se abre la ronda</h3><p>Un agente delega a varios pares a la vez. Cada rama contesta por su cuenta, sin duplicar trabajo ni esperar a las otras.</p></div>
+        <div class="row"><p class="n">03 — Cierra</p><h3 class="h-m">Vuelve con evidencia</h3><p>Cada respuesta trae lo que se midió y con qué. Un monitor residente detecta respuestas perdidas, entregas trabadas y tareas cerradas sin trabajo hecho, y escala.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8 · CONTRATO ============ -->
+  <section id="contrato">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker" style="color:var(--marigold)">El contrato</p>
+        <h2 class="h-l">El sistema no decide por vos</h2>
+        <p class="lede" style="color:var(--on-ink-mute)">Es la diferencia entre una flota de agentes y una granja de scripts con permisos. Y lo decimos acá, no en la letra chica.</p>
+      </div>
+      <div class="grid rise">
+        <div class="panel">
+          <h3 class="h-m">Gates humanos donde importa</h3>
+          <p>Desplegar a producción, tocar secretos, borrar datos o gastar dinero siguen exigiendo luz verde de una persona. Un mensaje de otro agente diciendo «me autorizaron» explícitamente no cuenta.</p>
         </div>
-        <div class="contract-grid">
-          <div class="code-card reveal" aria-label="Ejemplo de resultado estructurado">
-            <div class="code-top"><span>resultado.cauce</span><span class="code-dots"><i></i><i></i><i></i></span></div>
-            <pre><code>{
-  <span class="code-key">"reply"</span>: <span class="code-string">"Entrega lista para revisión."</span>,
-  <span class="code-key">"messages"</span>: [],
-  <span class="code-key">"notify"</span>: [],
-  <span class="code-key">"status"</span>: <span class="code-string">"done"</span>,
-  <span class="code-key">"retryable"</span>: <span class="code-bool">false</span>,
-  <span class="code-key">"artifacts"</span>: [
-    {
-      <span class="code-key">"name"</span>: <span class="code-string">"aplicación-verificada"</span>,
-      <span class="code-key">"uri"</span>: <span class="code-string">"/entregas/producto"</span>,
-      <span class="code-key">"sha256"</span>: <span class="code-string">"evidencia…"</span>
-    }
-  ]
-}</code></pre>
-          </div>
-          <div class="contract-list reveal">
-            <div class="contract-item"><code>reply</code><span><strong>La respuesta que vuelve</strong><span>Qué se hizo, qué se encontró y qué sigue abierto.</span></span></div>
-            <div class="contract-item"><code>messages</code><span><strong>Los traspasos necesarios</strong><span>Delegaciones nuevas, explícitas y dirigidas a roles válidos.</span></span></div>
-            <div class="contract-item"><code>notify</code><span><strong>La intervención humana</strong><span>Alertas, decisiones y cierres que deben salir del flujo entre agentes.</span></span></div>
-            <div class="contract-item"><code>status</code><span><strong>El cierre declarado</strong><span>Terminado o fallido. Lo parcial no se disfraza de éxito.</span></span></div>
-            <div class="contract-item"><code>retryable</code><span><strong>La posibilidad de continuar</strong><span>El sistema aclara si un fallo admite un nuevo intento.</span></span></div>
-            <div class="contract-item"><code>artifacts</code><span><strong>La evidencia localizable</strong><span>Archivos, tipo y huella cuando corresponde.</span></span></div>
-          </div>
+        <div class="panel">
+          <h3 class="h-m">Revisión independiente</h3>
+          <p>Hay agentes dedicados a calidad que corren pruebas contra entornos de desarrollo y emiten dictamen sobre el trabajo de otros. Quien construye no es quien aprueba.</p>
+        </div>
+        <div class="panel">
+          <h3 class="h-m">Avisar a una persona es un canal gobernado</h3>
+          <p>Cada destino humano tiene tipos de aviso permitidos, tope por hora y por día, horas de silencio con su zona horaria, y cada intento queda registrado con su veredicto. Los agentes no pueden inundar a nadie.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section section-paper" id="capacidades" aria-labelledby="capabilities-title">
-      <div class="container">
-        <p class="section-kicker reveal">Capacidades del producto</p>
-        <div class="section-head reveal">
-          <h2 class="section-title" id="capabilities-title">Toda la empresa se puede <em>operar.</em></h2>
-          <p class="section-intro">Cauce convierte agentes, modelos, cuentas, herramientas y canales en una organización definida, medible y ampliable.</p>
-        </div>
-        <div class="capability-grid reveal">
-          <article class="capability"><span class="capability-icon">TN</span><h3>Topología multi-equipo</h3><p>De 2 a N células con objetivos, ownership y rutas propias, más servicios compartidos cuando hacen falta.</p></article>
-          <article class="capability"><span class="capability-icon">PR</span><h3>Protocolos por trabajo</h3><p>Cada flujo define contrato de entrada y salida, revisión independiente, escalado, reintentos y gates humanos.</p></article>
-          <article class="capability"><span class="capability-icon">MH</span><h3>Runtime multi-harness</h3><p>Adaptadores conectan harnesses de código, revisión, operaciones o conversación bajo el mismo control plane.</p></article>
-          <article class="capability"><span class="capability-icon">AI</span><h3>Autenticación dinámica</h3><p>Cuentas, suscripciones, prioridades y fallback se asignan por política para usar mejor la capacidad disponible.</p></article>
-          <article class="capability"><span class="capability-icon">ACL</span><h3>Identidad multi-tenant</h3><p>Empresas, salas, roles y permisos delimitan qué contexto y qué destinos puede usar cada entrega.</p></article>
-          <article class="capability"><span class="capability-icon">OB</span><h3>Observabilidad y auditoría</h3><p>Jobs, presencia, consumo, resultados, fallos y revisiones dejan una historia operativa verificable.</p></article>
-        </div>
+  <!-- ============ 9 · CAPACIDADES ============ -->
+  <section class="day" id="capacidades">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker">Capacidades</p>
+        <h2 class="h-l">Lo que ya está implementado</h2>
+        <p class="lede">Nada de esto es hoja de ruta. Es lo que corre todos los días.</p>
       </div>
-    </section>
-
-    <section class="section section-dark" id="casos" aria-labelledby="cases-title">
-      <div class="container">
-        <p class="section-kicker reveal">Dónde genera valor</p>
-        <div class="section-head reveal">
-          <h2 class="section-title" id="cases-title">Una empresa para cada tipo de <em>delivery.</em></h2>
-          <p class="section-intro">La misma base puede operar como software factory, organización de producto, plataforma interna o red multi-cliente.</p>
-        </div>
-        <div class="use-cases reveal">
-          <article class="case-feature"><span class="case-number">01 · Software factory</span><blockquote>Una empresa de producto completa, disponible como capacidad.</blockquote><p>Dirección, squads de frontend y backend, arquitectura, QA y operaciones trabajan con protocolos comunes sin perder ownership.</p></article>
-          <div class="case-stack">
-            <article class="case-card"><span class="case-number">02 · Platform engineering</span><h3>Una plataforma que atiende a muchos equipos</h3><p>Automatización, incidentes, seguridad, infraestructura y soporte técnico con colas y escalados explícitos.</p></article>
-            <article class="case-card"><span class="case-number">03 · Operación multi-cliente</span><h3>Una empresa, varios tenants</h3><p>Agencias y proveedores gestionan equipos, cuentas y protocolos separados sin mezclar contexto ni capacidad.</p></article>
-          </div>
-        </div>
+      <div class="grid rise">
+        <article class="card"><p class="tag">Durabilidad</p><h3 class="h-m">Reservas renovables y reparto automático</h3><p>El trabajo sobrevive a que se mueran los procesos que lo estaban haciendo.</p></article>
+        <article class="card"><p class="tag">Trazabilidad</p><h3 class="h-m">Cola de cartas muertas con el cuerpo entero</h3><p>Lo que falla queda legible, no perdido.</p></article>
+        <article class="card"><p class="tag">Coordinación</p><h3 class="h-m">Rondas en abanico sin duplicar</h3><p>Varios pares contestan en paralelo y cada rama cierra sola.</p></article>
+        <article class="card"><p class="tag">Gobierno</p><h3 class="h-m">Aislamiento por cliente y auditoría de avisos</h3><p>Quién pidió permiso, para qué, y qué se respondió.</p></article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section section-paper" id="confianza" aria-labelledby="trust-title">
-      <div class="container governance-grid">
-        <div class="governance-sticky reveal">
-          <p class="section-kicker">Control antes que autonomía irrestricta</p>
-          <h2 class="section-title" id="trust-title">La confianza se <em>diseña.</em></h2>
-          <p class="section-intro">Cauce convierte las reglas de operación en parte visible del flujo, sin confundir coordinación con una certificación de seguridad.</p>
-        </div>
-        <div class="reveal">
-          <div class="trust-list">
-            <article class="trust-item"><span class="trust-check">✓</span><span><h3>Identidad, roles y rutas explícitas</h3><p>Tenants, salas, roles y ACL definen quién puede recibir trabajo y qué contexto puede cruzar cada frontera.</p></span></article>
-            <article class="trust-item"><span class="trust-check">✓</span><span><h3>Secretos por referencia</h3><p>Las cuentas se vinculan al runtime sin copiar tokens, credenciales o sesiones dentro de mensajes y artefactos.</p></span></article>
-            <article class="trust-item"><span class="trust-check">✓</span><span><h3>Autorización para acciones sensibles</h3><p>Comunicar no equivale a autorizar. Los cambios de producción o irreversibles conservan un gate humano.</p></span></article>
-            <article class="trust-item"><span class="trust-check">✓</span><span><h3>Configuración gobernada</h3><p>Revisiones, validación, dry-run y rollback permiten ampliar topologías y protocolos sin cambiar a ciegas.</p></span></article>
-            <article class="trust-item"><span class="trust-check">✓</span><span><h3>Fallos explícitos</h3><p>Un bloqueo informa qué ocurrió y si corresponde reintentar. El estado terminado no admite ambigüedad.</p></span></article>
-          </div>
-          <aside class="boundary"><strong>Límite honesto</strong><p>Estas reglas no prueban por sí solas cifrado de extremo a extremo, certificaciones, cumplimiento normativo, residencia de datos ni compatibilidad con cualquier proveedor. Cada entorno e integración se valida antes de incluirse en una oferta.</p></aside>
-        </div>
+  <!-- ============ 10 · CASOS ============ -->
+  <section id="casos">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker" style="color:var(--marigold)">Cómo se ve en la práctica</p>
+        <h2 class="h-l">Una empresa donde cada persona tiene su equipo de agentes</h2>
+        <p class="lede" style="color:var(--on-ink-mute)">Cinco personas, cada una con su equipo, trabajando sobre productos reales. Un agente recibe el pedido por chat, lo reparte entre sus pares, cada uno contesta con evidencia verificable, y el trabajo cruzado entre equipos pasa por el bus con trazabilidad. Hay agentes dedicados a control de calidad, y uno que hace de médico de la propia flota.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section section-deep" id="piloto" aria-labelledby="offer-title">
-      <div class="container">
-        <p class="section-kicker reveal">Cómo empezar</p>
-        <div class="section-head reveal">
-          <h2 class="section-title" id="offer-title">Diseñá una empresa. Escalala sin <em>rehacerla.</em></h2>
-          <p class="section-intro">Cauce puede nacer con dos equipos o integrar una operación existente. La topología, los protocolos y la capacidad crecen por configuración.</p>
-        </div>
-        <div class="offer-grid reveal">
-          <article class="offer-card">
-            <span class="offer-label">2 equipos</span>
-            <h3>Empresa inicial</h3>
-            <p>Una unidad completa para validar el modelo con un producto o flujo real.</p>
-            <ul class="offer-list"><li>Producto + plataforma o calidad</li><li>Responsabilidades y protocolos</li><li>Cuentas y harnesses asignados</li><li>Entrega y fallos observables</li></ul>
-            <div class="offer-foot">Salida: una operación funcional con criterios para escalar.</div>
-          </article>
-          <article class="offer-card featured">
-            <span class="offer-label">3 → N equipos</span>
-            <h3>Empresa multi-equipo</h3>
-            <p>Varios squads y servicios compartidos bajo un único control plane.</p>
-            <ul class="offer-list"><li>Topología por dominios</li><li>Matriz de protocolos y rutas</li><li>Capacity pool con fallback</li><li>Observabilidad y gobierno</li></ul>
-            <div class="offer-foot">Salida: capacidad recurrente que crece sin improvisar coordinación.</div>
-          </article>
-          <article class="offer-card">
-            <span class="offer-label">Integrar</span>
-            <h3>Control plane gestionado</h3>
-            <p>Para organizaciones que ya tienen agentes, cuentas, herramientas o harnesses.</p>
-            <ul class="offer-list"><li>Inventario e integración</li><li>Adaptadores multi-harness</li><li>Tenants y suscripciones</li><li>Soporte definido por acuerdo</li></ul>
-            <div class="offer-foot">Salida: una empresa existente gobernada desde una capa común.</div>
-          </article>
-        </div>
-        <div class="measure-strip reveal" aria-label="Dimensiones operativas de la empresa">
-          <div class="measure-intro"><strong>Lo que hacemos visible</strong><span>Sin métricas inventadas</span></div>
-          <div><strong>Delivery</strong><span>Cierre y retrabajo</span></div>
-          <div><strong>Capacidad IA</strong><span>Cuenta y disponibilidad</span></div>
-          <div><strong>Consumo</strong><span>Cuota y tokens</span></div>
-          <div><strong>Operación</strong><span>Bloqueos y revisión</span></div>
-        </div>
+  <!-- ============ 11 · CONFIANZA ============ -->
+  <section class="day" id="confianza">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker">Números</p>
+        <h2 class="h-l">Medidos, y con su contraparte</h2>
+        <p class="lede">Son de nuestra propia flota, no de una base de clientes: el producto se usa todos los días para construirse a sí mismo. Decirlo de otro modo sería mentir, y estas cifras <strong>no prueban por sí solas</strong> que vaya a resolver tu caso — prueban que el sistema aguanta uso real y sostenido.</p>
       </div>
-    </section>
-
-    <section class="section section-soft" id="preguntas" aria-labelledby="faq-title">
-      <div class="container faq-grid">
-        <div class="reveal">
-          <p class="section-kicker">Preguntas directas</p>
-          <h2 class="section-title" id="faq-title">Antes de <em>empezar.</em></h2>
-        </div>
-        <div class="faq-list reveal">
-          <details><summary>¿Qué significa “empresa de desarrollo como servicio”?</summary><p>No se contrata un agente aislado: se diseña una organización con equipos, responsabilidades, protocolos, capacidad de IA, herramientas y gobierno para un objetivo de negocio.</p></details>
-          <details><summary>¿Cuántos equipos puede coordinar Cauce?</summary><p>La topología parte de 2 equipos y puede crecer a N. El límite real depende de la infraestructura, los harnesses, las cuentas y el soporte acordados para cada entorno.</p></details>
-          <details><summary>¿Cómo ayuda a reducir el consumo de tokens?</summary><p>La autenticación dinámica y las políticas de asignación evitan usar cuentas o modelos equivocados, permiten aprovechar cuotas disponibles y separan capacidad principal de fallback. El ahorro efectivo se mide por caso.</p></details>
-          <details><summary>¿Puede controlar harnesses diferentes?</summary><p>Sí, mediante adaptadores que normalizan identidad, entregas y resultados. Solo se ofrecen como compatibles los harnesses que hayan sido integrados y validados.</p></details>
-          <details><summary>¿Qué pasa con las credenciales?</summary><p>Se administran fuera del flujo de mensajes y se vinculan por referencia al runtime autorizado. No se copian entre agentes, tenants o artefactos.</p></details>
-          <details><summary>¿Los agentes pueden actuar solos en producción?</summary><p>No por defecto. Las acciones sensibles conservan gates de autorización. El punto de partida recomendado es un piloto no productivo o un flujo reversible.</p></details>
-        </div>
+      <div class="stats rise" style="margin-bottom:14px">
+        <div class="stat"><b data-count="11731">0</b><span>Entregas acumuladas</span></div>
+        <div class="stat"><b data-count="3305">0</b><span>Entregas en los últimos 7 días</span></div>
+        <div class="stat"><b data-count="2923">0</b><span>Pico en un solo día</span></div>
+        <div class="stat"><b data-count="4">0</b><span>Motores de agente distintos, simultáneos</span></div>
       </div>
-    </section>
-
-    <section class="final-cta" id="contacto" aria-labelledby="cta-title">
-      <div class="container">
-        <div class="cta-content reveal">
-          <p class="section-kicker">El primer paso</p>
-          <h2 class="cta-title" id="cta-title">Definí la empresa. Cauce la pone a operar.</h2>
-          <p class="cta-copy">Contanos qué debe entregar, qué equipos necesita, qué harnesses y proveedores ya usás y qué decisiones quedan bajo control humano.</p>
-          <div class="hero-actions">
-            <button class="button button-ink" id="copy-brief" type="button">Copiar brief de empresa <span aria-hidden="true">↗</span></button>
-            <a class="button button-outline-ink" href="#arquitectura">Volver al sistema</a>
-          </div>
-          <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
-          <textarea class="brief-fallback" id="brief-fallback" aria-label="Brief inicial de Cauce V3" readonly hidden></textarea>
-        </div>
-        <footer class="site-footer">
-          <span><span class="footer-mark">Cauce V3</span><br>Empresas de desarrollo hechas con agentes.</span>
-          <span>Artefacto comercial revisable · <span id="year">2026</span></span>
-        </footer>
+      <div class="stats rise">
+        <div class="stat"><b>94,2 %</b><span>Entregas completadas en los últimos 7 días</span></div>
+        <div class="stat bad"><b>4,2 %</b><span>Entregas que murieron por vencer su plazo. Va al lado del anterior a propósito: una cifra de fiabilidad sin su contraparte no la cree nadie que sepa.</span></div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <script>
-    (() => {
-      const header = document.querySelector("#site-header");
-      const menuButton = document.querySelector("#menu-button");
-      const navLinks = document.querySelector("#nav-links");
-      const copyButton = document.querySelector("#copy-brief");
-      const copyStatus = document.querySelector("#copy-status");
-      const briefFallback = document.querySelector("#brief-fallback");
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const captureMode = new URLSearchParams(window.location.search).has("capture");
+  <!-- ============ 12 · PILOTO ============ -->
+  <section id="piloto">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker" style="color:var(--marigold)">Cómo empezar</p>
+        <h2 class="h-l">Un piloto no productivo, y después se decide</h2>
+        <p class="lede" style="color:var(--on-ink-mute)">No pedimos que muevas tu operación el primer día. Se arma un <strong>piloto no productivo</strong> con dos equipos, sobre un objetivo real pero acotado, y se mide qué pasó antes de tocar nada que importe. Estos son los límites que vas a encontrar, dichos antes de empezar:</p>
+      </div>
+      <ul class="list limits rise">
+        <li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v5M12 16.5h.01M12 3l9 17H3z"/></svg></span><span class="tx"><b>Los agentes son puramente reactivos</b>Existen sólo cuando les llega algo: no hay bucle, no hay reloj, no hay bandeja que puedan mirar. «Vigilá esto y avisame cuando cambie» no es expresable, y cualquier promesa de monitorización continua sería falsa.</span></li>
+        <li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v5M12 16.5h.01M12 3l9 17H3z"/></svg></span><span class="tx"><b>Un turno tiene plazo</b>Si se pasa, muere y su respuesta se pierde. Ese es el origen de la mayor parte de ese 4,2 %.</span></li>
+        <li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v5M12 16.5h.01M12 3l9 17H3z"/></svg></span><span class="tx"><b>No hay autoescalado</b>Cada agente es un contenedor provisionado. Crecer es una decisión, no un efecto secundario.</span></li>
+        <li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v5M12 16.5h.01M12 3l9 17H3z"/></svg></span><span class="tx"><b>No hay canal entre clientes distintos</b>A propósito, y no se puede habilitar «por esta vez».</span></li>
+      </ul>
+    </div>
+  </section>
 
-      const updateHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 18);
-      updateHeader();
-      window.addEventListener("scroll", updateHeader, { passive: true });
+  <!-- ============ 13 · PREGUNTAS ============ -->
+  <section class="day" id="preguntas">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker">Preguntas</p>
+        <h2 class="h-l">Lo que suelen preguntar primero</h2>
+      </div>
+      <div class="rise">
+        <details><summary>¿Esto reemplaza a mi equipo?</summary><p>No. Reemplaza el trabajo que tu equipo hace a mano y no debería estar haciendo. Las decisiones que importan siguen necesitando una persona, por diseño.</p></details>
+        <details><summary>¿Me atan a un proveedor de IA?</summary><p>No: hoy conviven cuatro motores distintos bajo el mismo protocolo. Cambiar de proveedor es configuración, no una reescritura.</p></details>
+        <details><summary>¿Qué pasa si se cae un agente en medio de una tarea?</summary><p>Su reserva vence y la entrega se vuelve a repartir. Si el turno alcanzó a fallar, su contenido queda guardado entero y se puede recuperar.</p></details>
+        <details><summary>¿Puede un agente gastar dinero o borrar datos sin avisar?</summary><p>No. Esas cuatro acciones —desplegar a producción, tocar secretos, borrar datos y gastar— exigen luz verde de una persona, y un agente diciendo que otro lo autorizó no cuenta.</p></details>
+        <details><summary>¿Los datos de un cliente pueden llegar a otro?</summary><p>No hay canal entre clientes distintos. La separación está en el almacenamiento, no en una regla de conducta.</p></details>
+        <details><summary>¿Cuánto tarda en estar operando?</summary><p>Depende de cuántos equipos y de a qué se conecte. Por eso se arranca con un piloto acotado y no productivo: primero se mide, después se decide.</p></details>
+      </div>
+    </div>
+  </section>
 
-      menuButton.addEventListener("click", () => {
-        const open = navLinks.classList.toggle("is-open");
-        menuButton.setAttribute("aria-expanded", String(open));
-        menuButton.setAttribute("aria-label", open ? "Cerrar navegación" : "Abrir navegación");
-        menuButton.textContent = open ? "×" : "☰";
-      });
+  <!-- ============ 14 · CONTACTO ============ -->
+  <section class="contact" id="contacto">
+    <div class="wrap contact-in rise">
+      <p class="kicker" style="color:var(--marigold)">Hablemos</p>
+      <h2 class="h-l">Diseñemos tu empresa de agentes</h2>
+      <p class="lede" style="color:var(--on-ink-mute)">Copiá un brief inicial con lo que hace falta para la primera conversación y mandalo por donde prefieras. Esta página no envía nada a ningún servicio.</p>
+      <button class="btn btn-cta" id="copy-brief" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+        Copiar brief inicial
+      </button>
+      <p id="copy-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
 
-      navLinks.addEventListener("click", (event) => {
-        if (event.target.closest("a")) {
-          navLinks.classList.remove("is-open");
-          menuButton.setAttribute("aria-expanded", "false");
-          menuButton.setAttribute("aria-label", "Abrir navegación");
-          menuButton.textContent = "☰";
-        }
-      });
+<footer>
+  <div class="wrap">Cauce V3 · Empresas de desarrollo hechas con agentes · <a href="https://humanizar.tech/" style="color:var(--on-ink-mute)">humanizar.tech</a></div>
+</footer>
 
-      const revealNodes = [...document.querySelectorAll(".reveal")];
-      if (reduceMotion || captureMode || !("IntersectionObserver" in window)) {
-        revealNodes.forEach((node) => node.classList.add("is-visible"));
-      } else {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.1, rootMargin: "0px 0px -45px" });
-        revealNodes.forEach((node) => observer.observe(node));
+<script>
+const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---- menu ---- */
+const menuBtn = document.getElementById("menu-button");
+const navLinks = document.getElementById("nav-links");
+function cerrarMenu(){ navLinks.classList.remove("is-open"); menuBtn.setAttribute("aria-expanded","false"); }
+menuBtn.addEventListener("click", () => {
+  const abierto = navLinks.classList.toggle("is-open");
+  menuBtn.setAttribute("aria-expanded", abierto ? "true" : "false");
+});
+navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", cerrarMenu));
+
+/* ---- brief al portapapeles: no se envia nada a ningun servicio ---- */
+const BRIEF = [
+  "Brief inicial - empresa de desarrollo con agentes (Cauce V3)",
+  "",
+  "1. Que hace tu equipo hoy y que le quita mas tiempo:",
+  "2. Cuantos equipos o responsabilidades distintas necesitas:",
+  "3. Herramientas y sistemas a los que habria que conectarse:",
+  "4. Que decisiones deben seguir pasando por una persona:",
+  "5. Objetivo acotado para un piloto no productivo:"
+].join("\n");
+const estado = document.getElementById("copy-status");
+document.getElementById("copy-brief").addEventListener("click", () => {
+  const respaldo = () => {
+    const ta = document.createElement("textarea");
+    ta.value = BRIEF; ta.setAttribute("readonly","");
+    ta.style.position = "fixed"; ta.style.left = "-9999px";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    ta.remove();
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(BRIEF).catch(respaldo);
+  } else {
+    respaldo();
+  }
+  estado.textContent = "Brief copiado. Pegalo donde quieras y contanos el caso.";
+});
+
+/* ---- barra, progreso y parallax ---- */
+const bar = document.getElementById("bar");
+let pend = false;
+addEventListener("scroll", () => {
+  bar.classList.toggle("is-stuck", scrollY > 12);
+  if (pend || quieto) return;
+  pend = true;
+  requestAnimationFrame(() => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.setProperty("--prog", (h > 0 ? (scrollY / h) * 100 : 0).toFixed(2) + "%");
+    const hero = document.querySelector(".hero");
+    if (hero && scrollY < innerHeight * 1.2) hero.style.setProperty("--py", (scrollY * .22).toFixed(1) + "px");
+    pend = false;
+  });
+}, {passive:true});
+
+/* ---- revelado ---- */
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("seen"); io.unobserve(e.target); } });
+}, {rootMargin:"0px 0px -12% 0px", threshold:.06});
+document.querySelectorAll(".rise").forEach((el,i) => { el.style.transitionDelay = (i%3)*70 + "ms"; io.observe(el); });
+
+if (!quieto) {
+  /* ---- iman en los botones ---- */
+  document.querySelectorAll(".btn-cta,.btn-ghost").forEach(b => {
+    b.classList.add("mag");
+    b.addEventListener("pointermove", e => {
+      const r = b.getBoundingClientRect();
+      b.style.setProperty("--tx", ((e.clientX - r.left - r.width/2) * .16).toFixed(1) + "px");
+      b.style.setProperty("--ty", ((e.clientY - r.top - r.height/2) * .22).toFixed(1) + "px");
+    });
+    b.addEventListener("pointerleave", () => { b.style.setProperty("--tx","0px"); b.style.setProperty("--ty","0px"); });
+  });
+  /* ---- foco que sigue al puntero ---- */
+  document.querySelectorAll(".card").forEach(c => {
+    c.addEventListener("pointermove", e => {
+      const r = c.getBoundingClientRect();
+      c.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      c.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
+  });
+  /* ---- numeros que cuentan al aparecer ---- */
+  const cIO = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, fin = +el.dataset.count;
+    let t0 = null;
+    (function paso(now){
+      if (!t0) t0 = now;
+      const k = Math.min((now - t0)/1000, 1), eased = 1 - Math.pow(1 - k, 3);
+      el.textContent = Math.round(fin * eased).toLocaleString("es-CO");
+      if (k < 1) requestAnimationFrame(paso);
+    })(performance.now());
+    cIO.unobserve(el);
+  }), {threshold:.6});
+  document.querySelectorAll("[data-count]").forEach(el => cIO.observe(el));
+} else {
+  document.querySelectorAll("[data-count]").forEach(el => {
+    el.textContent = (+el.dataset.count).toLocaleString("es-CO");
+  });
+}
+
+/* =====================================================================
+   Consola del turno: cuatro carriles; una tarea nace, avanza y al
+   completarse escribe en el registro. No es adorno: es lo que la pagina
+   afirma, corriendo. Se detiene sola fuera de pantalla y con la pestaña
+   oculta - una animacion que gasta bateria sin que nadie la vea no
+   demuestra dominio, demuestra descuido.
+   ===================================================================== */
+(function consola(){
+  const cv = document.getElementById("lanes"), log = document.getElementById("log");
+  if (!cv) return;
+  const ctx = cv.getContext("2d");
+  const CARRILES = [
+    {n:"producto",   c:"#FFB020", a:["define","acota","prioriza"],   o:()=>"objetivo #"+r(1200,9800)},
+    {n:"plataforma", c:"#5FD39B", a:["integra","conecta","publica"], o:()=>"servicio "+r(21,99)},
+    {n:"calidad",    c:"#7FB0EA", a:["verifica","reproduce","cierra"], o:()=>"dictamen #"+r(150,999)},
+    {n:"operacion",  c:"#C9A6FF", a:["despacha","concilia","archiva"], o:()=>"entrega "+r(4000,9999)}
+  ];
+  function r(a,b){ return Math.floor(a + Math.random()*(b-a)); }
+  let W=0,H=0,dpr=1,tareas=[],t0=performance.now(),corriendo=false,raf=0,sembrar=0,mins=3*60+47;
+
+  function medir(){ dpr=Math.min(devicePixelRatio||1,2); W=cv.clientWidth; H=cv.clientHeight;
+    cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
+  addEventListener("resize", medir, {passive:true}); medir();
+
+  function nace(){ const i=r(0,CARRILES.length), a=CARRILES[i];
+    tareas.push({lane:i,x:-.06,v:.00016+Math.random()*.00013,w:.10+Math.random()*.13,hecho:false,
+      texto:a.a[r(0,a.a.length)]+" "+a.o()}); }
+
+  function escribir(a,texto){
+    const li=document.createElement("li");
+    const hh=String(Math.floor(mins/60)).padStart(2,"0"), mm=String(mins%60).padStart(2,"0");
+    li.innerHTML='<span class="t">'+hh+':'+mm+'</span><span><b>'+a.n+'</b> '+texto+'</span><span class="ok">listo</span>';
+    log.prepend(li); while(log.children.length>5) log.lastChild.remove();
+    if (Math.random() < .3) mins = (mins + 1) % (24*60);
+  }
+
+  function pintar(now){
+    const dt=Math.min(now-t0,48); t0=now; ctx.clearRect(0,0,W,H);
+    const padL=104,padR=18,top=18, alto=(H-top-14)/CARRILES.length;
+    CARRILES.forEach((a,i)=>{ const y=top+alto*i+alto/2;
+      ctx.strokeStyle="rgba(255,255,255,.055)"; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(padL,y+.5); ctx.lineTo(W-padR,y+.5); ctx.stroke();
+      ctx.fillStyle="#8494B6"; ctx.font='600 11.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';
+      ctx.textBaseline="middle"; ctx.fillText(a.n,14,y);
+      ctx.fillStyle=a.c; ctx.globalAlpha=.9; ctx.beginPath(); ctx.arc(padL-16,y,3,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1; });
+    const util=W-padL-padR;
+    for(let k=tareas.length-1;k>=0;k--){
+      const t=tareas[k], a=CARRILES[t.lane]; t.x+=t.v*dt;
+      const y=top+alto*t.lane+alto/2, x1=padL+t.x*util, x2=x1+t.w*util;
+      if(x2>0 && x1<W-padR){
+        const g=ctx.createLinearGradient(x1,0,x2,0);
+        g.addColorStop(0,a.c+"00"); g.addColorStop(.35,a.c+"cc"); g.addColorStop(1,a.c+"22");
+        ctx.fillStyle=g; const yy=y-4, hh=8, rr=4, xa=Math.max(x1,padL), xb=Math.min(x2,W-padR);
+        if(xb>xa){ ctx.beginPath(); ctx.moveTo(xa+rr,yy); ctx.lineTo(xb-rr,yy);
+          ctx.quadraticCurveTo(xb,yy,xb,yy+rr); ctx.lineTo(xb,yy+hh-rr);
+          ctx.quadraticCurveTo(xb,yy+hh,xb-rr,yy+hh); ctx.lineTo(xa+rr,yy+hh);
+          ctx.quadraticCurveTo(xa,yy+hh,xa,yy+hh-rr); ctx.lineTo(xa,yy+rr);
+          ctx.quadraticCurveTo(xa,yy,xa+rr,yy); ctx.fill(); }
+        if(x2<W-padR){ ctx.fillStyle=a.c; ctx.beginPath(); ctx.arc(x2,y,3.4,0,Math.PI*2); ctx.fill();
+          ctx.globalAlpha=.22; ctx.beginPath(); ctx.arc(x2,y,9,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1; }
       }
+      if(!t.hecho && x2>=W-padR){ t.hecho=true; escribir(a,t.texto); }
+      if(x1>W) tareas.splice(k,1);
+    }
+    raf=requestAnimationFrame(pintar);
+  }
+  function arrancar(){ if(corriendo) return; corriendo=true; t0=performance.now();
+    raf=requestAnimationFrame(pintar); sembrar=setInterval(()=>{ if(tareas.length<9) nace(); },900); }
+  function parar(){ corriendo=false; cancelAnimationFrame(raf); clearInterval(sembrar); }
 
-      const brief = [
-        "BRIEF DE EMPRESA · CAUCE V3",
-        "1. ¿Qué debe entregar esta empresa y para quién?",
-        "2. ¿Qué equipos, responsabilidades y traspasos necesita?",
-        "3. ¿Qué harnesses, proveedores, modelos y cuentas ya existen?",
-        "4. ¿Qué canales, repositorios, herramientas y sistemas participan?",
-        "5. ¿Qué acciones deben conservar aprobación humana?",
-        "6. ¿Cómo mediremos delivery, capacidad, consumo y calidad?"
-      ].join("\n");
-
-      copyButton.addEventListener("click", async () => {
-        let copied = false;
-        try {
-          await navigator.clipboard.writeText(brief);
-          copied = true;
-        } catch {}
-
-        if (!copied) {
-          briefFallback.hidden = false;
-          briefFallback.value = brief;
-          briefFallback.focus();
-          briefFallback.select();
-          try { copied = document.execCommand("copy"); } catch {}
-        }
-
-        if (copied) {
-          briefFallback.hidden = true;
-          copyStatus.textContent = "Brief copiado. Ya podés pegarlo en tu conversación de trabajo.";
-        } else {
-          copyStatus.textContent = "El navegador bloqueó el portapapeles. El brief quedó seleccionado para copiarlo manualmente.";
-        }
-      });
-
-      document.querySelector("#year").textContent = String(new Date().getFullYear());
-    })();
-  </script>
+  if(quieto){
+    for(let i=0;i<5;i++){ nace(); tareas[i].x=.1+i*.14; }
+    pintar(performance.now()); cancelAnimationFrame(raf);
+    CARRILES.forEach(a=>escribir(a,a.a[0]+" "+a.o()));
+  } else {
+    for(let i=0;i<4;i++) nace();
+    new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?arrancar():parar()),{threshold:.12}).observe(cv);
+    addEventListener("visibilitychange",()=>document.hidden?parar():arrancar());
+  }
+})();
+</script>
 </body>
 </html>
