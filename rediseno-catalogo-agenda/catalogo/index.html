@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalogo — Humanizar</title>
+<meta name="description" content="Ocho productos en operacion: orquestacion de agentes, CRM, punto de venta, distribucion de alimentos, ecommerce y trazabilidad. Estado tecnico medido, no prometido.">
+
+<!-- REDISENO: el theme-color pasa de ser el fondo (#0a0d12) a ser el ACENTO.
+     Es el mismo valor del que cuelga --accent, de modo que la barra del navegador
+     movil y el acento de la pagina son literalmente el mismo color. -->
+<meta name="theme-color" content="#4fd1c5">
+
+<meta property="og:title" content="Catalogo — Humanizar">
+<meta property="og:description" content="Ocho productos en operacion, con su estado tecnico medido.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<link rel="canonical" href="https://catalogo.humanizar.tech/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%230a0d12%27/%3E%3Cpath d=%27M9 23V9h3v5.5h8V9h3v14h-3v-5.5h-8V23z%27 fill=%27%234fd1c5%27/%3E%3C/svg%3E">
+<style>
+:root{
+  --accent:#4fd1c5;          /* = theme-color */
+  --accent-2:#8b7cf6;
+  --accent-3:#f0a03c;
+  --bg:#0a0d12; --bg-2:#10151d; --surface:#141a24; --surface-2:#19212d;
+  --line:#253041; --text:#eef2f7; --muted:#a7b4c6;
+  --live:#4ade80; --live-bg:rgba(74,222,128,.12);
+  --stale:#fbbf24; --stale-bg:rgba(251,191,36,.12);
+  --broken:#f87171; --broken-bg:rgba(248,113,113,.12);
+  --radius:16px; --wrap:1140px; --ease:cubic-bezier(.22,.68,.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-size:17px;line-height:1.6;
+     font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+     -webkit-font-smoothing:antialiased}
+.wrap{width:min(100% - 2.5rem,var(--wrap));margin-inline:auto}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em;margin:0 0 .6rem}
+h1{font-size:clamp(2.3rem,6vw,4rem);font-weight:800}
+h2{font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:750}
+h3{font-size:1.16rem;font-weight:700}
+p{margin:0 0 1rem}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:#07231f;padding:.8rem 1.2rem;font-weight:700;z-index:100}
+.skip:focus{left:1rem;top:1rem}
+.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;font-weight:700;color:var(--accent);margin-bottom:.7rem}
+.grad{background:linear-gradient(100deg,var(--accent),var(--accent-2) 60%,var(--accent-3));
+      -webkit-background-clip:text;background-clip:text;color:transparent}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1.4rem;
+     border-radius:999px;font-weight:700;font-size:.95rem;border:1px solid transparent;text-decoration:none;
+     white-space:nowrap;cursor:pointer;transition:transform .18s var(--ease),border-color .18s var(--ease)}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn-primary{background:linear-gradient(100deg,var(--accent),var(--accent-2));color:#07141a}
+.btn-ghost{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.02)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-sm{padding:.55rem 1rem;font-size:.88rem}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(10,13,18,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.header-inner{display:flex;align-items:center;gap:1.4rem;padding:.9rem 0}
+.brand{display:flex;align-items:center;gap:.6rem;color:var(--text);font-weight:800}
+.brand-mark{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;
+            background:linear-gradient(140deg,var(--accent),var(--accent-2));color:#07141a;font-weight:900}
+.nav{display:flex;gap:1.3rem;list-style:none;margin:0;padding:0;margin-left:auto}
+.nav a{color:var(--muted);font-size:.94rem;font-weight:600}
+.nav a:hover{color:var(--text)}
+
+.hero{padding:5rem 0 3rem;border-bottom:1px solid var(--line);
+      background:radial-gradient(1100px 420px at 50% -20%,rgba(79,209,197,.14),transparent 70%)}
+.lede{font-size:1.16rem;color:var(--muted);max-width:62ch}
+.hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.6rem}
+
+/* ---------- barra de leyenda de estado ---------- */
+.leyenda{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center;padding:1rem 1.2rem;margin-top:2.4rem;
+         background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.leyenda p{margin:0;font-size:.86rem;color:var(--muted)}
+.leyenda-item{display:flex;align-items:center;gap:.45rem;font-size:.86rem;color:var(--muted)}
+
+/* ---------- grid de cards ---------- */
+.products{padding:4rem 0}
+.grid{list-style:none;margin:2.2rem 0 0;padding:0;display:grid;gap:1.3rem;
+      grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);
+      border-radius:var(--radius);overflow:hidden;transition:border-color .2s var(--ease),transform .2s var(--ease)}
+.card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.card-star{border-color:rgba(79,209,197,.4);background:linear-gradient(160deg,var(--surface-2),var(--surface))}
+
+/* og:image por card. Son marcas generadas, NO capturas de pantalla:
+   se dibujan con un gradiente y la inicial del producto, sin cargar nada externo. */
+.thumb{position:relative;aspect-ratio:16/9;display:grid;place-items:center;border-bottom:1px solid var(--line)}
+.thumb-ini{font-size:2.6rem;font-weight:900;letter-spacing:-.04em;color:rgba(255,255,255,.92);
+           text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.thumb-cat{position:absolute;left:.8rem;bottom:.8rem;font-size:.7rem;font-weight:800;letter-spacing:.1em;
+           text-transform:uppercase;color:rgba(255,255,255,.85);background:rgba(0,0,0,.38);
+           border-radius:999px;padding:.2rem .6rem;backdrop-filter:blur(4px)}
+.badge{position:absolute;right:.8rem;top:.8rem;display:inline-flex;align-items:center;gap:.4rem;
+       font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+       border-radius:999px;padding:.28rem .7rem;border:1px solid transparent;backdrop-filter:blur(4px)}
+.dot{width:7px;height:7px;border-radius:50%;flex:none}
+.b-live{color:var(--live);background:var(--live-bg);border-color:rgba(74,222,128,.35)}
+.b-live .dot{background:var(--live)}
+.b-stale{color:var(--stale);background:var(--stale-bg);border-color:rgba(251,191,36,.35)}
+.b-stale .dot{background:var(--stale)}
+.b-broken{color:var(--broken);background:var(--broken-bg);border-color:rgba(248,113,113,.35)}
+.b-broken .dot{background:var(--broken)}
+
+.card-body{padding:1.2rem 1.3rem 1.4rem;display:flex;flex-direction:column;flex:1}
+.card-top{display:flex;align-items:baseline;justify-content:space-between;gap:.8rem}
+.stage{font-size:.78rem;font-weight:700;color:var(--muted);white-space:nowrap}
+.card p{font-size:.96rem;color:var(--muted)}
+.tags{display:flex;gap:.4rem;flex-wrap:wrap;list-style:none;margin:.2rem 0 1rem;padding:0}
+.tag{font-size:.74rem;font-weight:700;color:var(--accent);background:rgba(79,209,197,.1);
+     border:1px solid rgba(79,209,197,.25);border-radius:999px;padding:.16rem .6rem}
+.nota{font-size:.84rem;color:var(--muted);border-left:2px solid var(--line);padding-left:.7rem;margin-bottom:1rem}
+.card-foot{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-top:auto;padding-top:.4rem}
+.link{font-size:.88rem;font-weight:600}
+
+.medido{margin-top:2.2rem;font-size:.86rem;color:var(--muted)}
+.site-footer{border-top:1px solid var(--line);padding:2.4rem 0;color:var(--muted);font-size:.92rem}
+@media (max-width:620px){
+  .nav{display:none}
+  .hero{padding:3.4rem 0 2.4rem}
+  .grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;scroll-behavior:auto !important}
+  .card:hover,.btn:hover{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="Humanizar, inicio">
+      <span class="brand-mark" aria-hidden="true">H</span>
+      <span>Humanizar</span>
+    </a>
+    <ul class="nav" role="list">
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="https://humanizar.tech" rel="noopener">Cauce V3</a></li>
+      <li><a href="https://agenda.humanizar.tech/">Agenda</a></li>
+    </ul>
+    <a class="btn btn-primary btn-sm" href="https://agenda.humanizar.tech/">Agendar demo</a>
+  </div>
+</header>
+
+<main id="contenido">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Catalogo de producto</p>
+      <h1>Ocho productos,<br><span class="grad">y su estado real</span></h1>
+      <p class="lede">
+        Cada tarjeta lleva el estado tecnico que medimos contra el servicio en vivo, no el que
+        nos gustaria publicar. Si algo esta caido o congelado, lo vas a ver aca antes que en una reunion.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://agenda.humanizar.tech/">Agendar una demo</a>
+        <a class="btn btn-ghost" href="#productos">Ver los productos</a>
+      </div>
+
+      <div class="leyenda">
+        <p><strong>Estado tecnico:</strong></p>
+        <span class="leyenda-item"><span class="dot" style="background:var(--live)"></span> <strong style="color:var(--live)">Live</strong> — responde y sirve la aplicacion real.</span>
+        <span class="leyenda-item"><span class="dot" style="background:var(--stale)"></span> <strong style="color:var(--stale)">Stale</strong> — responde, pero el contenido esta congelado.</span>
+        <span class="leyenda-item"><span class="dot" style="background:var(--broken)"></span> <strong style="color:var(--broken)">Broken</strong> — no responde, o le falta un recurso esencial.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="productos">
+    <div class="wrap">
+      <p class="eyebrow">Lo que tenemos funcionando</p>
+      <h2>Producto por producto</h2>
+      <p class="lede">Pedi una demostracion del que te sirva y te lo mostramos con datos de prueba.</p>
+      <ul class="grid" role="list">
+        <li class="card card-star">
+          <div class="thumb" style="background:linear-gradient(135deg,#4fd1c5,#8b7cf6)" role="img" aria-label="Marca de Cauce / Humanizar">
+            <span class="thumb-ini" aria-hidden="true">C</span>
+            <span class="thumb-cat">Orquestacion</span>
+            <span class="badge b-live"><span class="dot"></span>Live</span>
+          </div>
+          <div class="card-body">
+            <div class="card-top"><h3>Cauce / Humanizar</h3><span class="stage">En produccion</span></div>
+            <ul class="tags" role="list"><li class="tag">Agentes</li><li class="tag">Control plane</li><li class="tag">Multi-harness</li></ul>
+            <p>Empresas de desarrollo hechas con agentes. Un plano de control unico para coordinar equipos de IA, canales y proveedores distintos sin perder el gobierno.</p>
+            
+            <div class="card-foot">
+              <a class="btn btn-primary btn-sm" href="https://agenda.humanizar.tech/">Agendar demo</a>
+              <a class="link" href="https://humanizar.tech" rel="noopener">humanizar.tech</a>
+            </div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="thumb" style="background:linear-gradient(135deg,#8b7cf6,#4fd1c5)" role="img" aria-label="Marca de Xenia">
+            <span class="thumb-ini" aria-hidden="true">X</span>
+            <span class="thumb-cat">CRM</span>
+            <span class="badge b-live"><span class="dot"></span>Live</span>
+          </div>
+          <div class="card-body">
+            <div class="card-top"><h3>Xenia</h3><span class="stage">Disponible</span></div>
+            <ul class="tags" role="list"><li class="tag">CRM</li><li class="tag">Ventas</li><li class="tag">Analitica</li></ul>
+            <p>CRM para pequena y mediana empresa: ficha de cliente, pipeline de ventas, registro de actividad y analitica para equipos que estan creciendo.</p>
+            
+            <div class="card-foot">
+              <a class="btn btn-primary btn-sm" href="https://agenda.humanizar.tech/">Agendar demo</a>
+              <a class="link" href="https://xenia.stevenvallejo.com" rel="noopener">Ver Xenia</a>
+            </div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="thumb" style="background:linear-gradient(135deg,#f0a03c,#8b7cf6)" role="img" aria-label="Marca de Aletheia">
+            <span class="thumb-ini" aria-hidden="true">A</span>
+            <span class="thumb-cat">Metricas</span>
+            <span class="badge b-live"><span class="dot"></span>Live</span>
+          </div>
+          <div class="card-body">
+            <div class="card-top"><h3>Aletheia</h3><span class="stage">Acceso anticipado</span></div>
+            <ul class="tags" role="list"><li class="tag">Objetivos</li><li class="tag">Evidencia</li></ul>
+            <p>Tareas verificadas por metrica. Un objetivo no se cierra porque alguien lo diga: se cierra cuando el numero real se mueve.</p>
+            
+            <div class="card-foot">
+              <a class="btn btn-primary btn-sm" href="https://agenda.humanizar.tech/">Agendar demo</a>
+              <a class="link" href="https://aletheia.humanizar.tech" rel="noopener">Ver Aletheia</a>
+            </div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="thumb" style="background:linear-gradient(135deg,#4ade80,#4fd1c5)" role="img" aria-label="Marca de Demeter">
+            <span class="thumb-ini" aria-hidden="true">D</span>
+            <span class="thumb-cat">Distribucion</span>
+            <span class="badge b-live"><span class="dot"></span>Live</span>
+          </div>
+          <div class="card-body">
+            <div class="card-top"><h3>Demeter</h3><span class="stage">En implantacion</span></div>
+            <ul class="tags" role="list"><li class="tag">Pedidos</li><li class="tag">Logistica</li><li class="tag">B2B</li></ul>
+            <p>Software para distribuidoras de alimentos. El pedido entra una sola vez y recorre todo el proceso sin volver a teclearse, de la tienda a la entrega.</p>
+            
+            <div class="card-foot">
+              <a class="btn btn-primary btn-sm" href="https://agenda.humanizar.tech/">Agendar demo</a>
+              <a class="link" href="https://demeter.humanizar.cloud" rel="noopener">Ver Demeter</a>
+            </div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="thumb" style="background:linear-gradient(135deg,#f0a03c,#f87171)" role="img" aria-label="Marca de Graf">
+            <span class="thumb-ini" aria-hidden="true">G</span>
+            <span class="thumb-cat">Ecommerce</span>
+            <span class="badge b-live"><span class="dot"></span>Live</span>
+          </div>
+          <div class="card-body">
+            <div class="card-top"><h3>Graf</h3><span class="stage">Operando</span></div>
+            <ul class="tags" role="list"><li class="tag">Ecommerce</li><li class="tag">Inventario</li><li class="tag">Mayorista</li></ul>
+            <p>Plataforma de comercio electronico para tiendas que venden a hogares y a canal mayorista, con catalogo e inventario de cara al cliente.</p>
+            <p class="nota">Titularidad comercial pendiente de definir.</p>
+            <div class="card-foot">
+              <a class="btn btn-primary btn-sm" href="https://agenda.humanizar.tech/">Agendar demo</a>
+              <a class="link" href="https://graf.com.co" rel="noopener">Ver Graf</a>
+            </div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="thumb" style="background:linear-gradient(135deg,#8b7cf6,#4ade80)" role="img" aria-label="Marca de EMW">
+            <span class="thumb-ini" aria-hidden="true">E</span>
+            <span class="thumb-cat">Plataforma</span>
+            <span class="badge b-live"><span class="dot"></span>Live</span>
+          </div>
+          <div class="card-body">
+            <div class="card-top"><h3>EMW</h3><span class="stage">En desarrollo</span></div>
+            <ul class="tags" role="list"><li class="tag">Next.js</li><li class="tag">Modular</li></ul>
+            <p>Aplicacion web del ecosistema Humanizar, hoy en desarrollo activo. El alcance funcional se explica en la demostracion.</p>
+            
+            <div class="card-foot">
+              <a class="btn btn-primary btn-sm" href="https://agenda.humanizar.tech/">Agendar demo</a>
+              <a class="link" href="https://emw.humanizar.cloud" rel="noopener">Ver EMW</a>
+            </div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="thumb" style="background:linear-gradient(135deg,#4fd1c5,#f0a03c)" role="img" aria-label="Marca de Sinergia POS">
+            <span class="thumb-ini" aria-hidden="true">S</span>
+            <span class="thumb-cat">Punto de venta</span>
+            <span class="badge b-live"><span class="dot"></span>Live</span>
+          </div>
+          <div class="card-body">
+            <div class="card-top"><h3>Sinergia POS</h3><span class="stage">Disponible</span></div>
+            <ul class="tags" role="list"><li class="tag">POS</li><li class="tag">Facturacion</li><li class="tag">Alegra</li></ul>
+            <p>Punto de venta minimalista y profesional, pensado para facturar rapido e integrarse con el resto del sistema en lugar de vivir aislado.</p>
+            <p class="nota">Salvedad medida: el aviso de pago de MercadoPago todavia no se procesa de forma automatica.</p>
+            <div class="card-foot">
+              <a class="btn btn-primary btn-sm" href="https://agenda.humanizar.tech/">Agendar demo</a>
+              <a class="link" href="https://pos.saldantia.cloud/" rel="noopener">Ver el POS</a>
+            </div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="thumb" style="background:linear-gradient(135deg,#4ade80,#8b7cf6)" role="img" aria-label="Marca de SIGRE">
+            <span class="thumb-ini" aria-hidden="true">R</span>
+            <span class="thumb-cat">Trazabilidad</span>
+            <span class="badge b-live"><span class="dot"></span>Live</span>
+          </div>
+          <div class="card-body">
+            <div class="card-top"><h3>SIGRE</h3><span class="stage">En operacion</span></div>
+            <ul class="tags" role="list"><li class="tag">Trazabilidad</li><li class="tag">Auditoria</li><li class="tag">Salud</li></ul>
+            <p>Registro trazable de medicamentos donados: cada entrada queda documentada y se puede auditar despues, que es justo lo que este terreno exige.</p>
+            
+            <div class="card-foot">
+              <a class="btn btn-primary btn-sm" href="https://agenda.humanizar.tech/">Agendar demo</a>
+              <a class="link" href="https://sigre.elenxos.com" rel="noopener">Ver SIGRE</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <p class="medido">
+        Estado tecnico medido el <strong>2026-08-30</strong>: los ocho responden HTTP 200.
+        La proxima medicion sustituye esta linea; si algo pasa a Stale o Broken, se ve en la tarjeta.
+      </p>
+    </div>
+  </section>
+
+  <section class="products" style="padding-top:0">
+    <div class="wrap">
+      <div class="leyenda" style="display:block">
+        <h3 style="margin-bottom:.4rem">Como se asigna el estado</h3>
+        <p style="margin:0">
+          <strong style="color:var(--live)">Live</strong>: el dominio responde 200 y devuelve la aplicacion real.
+          <strong style="color:var(--stale)">Stale</strong>: responde, pero lo que sirve esta congelado o es un marcador.
+          <strong style="color:var(--broken)">Broken</strong>: no responde, o le falta un recurso que la pagina necesita para funcionar.
+          Un 200 por si solo no basta: una aplicacion de pagina unica puede devolver 200 en cualquier ruta, incluso en una que no existe.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>Humanizar</strong> - software operable para empresas reales.</p>
+    <p class="muted"><a href="https://humanizar.tech" rel="noopener">humanizar.tech</a> &middot; <a href="https://agenda.humanizar.tech/">agenda</a></p>
+  </div>
+</footer>
+</body>
+</html>

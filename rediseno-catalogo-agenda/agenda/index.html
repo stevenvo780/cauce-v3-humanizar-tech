@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agenda una demostracion — Humanizar</title>
+<meta name="description" content="Reserva una demostracion de Cauce V3, Xenia, Aletheia, Demeter, Graf, EMW, SIGRE o Sinergia POS. 30 minutos, sin compromiso.">
+<meta name="theme-color" content="#4fd1c5">
+<link rel="canonical" href="https://agenda.humanizar.tech/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%230a0d12%27/%3E%3Cpath d=%27M9 23V9h3v5.5h8V9h3v14h-3v-5.5h-8V23z%27 fill=%27%234fd1c5%27/%3E%3C/svg%3E">
+<style>
+:root{
+  --accent:#4fd1c5; --accent-2:#8b7cf6;
+  --bg:#0a0d12; --surface:#141a24; --surface-2:#19212d;
+  --line:#253041; --text:#eef2f7; --muted:#a7b4c6;
+  --ok:#4ade80; --err:#f87171;
+  --radius:16px; --ease:cubic-bezier(.22,.68,.3,1);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-size:17px;line-height:1.6;
+     font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+     -webkit-font-smoothing:antialiased}
+.wrap{width:min(100% - 2.5rem,720px);margin-inline:auto}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em;margin:0 0 .6rem}
+h1{font-size:clamp(2.2rem,5.6vw,3.4rem);font-weight:800}
+h2{font-size:1.5rem;font-weight:750}
+p{margin:0 0 1rem}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+.skip{position:absolute;left:-9999px;background:var(--accent);color:#07231f;padding:.8rem 1.2rem;font-weight:700;z-index:100}
+.skip:focus{left:1rem;top:1rem}
+.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;font-weight:700;color:var(--accent);margin-bottom:.7rem}
+.grad{background:linear-gradient(100deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;background-clip:text;color:transparent}
+.muted{color:var(--muted)}
+.site-header{border-bottom:1px solid var(--line)}
+.header-inner{display:flex;align-items:center;gap:1.2rem;padding:.9rem 0}
+.brand{display:flex;align-items:center;gap:.6rem;color:var(--text);font-weight:800}
+.brand-mark{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;
+            background:linear-gradient(140deg,var(--accent),var(--accent-2));color:#07141a;font-weight:900}
+.nav{display:flex;gap:1.2rem;list-style:none;margin:0 0 0 auto;padding:0}
+.nav a{color:var(--muted);font-size:.94rem;font-weight:600}
+.nav a:hover{color:var(--text)}
+.hero{padding:3.6rem 0 2rem;text-align:center;
+      background:radial-gradient(800px 320px at 50% -10%,rgba(79,209,197,.14),transparent 70%)}
+.lede{font-size:1.1rem;color:var(--muted);max-width:52ch;margin-inline:auto}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.8rem;margin-bottom:2rem}
+fieldset{border:0;padding:0;margin:0 0 1.6rem}
+legend{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+       color:var(--accent);padding:0;margin-bottom:.9rem}
+.row{margin-bottom:1rem}
+.row.dos{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+label{display:block;font-size:.9rem;font-weight:650;margin-bottom:.35rem}
+.opcional{font-weight:500;color:var(--muted)}
+input,select,textarea{width:100%;background:var(--surface-2);color:var(--text);
+  border:1px solid var(--line);border-radius:10px;padding:.75rem .9rem;font:inherit;font-size:.98rem;
+  transition:border-color .16s var(--ease)}
+input:hover,select:hover,textarea:hover{border-color:#33405422}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none;
+  box-shadow:0 0 0 3px rgba(79,209,197,.16)}
+textarea{resize:vertical;min-height:92px}
+.ayuda{font-size:.84rem;color:var(--muted);margin:.35rem 0 0}
+.acciones{display:flex;flex-direction:column;gap:.9rem;align-items:stretch;margin-top:1.8rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.95rem 1.6rem;
+     border-radius:999px;font-weight:800;font-size:1rem;border:1px solid transparent;cursor:pointer;
+     transition:transform .18s var(--ease);text-decoration:none}
+.btn:hover{transform:translateY(-2px);text-decoration:none}
+.btn-primary{background:linear-gradient(100deg,var(--accent),var(--accent-2));color:#07141a;width:100%}
+.btn[disabled]{opacity:.6;cursor:progress;transform:none}
+.hint{margin:0;font-size:.92rem;color:var(--muted);text-align:center;min-height:1.4em}
+.hint.ok{color:var(--ok);font-weight:650}
+.hint.err{color:var(--err);font-weight:650}
+.pasos{list-style:none;counter-reset:p;margin:0;padding:0}
+.pasos li{counter-increment:p;position:relative;padding-left:2.6rem;margin-bottom:1rem;color:var(--muted);font-size:.96rem}
+.pasos li::before{content:counter(p);position:absolute;left:0;top:.05rem;width:1.8rem;height:1.8rem;
+  display:grid;place-items:center;border-radius:50%;background:rgba(79,209,197,.12);
+  border:1px solid rgba(79,209,197,.3);color:var(--accent);font-weight:800;font-size:.85rem}
+.pasos strong{color:var(--text)}
+.site-footer{border-top:1px solid var(--line);padding:2.2rem 0;color:var(--muted);font-size:.92rem;text-align:center}
+@media (max-width:560px){ .row.dos{grid-template-columns:1fr} .nav{display:none} .card{padding:1.3rem} }
+@media (prefers-reduced-motion:reduce){ *{transition:none !important} .btn:hover{transform:none} }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="Humanizar, inicio">
+      <span class="brand-mark" aria-hidden="true">H</span>
+      <span>Humanizar</span>
+    </a>
+    <ul class="nav" role="list">
+      <li><a href="https://catalogo.humanizar.tech/">Catalogo</a></li>
+      <li><a href="https://humanizar.tech" rel="noopener">Cauce V3</a></li>
+      <li><a aria-current="page" href="/">Agenda</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Agenda una demostracion</p>
+      <h1>30 minutos<br><span class="grad">con quien lo construyo</span></h1>
+      <p class="lede">Selecciona el producto, el dia y la hora. Se confirma por correo, y el enlace de la
+        videollamada se envia 24 horas antes.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="card">
+      <h2>Reserva tu espacio</h2>
+      <p class="muted" style="font-size:.95rem">Solo el nombre, el correo, el producto y el momento. El resto es opcional.</p>
+
+      <form id="booking" novalidate>
+
+        <fieldset>
+          <legend>Quien eres</legend>
+          <div class="row">
+            <label for="nombre">Nombre completo</label>
+            <input id="nombre" name="nombre" type="text" required autocomplete="name" maxlength="120">
+          </div>
+          <div class="row">
+            <label for="email">Correo electronico</label>
+            <input id="email" name="email" type="email" required autocomplete="email" maxlength="200">
+            <p class="ayuda">Aqui se envia la confirmacion y el enlace de la videollamada.</p>
+          </div>
+          <div class="row dos">
+            <div>
+              <label for="empresa">Empresa <span class="opcional">(opcional)</span></label>
+              <input id="empresa" name="empresa" type="text" autocomplete="organization" maxlength="160">
+            </div>
+            <div>
+              <label for="telefono">Telefono <span class="opcional">(opcional)</span></label>
+              <input id="telefono" name="telefono" type="tel" autocomplete="tel" maxlength="40">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Que quieres ver</legend>
+          <div class="row">
+            <label for="producto">Producto</label>
+            <select id="producto" name="producto" required>
+              <option value="">Selecciona uno</option>
+              <option value="Cauce V3">Cauce V3 &mdash; orquestacion de agentes</option>
+              <option value="Xenia">Xenia &mdash; CRM para pequena y mediana empresa</option>
+              <option value="Aletheia">Aletheia &mdash; tareas verificadas por metrica</option>
+              <option value="Demeter">Demeter &mdash; software para distribuidoras</option>
+              <option value="Graf">Graf &mdash; comercio electronico</option>
+              <option value="EMW">EMW &mdash; plataforma modular</option>
+              <option value="SIGRE">SIGRE &mdash; trazabilidad de medicamentos donados</option>
+              <option value="Sinergia POS">Sinergia POS &mdash; punto de venta</option>
+              <option value="Otro / no se">Todavia no lo se</option>
+            </select>
+            <p class="ayuda">Si no lo tienes claro, eligelo despues: se puede cambiar en la llamada.</p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Cuando te viene bien</legend>
+          <div class="row dos">
+            <div>
+              <label for="fecha">Fecha</label>
+              <input id="fecha" name="fecha" type="date" required>
+            </div>
+            <div>
+              <label for="hora">Hora <span class="opcional">(Bogota)</span></label>
+              <select id="hora" name="hora" required>
+                <option value="">Selecciona</option>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <label for="nota">Contexto <span class="opcional">(opcional)</span></label>
+            <textarea id="nota" name="nota" rows="3" maxlength="1000"
+              placeholder="Que te gustaria ver, cual es el problema principal, tamano del equipo, urgencia."></textarea>
+          </div>
+        </fieldset>
+
+        <div class="acciones">
+          <button class="btn btn-primary" type="submit">Reservar la demostracion</button>
+          <p class="hint" id="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Que ocurre despues</h2>
+      <ol class="pasos" role="list">
+        <li><strong>Confirmacion inmediata</strong> en pantalla y por correo electronico.</li>
+        <li><strong>24 horas antes</strong> se envia el enlace de la videollamada.</li>
+        <li><strong>30 minutos</strong> con quien construyo el producto. Sin presentacion comercial.</li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Humanizar &mdash; software que trabaja como un equipo.</p>
+    <p class="muted"><a href="https://humanizar.tech" rel="noopener">humanizar.tech</a> &middot; <a href="https://catalogo.humanizar.tech/">catalogo</a></p>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
