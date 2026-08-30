@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agenda una demo — Humanizar</title>
+  <meta name="description" content="30 minutos con quien construyó el producto. Sin vendedor y sin diapositivas. Cauce V3, Xenía, Aletheia, Deméter, Graf, EMW, Sinergia POS o SIGRE.">
+  <link rel="canonical" href="https://agenda.humanizar.tech/">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header" role="banner">
+    <nav class="nav" aria-label="Principal">
+      <a class="brand" href="/" aria-label="Humanizar, inicio">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Humanizar</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="https://catalogo.humanizar.tech/">Catálogo</a></li>
+        <li><a href="https://humanizar.tech" rel="noopener">Cauce V3</a></li>
+        <li><a aria-current="page" href="/">Agenda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">Demo · 30 minutos · sin costo</p>
+      <h1 id="hero-title">30 minutos<br><span class="grad">con quien lo construyó</span></h1>
+      <p class="lede">Sin vendedor y sin diapositivas. Traés un proceso que hoy hacés a mano, te lo mostramos resuelto sobre datos de prueba y, si tu caso no encaja, te lo decimos en la misma llamada.</p>
+    </section>
+
+    <section class="form-wrap" aria-labelledby="form-title">
+      <h2 id="form-title">Elegí un horario</h2>
+      <p class="form-sub">Tres datos y listo. El día y la hora los podés dejar en automático.</p>
+
+      <form id="booking" class="form" novalidate>
+        <div class="row">
+          <label for="nombre">Nombre y apellido</label>
+          <input id="nombre" name="nombre" type="text" required autocomplete="name" maxlength="120"
+                 aria-describedby="err-nombre">
+          <p class="field-err" id="err-nombre" hidden></p>
+        </div>
+
+        <div class="row">
+          <label for="email">Email de trabajo</label>
+          <input id="email" name="email" type="email" required autocomplete="email" maxlength="200"
+                 aria-describedby="hint-email err-email">
+          <p class="field-hint" id="hint-email">Ahí te llega la confirmación y el enlace de la videollamada.</p>
+          <p class="field-err" id="err-email" hidden></p>
+        </div>
+
+        <div class="row two">
+          <div>
+            <label for="empresa">Empresa <span class="opt">(opcional)</span></label>
+            <input id="empresa" name="empresa" type="text" autocomplete="organization" maxlength="160">
+          </div>
+          <div>
+            <label for="telefono">WhatsApp <span class="opt">(opcional)</span></label>
+            <input id="telefono" name="telefono" type="tel" autocomplete="tel" maxlength="40"
+                   aria-describedby="hint-tel">
+            <p class="field-hint" id="hint-tel">Solo si preferís que te escribamos por ahí.</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="producto">¿Qué querés ver?</label>
+          <select id="producto" name="producto" required aria-describedby="err-producto">
+            <option value="">Elegí uno…</option>
+            <option value="Cauce V3">Cauce V3 — orquestación de agentes</option>
+            <option value="Xenía">Xenía — CRM para PYME</option>
+            <option value="Aletheia">Aletheia — tareas verificadas por métrica</option>
+            <option value="Deméter">Deméter — software para distribuidoras</option>
+            <option value="Graf">Graf — ecommerce</option>
+            <option value="EMW">EMW — plataforma modular</option>
+            <option value="SIGRE">SIGRE — medicamentos donados</option>
+            <option value="Sinergia POS">Sinergia POS — punto de venta</option>
+            <option value="Otro / no sé">Otro / todavía no sé</option>
+          </select>
+          <p class="field-err" id="err-producto" hidden></p>
+        </div>
+
+        <fieldset class="row slot-group">
+          <legend>¿Cuándo te queda cómodo?</legend>
+          <button class="btn btn-ghost btn-auto" type="button" id="auto-slot">
+            Elegir por mí el primer horario disponible
+          </button>
+          <div class="row two slot-inputs">
+            <div>
+              <label for="fecha">Fecha</label>
+              <input id="fecha" name="fecha" type="date" required aria-describedby="err-fecha">
+              <p class="field-err" id="err-fecha" hidden></p>
+            </div>
+            <div>
+              <label for="hora">Hora (Bogotá)</label>
+              <select id="hora" name="hora" required aria-describedby="err-hora">
+                <option value="">Elegí…</option>
+                <!-- slots reales generados por app.js; estos son fallback sin JS -->
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+              </select>
+              <p class="field-err" id="err-hora" hidden></p>
+            </div>
+          </div>
+          <p class="field-hint" id="slot-note">Atendemos de lunes a viernes, 8:00–17:00 (hora de Bogotá).</p>
+        </fieldset>
+
+        <div class="row">
+          <label for="nota">¿Qué estás haciendo hoy a mano? <span class="opt">(opcional)</span></label>
+          <textarea id="nota" name="nota" rows="3" maxlength="1000"
+                    placeholder="Ej.: cada pedido se teclea dos veces, una en la tienda y otra en el punto de venta."></textarea>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" type="submit">Reservar mis 30 minutos</button>
+          <p class="hint" id="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <div class="confirm" id="confirm" hidden>
+        <p class="confirm-badge" aria-hidden="true">✓</p>
+        <h2 class="confirm-title" id="confirm-title" tabindex="-1">Listo. Quedó agendado.</h2>
+        <p class="confirm-detail" id="confirm-detail"></p>
+        <p class="confirm-mail" id="confirm-mail"></p>
+        <div class="confirm-actions">
+          <a class="btn btn-primary" id="add-cal" href="#" download="demo-humanizar.ics">Agregar a mi calendario</a>
+          <a class="btn btn-ghost" href="https://catalogo.humanizar.tech/">Ver el catálogo mientras tanto</a>
+        </div>
+        <p class="confirm-fallback">¿No llega el correo en 10 minutos? Revisá la carpeta de spam, o escribinos desde el catálogo y lo resolvemos.</p>
+      </div>
+    </section>
+
+    <section class="trust" aria-labelledby="trust-title">
+      <h2 id="trust-title">Qué pasa después</h2>
+      <ol class="steps" role="list">
+        <li><strong>Confirmación inmediata</strong> en pantalla y por email.</li>
+        <li><strong>24 h antes</strong> te mandamos el enlace de Google Meet.</li>
+        <li><strong>30 minutos</strong> con quien construyó el producto. Sin venta, sin slides.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>Humanizar — software que trabaja como un equipo.</p>
+    <p><a href="https://humanizar.tech" rel="noopener">humanizar.tech</a> · <a href="https://catalogo.humanizar.tech/">catálogo</a></p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
