@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://humanizar.tech/sitemap.xml

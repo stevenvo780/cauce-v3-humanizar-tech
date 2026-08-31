@@ -1,10 +1,196 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es-CO" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Cauce V3 — Flota multi-agente</title>
-<meta name="description" content="Cauce V3: una flota de agentes de IA orquestada sobre un bus durable, event-driven, con aislamiento por cliente, QA continuo y enrutado multi-proveedor." />
+<title>Cauce V3 — Orquestación segura de agentes de IA | Humanizar</title>
+<meta name="description" content="Cauce V3 es la infraestructura durable de Humanizar para coordinar agentes de IA (Claude Code, Codex, OpenClaw) con identidad derivada, aislamiento multi-tenant y control humano. Parte del catálogo Humanizar." />
+<meta name="abstract" content="Bus durable multi-tenant para coordinar agentes de IA sobre la suite Humanizar: Cauce V3, CRM Xenia, catálogo, agenda, SIGRE-CO, DevKits, Aletheia." />
+<meta name="author" content="Humanizar" />
+<meta name="rating" content="general" />
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+<meta name="theme-color" content="#070b16" />
+<meta name="geo.region" content="CO" />
+<meta name="geo.placename" content="Bogotá" />
+<meta name="distribution" content="global" />
+<meta name="revisit-after" content="7 days" />
+<link rel="canonical" href="https://humanizar.tech/" />
+<link rel="alternate" hreflang="es-CO" href="https://humanizar.tech/" />
+<link rel="alternate" hreflang="es" href="https://humanizar.tech/" />
+<link rel="alternate" hreflang="x-default" href="https://humanizar.tech/" />
+<link rel="author" href="https://humanizar.tech/humans/steven" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_CO" />
+<meta property="og:site_name" content="Humanizar" />
+<meta property="og:title" content="Cauce V3 — Orquestación segura de agentes de IA" />
+<meta property="og:description" content="Una infraestructura durable para coordinar agentes de IA, equipos y clientes sin perder identidad, trazabilidad ni control humano." />
+<meta property="og:url" content="https://humanizar.tech/" />
+<meta property="og:image" content="https://humanizar.tech/og-cauce-v3.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Cauce V3, infraestructura durable para equipos de agentes de IA" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@humanizar_tech" />
+<meta name="twitter:creator" content="@humanizar_tech" />
+<meta name="twitter:title" content="Cauce V3 — Orquestación segura de agentes de IA" />
+<meta name="twitter:description" content="Coordina agentes de Claude Code, Codex y OpenClaw sobre un bus durable y auditable. Parte del catálogo Humanizar." />
+<meta name="twitter:image" content="https://humanizar.tech/og-cauce-v3.png" />
+<meta name="twitter:image:alt" content="Cauce V3, infraestructura durable para equipos de agentes de IA" />
+<meta name="article:author" content="Humanizar" />
+<meta name="article:publisher" content="https://humanizar.tech/" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://humanizar.tech/#organization",
+      "name": "Humanizar",
+      "alternateName": "Humanizar Tech",
+      "url": "https://humanizar.tech/",
+      "logo": "https://humanizar.tech/og-cauce-v3.png",
+      "description": "Humanizar diseña, opera y mantiene sistemas digitales con control humano, evidencia durable y datos en casa. Catálogo, agenda, CRM, orquestación de agentes de IA, salud y trazabilidad.",
+      "foundingDate": "2022-01-01",
+      "areaServed": ["CO", "LATAM"],
+      "telephone": "+573046374368",
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+573046374368",
+        "contactType": "sales",
+        "availableLanguage": ["Spanish"],
+        "areaServed": ["CO", "LATAM"]
+      },{
+        "@type": "ContactPoint",
+        "telephone": "+573046374368",
+        "contactType": "technical support",
+        "availableLanguage": ["Spanish"],
+        "url": "https://wa.me/573046374368"
+      }],
+      "sameAs": [
+        "https://catalogo.humanizar.tech/",
+        "https://agenda.humanizar.tech/",
+        "https://xenia.stevenvallejo.com/",
+        "https://sigre.elenxos.com/",
+        "https://devkits.humanizar.tech/",
+        "https://aletheia.humanizar.tech/",
+        "https://humanizar-dev.cloud/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://humanizar.tech/#website",
+      "url": "https://humanizar.tech/",
+      "name": "Cauce V3 — Humanizar",
+      "description": "Cauce V3 es el bus durable de la flota Humanizar. Coordina agentes de IA sobre PostgreSQL con identidad derivada, aislamiento multi-tenant y control humano.",
+      "inLanguage": "es-CO",
+      "publisher": {"@id": "https://humanizar.tech/#organization"},
+      "potentialAction": {
+        "@type": "ContactAction",
+        "target": "https://wa.me/573046374368?text=Hola%20Humanizar%2C%20me%20interesa%20Cauce%20V3",
+        "name": "Hablar por WhatsApp con Humanizar"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://humanizar.tech/#cauce-v3",
+      "name": "Cauce V3",
+      "url": "https://humanizar.tech/",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "AI Agent Orchestration",
+      "operatingSystem": "Self-hosted · Linux · Docker",
+      "description": "Bus de mensajería durable para coordinar agentes de IA en Claude Code, Codex y OpenClaw con aislamiento multi-tenant y control humano. Parte del catálogo Humanizar.",
+      "featureList": [
+        "Mensajería durable sobre PostgreSQL",
+        "Identidad derivada del principal autenticado",
+        "Aislamiento multi-tenant con default-deny",
+        "Claims cercados con epoch y fencing",
+        "Adaptadores para Claude Code, Codex y OpenClaw",
+        "Consola web de operación",
+        "Puente Telegram autenticado",
+        "DLQ con evidencia y replay controlado"
+      ],
+      "creator": {"@id": "https://humanizar.tech/#organization"},
+      "publisher": {"@id": "https://humanizar.tech/#organization"},
+      "isPartOf": {"@id": "https://catalogo.humanizar.tech/#catalog"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://humanizar.tech/#breadcrumbs",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Humanizar", "item": "https://humanizar.tech/"},
+        {"@type": "ListItem", "position": 2, "name": "Catálogo", "item": "https://catalogo.humanizar.tech/"},
+        {"@type": "ListItem", "position": 3, "name": "Cauce V3", "item": "https://humanizar.tech/"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://humanizar.tech/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es Cauce V3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cauce V3 es la infraestructura durable de Humanizar para coordinar agentes de IA que corren en Claude Code, Codex y OpenClaw. Es un bus de mensajería sobre PostgreSQL con identidad derivada, aislamiento multi-tenant y control humano. Reemplaza el pegar texto entre terminales con un canal autenticado, persistente y auditable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se diferencia de un chatbot o un pipeline rígido?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No es un chatbot: es una flota de agentes que trabaja y deja registro. No es un pipeline rígido: los agentes reaccionan a eventos, no a un orden fijo. No es un fan-out sin memoria: cada delegación queda registrada y se sigue hasta su cierre."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cauce V3 reemplaza a mi CRM, agenda o catálogo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Cauce V3 es la capa de orquestación que conecta el resto de sistemas de la suite Humanizar (CRM Xenia, catálogo, agenda, SIGRE-CO, DevKits, Aletheia) y los hace trabajar como una sola operación."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Dónde corre y quién controla los datos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cauce V3 es self-hosted. Los datos viven en tu infraestructura o en tu nube, no en un SaaS ajeno. El operador conserva las llaves, la auditoría y los gates humanos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se prueba antes de adoptarlo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Empezamos con un brief de seis preguntas, una reunión de treinta minutos y un caso concreto. Sin instalar nada hasta tener un prototipo con evidencia de efecto."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://humanizar.tech/#service",
+      "name": "Implementación de Cauce V3",
+      "serviceType": "Implementación y orquestación de agentes de IA",
+      "provider": {"@id": "https://humanizar.tech/#organization"},
+      "areaServed": ["CO", "LATAM"],
+      "audience": {"@type": "BusinessAudience", "name": "Equipos con varios agentes, canales o tenants"},
+      "offers": {
+        "@type": "Offer",
+        "url": "https://agenda.humanizar.tech/?producto=Cauce%20V3",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "USD",
+          "description": "Brief inicial sin costo. Reunión de descubrimiento de 30 minutos. Cotización por caso."
+        }
+      }
+    }
+  ]
+}
+</script>
 <style>
 /* ============================================================
    CAUCE V3 — deck autocontenido (sin dependencias externas)
@@ -116,7 +302,7 @@ body{
   pointer-events:none;
 }
 html[data-theme="light"] .topbar{background:linear-gradient(180deg,rgba(244,248,254,.7),transparent)}
-.brand{display:flex;align-items:center;gap:11px;pointer-events:auto;font-weight:700;letter-spacing:.2px}
+.brand{display:flex;align-items:center;gap:11px;pointer-events:auto;font-weight:700;letter-spacing:.2px;color:var(--text);text-decoration:none}
 .brand .mark{width:26px;height:26px;flex:0 0 auto}
 .brand b{font-size:1.02rem}
 .brand span{color:var(--muted);font-weight:600;font-size:.82rem;letter-spacing:.6px}
@@ -129,6 +315,10 @@ html[data-theme="light"] .topbar{background:linear-gradient(180deg,rgba(244,248,
 }
 .btn:hover{border-color:var(--cauce);color:var(--text);transform:translateY(-1px)}
 .btn svg{width:15px;height:15px}
+.tools a{text-decoration:none}
+.top-contact{border-color:rgba(47,214,230,.55);color:var(--text)}
+.skip-link{position:fixed;left:16px;top:-80px;z-index:100;background:var(--cauce);color:#07141a;padding:10px 16px;border-radius:10px;font-weight:800;text-decoration:none}
+.skip-link:focus{top:12px}
 
 /* ---------- progress + dot nav ---------- */
 .progress{position:fixed;top:0;left:0;height:3px;z-index:50;background:var(--grad-title);width:0;transition:width .2s ease}
@@ -257,7 +447,26 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
 .closing .wrap{text-align:center}
 .closing h2{font-size:clamp(2.2rem,5vw,3.6rem)}
 .cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:30px}
+
+.systems-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:34px;max-width:1080px;margin-left:auto;margin-right:auto;text-align:left}
+.system-tile{
+  display:flex;flex-direction:column;gap:4px;
+  background:var(--surface);border:1px solid var(--stroke);border-radius:14px;
+  padding:14px 16px;text-decoration:none;color:inherit;transition:.18s;
+}
+.system-tile:hover{border-color:var(--cauce);transform:translateY(-2px)}
+.system-tile .system-name{font-weight:700;font-size:.98rem;color:var(--text)}
+.system-tile .system-desc{color:var(--muted);font-size:.84rem;line-height:1.4}
+@media (max-width:640px){.systems-grid{grid-template-columns:repeat(2,1fr)}.system-tile{padding:12px 13px}}
 .chip{border:1px solid var(--stroke-strong);border-radius:12px;padding:13px 18px;background:var(--surface);font-weight:600;color:var(--text-soft);font-size:.92rem}
+.action-link{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--stroke-strong);border-radius:999px;padding:12px 20px;background:var(--surface);color:var(--text);font:inherit;font-weight:750;text-decoration:none;transition:.18s;cursor:pointer}
+.action-link:hover{border-color:var(--cauce);transform:translateY(-2px)}
+.action-link.primary{background:var(--grad-title);border-color:transparent;color:#07101f}
+.brief-card{max-width:760px;margin:28px auto 0;text-align:left}
+.brief-card p{color:var(--muted)}
+.brief-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.copy-status{min-height:1.4em;margin-top:12px;color:var(--cauce);font-family:var(--mono);font-size:.8rem}
+.brief-fallback{width:100%;min-height:150px;margin-top:12px;border:1px solid var(--stroke-strong);border-radius:12px;background:var(--bg-1);color:var(--text);padding:12px;font:13px/1.5 var(--mono)}
 
 /* responsive */
 @media (max-width:860px){
@@ -272,6 +481,15 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
 @media (max-width:560px){
   .g4{grid-template-columns:1fr}
   .brand span{display:none}
+  .brand{gap:6px}
+  .brand b{font-size:.9rem}
+  .top-catalog{display:none}
+  .topbar{padding:12px 10px}
+  .tools{gap:6px}
+  .btn{padding:8px 9px;font-size:.75rem}
+  #themeTxt{display:none}
+  .hero-flow{padding-inline:12px}
+  .hero-flow .label{font-size:.64rem;letter-spacing:.65px}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto!important;transition:none!important}
@@ -280,10 +498,12 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
 </head>
 <body>
 
+<a class="skip-link" href="#arquitectura">Saltar a la arquitectura</a>
+
 <div class="progress" id="progress"></div>
 
 <header class="topbar">
-  <div class="brand">
+  <a class="brand" href="#inicio" aria-label="Cauce V3, inicio">
     <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
       <defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#5fe0ea"/><stop offset=".5" stop-color="#4f9bff"/><stop offset="1" stop-color="#8a6cff"/>
@@ -292,8 +512,11 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
       <path d="M3 19c5 0 5 5 10 5s5-5 10-5 6 3 6 3" stroke="url(#bm)" stroke-width="2.6" stroke-linecap="round" opacity=".55"/>
     </svg>
     <b>Cauce&nbsp;V3</b><span>· flota multi-agente</span>
-  </div>
+  </a>
   <div class="tools">
+    <a class="btn top-catalog" href="https://catalogo.humanizar.tech/">Catálogo</a>
+    <a class="btn top-contact" href="https://agenda.humanizar.tech/?producto=Cauce%20V3">Agendar</a>
+    <a class="btn top-contact" href="https://wa.me/573046374368?text=Hola%20Steven%2C%20quiero%20conocer%20Cauce%20V3">WhatsApp</a>
     <button class="btn" id="themeBtn" aria-label="Cambiar tema">
       <svg id="themeIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       <span id="themeTxt">Claro</span>
@@ -306,18 +529,18 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
 <main class="deck" id="deck">
 
   <!-- 0 · HERO -->
-  <section class="slide hero" data-title="Portada">
+  <section class="slide hero" id="inicio" data-title="Portada">
     <div class="wrap">
       <span class="eyebrow">Sistema multi-agente · v3</span>
       <h1><span class="grad">Cauce</span> V3</h1>
       <p class="hero-tag">Una flota de agentes de IA que fluye por un solo <b>cauce</b>.</p>
-      <p class="hero-sub lead">Bus durable y <b>event-driven</b>, orquestación, aislamiento por cliente, QA continuo y enrutado multi-proveedor — sobre infraestructura propia.</p>
+      <p class="hero-sub lead">Mensajería durable, identidad verificable, aislamiento multi-tenant y control humano para agentes en <b>Claude Code, Codex y OpenClaw</b>.</p>
       <div class="hero-flow">
         <div class="flowdots" aria-hidden="true">
           <i style="animation-delay:0s"></i><i style="animation-delay:.7s"></i><i style="animation-delay:1.5s"></i>
           <i style="animation-delay:2.3s"></i><i style="animation-delay:3.1s"></i><i style="animation-delay:3.9s"></i>
         </div>
-        <span class="label">entrega&nbsp;&rarr;&nbsp;agente&nbsp;despierta&nbsp;&rarr;&nbsp;turno&nbsp;acotado&nbsp;&rarr;&nbsp;emite&nbsp;&rarr;&nbsp;duerme</span>
+        <span class="label">publicar&nbsp;&rarr;&nbsp;persistir&nbsp;&rarr;&nbsp;reclamar&nbsp;&rarr;&nbsp;ejecutar&nbsp;&rarr;&nbsp;confirmar</span>
       </div>
     </div>
     <div class="scroll-hint">
@@ -345,12 +568,12 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
         <div class="card pad-lg">
           <span class="pill" style="margin-bottom:14px"><span class="d"></span>La respuesta</span>
           <h3 style="font-size:1.5rem;margin-bottom:12px">Cauce V3</h3>
-          <p class="lead" style="font-size:1.05rem">Una <b>flota de agentes especializados</b>, uno por tenant, coordinada sobre un <b>bus durable event-driven</b>: cada agente corre solo cuando le llega trabajo, con memoria propia, aislamiento por diseño y un QA que revisa a los demás de forma adversarial.</p>
+          <p class="lead" style="font-size:1.05rem">Una <b>flota de agentes especializados</b> coordinada sobre un <b>bus durable</b>: cada entrega queda registrada, la identidad se deriva en el borde y cada adaptador reclama únicamente el trabajo que le corresponde.</p>
           <div class="grid g2" style="margin-top:22px">
-            <div class="stat"><span class="big-num grad">15</span><small>agentes vivos en la flota</small></div>
-            <div class="stat"><span class="big-num grad">5</span><small>tenants aislados</small></div>
-            <div class="stat"><span class="big-num grad">1</span><small>bus, event-driven y durable</small></div>
-            <div class="stat"><span class="big-num grad">4</span><small>proveedores de modelos</small></div>
+            <div class="stat"><span class="big-num grad">14</span><small>agentes en el inventario canónico</small></div>
+            <div class="stat"><span class="big-num grad">4</span><small>tenants activos</small></div>
+            <div class="stat"><span class="big-num grad">3</span><small>harnesses interoperables</small></div>
+            <div class="stat"><span class="big-num grad">1</span><small>PostgreSQL como verdad durable</small></div>
           </div>
         </div>
       </div>
@@ -358,27 +581,27 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
   </section>
 
   <!-- 2 · ARQUITECTURA -->
-  <section class="slide" data-title="Arquitectura">
+  <section class="slide" id="arquitectura" data-title="Arquitectura">
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">02 · Arquitectura</span>
         <h2>Del mensaje al agente, por capas</h2>
-        <p class="lead">Los canales entran por un <b>gateway</b> que verifica identidad; el <b>bus Cauce V3</b> despacha cada evento al agente correcto; la flota vive en <b>pods aislados por tenant</b>; los orquestadores y el enrutado multi-modelo trabajan al costado.</p>
+        <p class="lead">Telegram, la consola y el CLI publican en el <b>gateway</b>. PostgreSQL conserva mensajes y entregas; cada <b>adaptador reclama por WebSocket</b> sólo su trabajo con fencing. El dispatcher no reparte: recupera entregas vencidas.</p>
       </div>
       <div class="diagram arch">
         <!-- ARQUITECTURA SVG -->
-        <svg viewBox="0 0 1000 560" role="img" aria-label="Diagrama de arquitectura de Cauce V3">
+        <svg viewBox="0 0 1000 560" role="img" aria-label="Arquitectura real de Cauce V3: ingreso, gateway, PostgreSQL, adaptadores, harnesses y plano de terminal">
           <defs>
             <linearGradient id="busg" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0" stop-color="#2fd6e6" stop-opacity=".35"/>
               <stop offset=".5" stop-color="#4f9bff" stop-opacity=".85"/>
               <stop offset="1" stop-color="#8a6cff" stop-opacity=".4"/>
             </linearGradient>
-            <linearGradient id="podop" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#4f9bff" stop-opacity=".18"/><stop offset="1" stop-color="#4f9bff" stop-opacity=".05"/>
-            </linearGradient>
             <marker id="arr" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
               <path d="M0 0l6 3-6 3z" fill="#4f9bff"/>
+            </marker>
+            <marker id="arrc" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+              <path d="M0 0l6 3-6 3z" fill="#2fd6e6"/>
             </marker>
             <style>
               .lbl{font-family:var(--mono);font-size:12.5px;fill:var(--text-soft);font-weight:600}
@@ -389,107 +612,66 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
             </style>
           </defs>
 
-          <!-- CHANNELS row -->
-          <g>
-            <rect x="70" y="24" width="120" height="34" rx="10" class="node"/>
-            <text x="130" y="45" text-anchor="middle" class="lbl">Telegram</text>
-            <rect x="210" y="24" width="120" height="34" rx="10" class="node"/>
-            <text x="270" y="45" text-anchor="middle" class="lbl">Slack</text>
-            <rect x="350" y="24" width="120" height="34" rx="10" class="node"/>
-            <text x="410" y="45" text-anchor="middle" class="lbl">WhatsApp</text>
-            <rect x="490" y="24" width="70" height="34" rx="10" class="node" stroke-dasharray="4 4"/>
-            <text x="525" y="45" text-anchor="middle" class="lbl-s">+más</text>
-            <text x="70" y="16" class="lbl-s">CANALES</text>
-          </g>
+          <!-- Ingreso real -->
+          <text x="50" y="19" class="lbl-s">INGRESO</text>
+          <rect x="50" y="28" width="145" height="38" rx="10" class="node"/><text x="122" y="52" text-anchor="middle" class="lbl">Telegram bridge</text>
+          <rect x="210" y="28" width="145" height="38" rx="10" class="node"/><text x="282" y="52" text-anchor="middle" class="lbl">Consola web</text>
+          <rect x="370" y="28" width="145" height="38" rx="10" class="node"/><text x="442" y="52" text-anchor="middle" class="lbl">CLI operador</text>
+          <path class="con" d="M122 66 V94 M282 66 V94 M442 66 V94"/>
 
-          <!-- gateway -->
-          <path class="con" d="M300 58 L300 92" marker-end="url(#arr)"/>
-          <rect x="70" y="92" width="490" height="52" rx="12" class="node" style="stroke:var(--cauce)"/>
-          <text x="90" y="116" class="lbl-t">Gateway · OpenClaw</text>
-          <text x="90" y="133" class="lbl-s">runtime self-hosted · verifica identidad del remitente (certificado)</text>
+          <!-- Borde y almacenamiento -->
+          <rect x="50" y="94" width="465" height="62" rx="14" fill="url(#busg)" style="stroke:var(--cauce)"/>
+          <text x="70" y="119" class="lbl-t">Gateway HTTP + WebSocket</text>
+          <text x="70" y="139" class="lbl-s">autentica principal · deriva identidad · aplica membresía/ACL · publica y confirma ACK</text>
+          <path d="M282 156 V190" stroke="#4f9bff" stroke-width="2" marker-end="url(#arr)"/>
+          <rect x="50" y="192" width="465" height="64" rx="14" class="node" style="stroke:var(--green)"/>
+          <text x="70" y="218" class="lbl-t">PostgreSQL · única fuente durable</text>
+          <text x="70" y="238" class="lbl-s">mensajes · deliveries · outbox · DLQ · fan-in · agentes · configuración · auditoría</text>
 
-          <!-- bus -->
-          <path class="con" d="M300 144 L300 176" marker-end="url(#arr)"/>
-          <rect x="60" y="178" width="700" height="60" rx="16" fill="url(#busg)" stroke-width="1.4" style="stroke:var(--cauce)"/>
-          <text x="80" y="205" class="lbl-t" style="font-size:15px">CAUCE V3</text>
-          <text x="80" y="223" class="lbl-s">bus durable · event-driven · entrega garantizada · orden y dedupe</text>
-          <!-- flow dashes along bus -->
-          <path d="M200 208 H740" stroke="#2fd6e6" stroke-width="2" fill="none" opacity=".8" class="svg-flow"/>
+          <!-- Pull del adaptador -->
+          <path d="M220 292 V260" stroke="#2fd6e6" stroke-width="2" marker-end="url(#arrc)"/>
+          <text x="72" y="279" class="lbl-s">claim + ACK (claim_token + epoch)</text>
+          <path d="M350 258 V292" stroke="#4f9bff" stroke-width="2" marker-end="url(#arr)"/>
+          <text x="362" y="279" class="lbl-s">entrega disponible</text>
+          <rect x="50" y="294" width="465" height="62" rx="14" class="node" style="stroke:var(--cauce)"/>
+          <text x="70" y="319" class="lbl-t">Adapter SDK · consumidor durable por alias</text>
+          <text x="70" y="339" class="lbl-s">WebSocket de larga vida · reclama sólo su cola · fencing evita dos consumidores activos</text>
+          <path d="M282 356 V386" stroke="#4f9bff" stroke-width="2" marker-end="url(#arr)"/>
+          <rect x="50" y="388" width="465" height="56" rx="14" class="node"/>
+          <text x="70" y="412" class="lbl-t">Harness: Claude Code · Codex · OpenClaw</text>
+          <text x="70" y="431" class="lbl-s">el adaptador normaliza la entrega y la pega en la sesión tmux/API del agente</text>
+          <path d="M282 444 V472" stroke="#4f9bff" stroke-width="2" marker-end="url(#arr)"/>
+          <rect x="50" y="474" width="465" height="56" rx="14" class="node" style="stroke:var(--violet)"/>
+          <text x="70" y="498" class="lbl-t">Agente especializado</text>
+          <text x="70" y="517" class="lbl-s">rol + workspace + contexto nativo + herramientas · emite reply/messages estructurados</text>
 
-          <!-- PODS -->
-          <!-- operator hub pod -->
-          <rect x="60" y="288" width="250" height="196" rx="16" fill="url(#podop)" stroke-width="1.4" style="stroke:var(--cauce-2)"/>
-          <text x="76" y="312" class="lbl-t">Tenant operador · HUB</text>
-          <text x="76" y="329" class="lbl-s">abierto ↔ todos</text>
-          <path class="con" d="M185 238 L185 288" marker-end="url(#arr)"/>
-          <!-- hub nodes -->
-          <rect x="76" y="342" width="102" height="40" rx="9" class="node"/><text x="127" y="360" text-anchor="middle" class="lbl">Orquest.</text><text x="127" y="374" text-anchor="middle" class="lbl-s">infra</text>
-          <rect x="188" y="342" width="106" height="40" rx="9" class="node"/><text x="241" y="360" text-anchor="middle" class="lbl">Coordina</text><text x="241" y="374" text-anchor="middle" class="lbl-s">ruteo</text>
-          <rect x="76" y="392" width="102" height="40" rx="9" class="node" style="stroke:var(--amber)"/><text x="127" y="410" text-anchor="middle" class="lbl">QA</text><text x="127" y="424" text-anchor="middle" class="lbl-s">adversarial</text>
-          <rect x="188" y="392" width="106" height="40" rx="9" class="node"/><text x="241" y="410" text-anchor="middle" class="lbl">Asist.</text><text x="241" y="424" text-anchor="middle" class="lbl-s">personal</text>
-          <text x="76" y="466" class="lbl-s">hub-and-spoke: todos pueden escalarle</text>
+          <!-- Servicios laterales, sin fingir que despachan -->
+          <rect x="585" y="28" width="365" height="128" rx="16" class="node" style="stroke:var(--amber)"/>
+          <text x="607" y="55" class="lbl-t">Dispatcher · segador de reintentos</text>
+          <text x="607" y="78" class="lbl-s">• NO distribuye mensajes ni elige agentes</text>
+          <text x="607" y="98" class="lbl-s">• recupera claims vencidos y poda observabilidad</text>
+          <text x="607" y="118" class="lbl-s">• ejecuta el probe interno de base de datos</text>
+          <path d="M585 118 C550 118 552 215 518 215" stroke="#ffb454" stroke-width="1.7" fill="none" marker-end="url(#arr)"/>
 
-          <!-- client pods -->
-          <g>
-            <!-- pod 1 -->
-            <rect x="330" y="288" width="140" height="196" rx="14" class="node" stroke-dasharray="5 4" style="stroke:var(--green)"/>
-            <text x="345" y="311" class="lbl-t" style="font-size:12px">Cliente A</text>
-            <path d="M451 300 l8 -6 v12 z" opacity=".8" style="fill:var(--green)"/>
-            <rect x="346" y="326" width="108" height="34" rx="8" class="node"/><text x="400" y="347" text-anchor="middle" class="lbl-s">agente ·  spec</text>
-            <rect x="346" y="368" width="108" height="34" rx="8" class="node"/><text x="400" y="389" text-anchor="middle" class="lbl-s">agente · dev</text>
-            <text x="345" y="428" class="lbl-s">workspace</text>
-            <text x="345" y="443" class="lbl-s">+ auth + sesiones</text>
-            <text x="345" y="458" class="lbl-s">+ sandbox propios</text>
-            <path class="con" d="M400 238 L400 288" marker-end="url(#arr)"/>
-          </g>
-          <g>
-            <!-- pod 2 -->
-            <rect x="486" y="288" width="140" height="196" rx="14" class="node" stroke-dasharray="5 4" style="stroke:var(--green)"/>
-            <text x="501" y="311" class="lbl-t" style="font-size:12px">Cliente B</text>
-            <path d="M607 300 l8 -6 v12 z" opacity=".8" style="fill:var(--green)"/>
-            <rect x="502" y="326" width="108" height="34" rx="8" class="node"/><text x="556" y="347" text-anchor="middle" class="lbl-s">agente · spec</text>
-            <rect x="502" y="368" width="108" height="34" rx="8" class="node"/><text x="556" y="389" text-anchor="middle" class="lbl-s">agente · dev</text>
-            <text x="501" y="428" class="lbl-s">aislado del resto</text>
-            <text x="501" y="443" class="lbl-s">sin canal directo</text>
-            <text x="501" y="458" class="lbl-s">a otros clientes</text>
-            <path class="con" d="M556 238 L556 288" marker-end="url(#arr)"/>
-          </g>
-          <g>
-            <!-- pod 3 -->
-            <rect x="642" y="288" width="118" height="196" rx="14" class="node" stroke-dasharray="5 4" style="stroke:var(--green)"/>
-            <text x="657" y="311" class="lbl-t" style="font-size:12px">Cliente C…</text>
-            <path d="M743 300 l8 -6 v12 z" opacity=".8" style="fill:var(--green)"/>
-            <rect x="658" y="326" width="86" height="34" rx="8" class="node"/><text x="701" y="347" text-anchor="middle" class="lbl-s">agente</text>
-            <rect x="658" y="368" width="86" height="34" rx="8" class="node"/><text x="701" y="389" text-anchor="middle" class="lbl-s">agente</text>
-            <text x="657" y="435" class="lbl-s">N tenants,</text>
-            <text x="657" y="450" class="lbl-s">mismo patrón</text>
-            <path class="con" d="M701 238 L701 288" marker-end="url(#arr)"/>
-          </g>
+          <rect x="585" y="184" width="365" height="214" rx="16" class="node" style="stroke:var(--violet)"/>
+          <text x="607" y="211" class="lbl-t">Plano de terminal independiente</text>
+          <rect x="607" y="232" width="120" height="38" rx="9" class="node"/><text x="667" y="256" text-anchor="middle" class="lbl-s">navegador</text>
+          <path d="M727 251 H768" stroke="#8a6cff" stroke-width="1.8" marker-end="url(#arr)"/>
+          <rect x="770" y="232" width="152" height="38" rx="9" class="node"/><text x="846" y="256" text-anchor="middle" class="lbl-s">terminal-relay</text>
+          <path d="M846 270 V305" stroke="#8a6cff" stroke-width="1.8" marker-end="url(#arr)"/>
+          <rect x="770" y="307" width="152" height="38" rx="9" class="node"/><text x="846" y="331" text-anchor="middle" class="lbl-s">pty-agent (mTLS)</text>
+          <path d="M770 326 H729" stroke="#8a6cff" stroke-width="1.8" marker-end="url(#arr)"/>
+          <rect x="607" y="307" width="120" height="38" rx="9" class="node"/><text x="667" y="331" text-anchor="middle" class="lbl-s">PTY / ficheros</text>
+          <text x="607" y="374" class="lbl-s">El agente PTY conecta hacia afuera; nunca expone un puerto en su contenedor.</text>
 
-          <!-- isolation wall markers between client pods -->
-          <line x1="478" y1="296" x2="478" y2="476" stroke-width="1.4" stroke-dasharray="2 6" opacity=".7" style="stroke:var(--rose)"/>
-          <line x1="634" y1="296" x2="634" y2="476" stroke-width="1.4" stroke-dasharray="2 6" opacity=".7" style="stroke:var(--rose)"/>
-
-          <!-- PROVIDERS rail (right) -->
-          <rect x="800" y="92" width="150" height="392" rx="16" stroke-width="1.3" stroke-opacity=".6" style="fill:var(--surface-2);stroke:var(--violet)"/>
-          <text x="816" y="116" class="lbl-t" style="fill:var(--violet)">Modelos</text>
-          <text x="816" y="132" class="lbl-s">calidad-primero</text>
-          <g>
-            <rect x="816" y="150" width="118" height="40" rx="9" class="node"/><text x="875" y="168" text-anchor="middle" class="lbl">Claude</text><text x="875" y="182" text-anchor="middle" class="lbl-s">Opus·Sonnet·Fable</text>
-            <rect x="816" y="200" width="118" height="40" rx="9" class="node"/><text x="875" y="218" text-anchor="middle" class="lbl">Codex</text><text x="875" y="232" text-anchor="middle" class="lbl-s">GPT</text>
-            <rect x="816" y="250" width="118" height="40" rx="9" class="node"/><text x="875" y="268" text-anchor="middle" class="lbl">Gemini</text><text x="875" y="282" text-anchor="middle" class="lbl-s">contexto largo</text>
-            <rect x="816" y="300" width="118" height="40" rx="9" class="node"/><text x="875" y="318" text-anchor="middle" class="lbl">MiniMax</text><text x="875" y="332" text-anchor="middle" class="lbl-s">bulk / paralelo</text>
-          </g>
-          <text x="816" y="368" class="lbl-s">ruteo por cuota</text>
-          <text x="816" y="383" class="lbl-s">en vivo · failover</text>
-          <path class="con" d="M800 300 C 780 300 775 300 762 300" marker-end="url(#arr)"/>
-
-          <!-- private mesh band (bottom) -->
-          <rect x="60" y="502" width="700" height="40" rx="12" stroke-dasharray="6 5" style="fill:var(--surface);stroke:var(--stroke)"/>
-          <text x="80" y="527" class="lbl-s">MALLA PRIVADA · WireGuard (Tailscale) con plano de control self-hosted (Headscale) — nodos e infra sobre red propia</text>
+          <rect x="585" y="426" width="365" height="104" rx="16" class="node" style="stroke:var(--green)"/>
+          <text x="607" y="453" class="lbl-t">Aislamiento y gobierno</text>
+          <text x="607" y="476" class="lbl-s">tenant + room + membresía + ACL dirigida default-deny</text>
+          <text x="607" y="496" class="lbl-s">roles, cuentas, harnesses y políticas son datos versionados</text>
+          <text x="607" y="516" class="lbl-s">credenciales fuera del payload · auditoría de mutaciones</text>
         </svg>
       </div>
-      <p class="figcap">Canales → gateway (identidad) → bus Cauce V3 → flota en pods aislados por tenant · orquestadores y modelos al costado · todo sobre malla privada.</p>
+      <p class="figcap">Publicar → persistir en PostgreSQL → el adaptador reclama por WebSocket → ejecuta el harness → confirma ACK. El dispatcher sólo recupera trabajo vencido.</p>
     </div>
   </section>
 
@@ -499,7 +681,7 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
       <div class="section-head">
         <span class="eyebrow">03 · El corazón</span>
         <h2>El bus <span class="grad">event-driven</span>, explicado</h2>
-        <p class="lead">Cauce V3 no es un bucle infinito ni un servicio que hace polling. Es un <b>bus durable</b>: cada agente existe apagado y <b>solo despierta cuando le llega una entrega</b>. Corre un turno acotado, responde, y vuelve a dormir.</p>
+        <p class="lead">Cauce V3 separa la <b>conexión durable del adaptador</b> del turno de IA. El adaptador mantiene WebSocket; el agente sólo ejecuta cuando hay una entrega reclamada y termina con un ACK estructurado.</p>
       </div>
       <div class="diagram flow" style="margin-bottom:20px">
         <svg viewBox="0 0 1000 150" role="img" aria-label="Ciclo de vida de una entrega en el bus">
@@ -509,19 +691,19 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
           </defs>
           <g>
             <rect x="20" y="45" width="150" height="60" rx="12" style="fill:var(--surface);stroke:var(--cauce)"/>
-            <text x="95" y="72" text-anchor="middle" class="s">Entrega</text><text x="95" y="90" text-anchor="middle" class="ss">evento durable</text>
+            <text x="95" y="72" text-anchor="middle" class="s">Publicar</text><text x="95" y="90" text-anchor="middle" class="ss">gateway deriva identidad</text>
             <path d="M170 75 H222" stroke="#2fd6e6" stroke-width="2" marker-end="url(#arr2)"/>
             <rect x="224" y="45" width="160" height="60" rx="12" style="fill:var(--surface);stroke:var(--stroke-strong)"/>
-            <text x="304" y="72" text-anchor="middle" class="s">Agente despierta</text><text x="304" y="90" text-anchor="middle" class="ss">carga workspace + memoria</text>
+            <text x="304" y="72" text-anchor="middle" class="s">Persistir</text><text x="304" y="90" text-anchor="middle" class="ss">PostgreSQL + outbox</text>
             <path d="M384 75 H436" stroke="#2fd6e6" stroke-width="2" marker-end="url(#arr2)"/>
             <rect x="438" y="45" width="160" height="60" rx="12" style="fill:var(--surface);stroke:var(--stroke-strong)"/>
-            <text x="518" y="72" text-anchor="middle" class="s">Turno acotado</text><text x="518" y="90" text-anchor="middle" class="ss">razona · usa tools · delega</text>
+            <text x="518" y="72" text-anchor="middle" class="s">Reclamar</text><text x="518" y="90" text-anchor="middle" class="ss">claim_token + epoch</text>
             <path d="M598 75 H650" stroke="#2fd6e6" stroke-width="2" marker-end="url(#arr2)"/>
             <rect x="652" y="45" width="150" height="60" rx="12" style="fill:var(--surface);stroke:var(--stroke-strong)"/>
-            <text x="727" y="72" text-anchor="middle" class="s">Emite mensajes</text><text x="727" y="90" text-anchor="middle" class="ss">respuesta al bus</text>
+            <text x="727" y="72" text-anchor="middle" class="s">Ejecutar</text><text x="727" y="90" text-anchor="middle" class="ss">harness + tools + rol</text>
             <path d="M802 75 H854" stroke="#2fd6e6" stroke-width="2" marker-end="url(#arr2)"/>
             <rect x="856" y="45" width="124" height="60" rx="12" style="fill:var(--surface);stroke:var(--stroke)"/>
-            <text x="918" y="72" text-anchor="middle" class="s">Duerme</text><text x="918" y="90" text-anchor="middle" class="ss">cero coste ocioso</text>
+            <text x="918" y="72" text-anchor="middle" class="s">Confirmar</text><text x="918" y="90" text-anchor="middle" class="ss">accepted→started→done</text>
           </g>
         </svg>
       </div>
@@ -529,32 +711,32 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
         <div class="tile">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
           <h3>Entrega durable</h3>
-          <p>El evento persiste hasta que se procesa. Si algo falla, no se pierde: reintento, orden y <b>dedupe</b> lo protegen.</p>
+          <p>Mensaje, entrega, outbox y resultado quedan en PostgreSQL. La idempotencia evita reaplicar el mismo evento.</p>
         </div>
         <div class="tile">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z"/></svg></div>
           <h3>Identidad verificada</h3>
-          <p>El gateway confirma quién manda cada mensaje por certificado. <b>Nadie puede hacerse pasar por otro</b> agente.</p>
+          <p>El gateway deriva actor, tenant, sesión y canal del principal autenticado; el payload no puede autodeclararlos.</p>
         </div>
         <div class="tile">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
           <h3>Turnos acotados</h3>
-          <p>Cada ejecución empieza y termina. No hay procesos zombie ni bucles que quemen cuota en vacío.</p>
+          <p>El turno empieza con una entrega reclamada y termina en <b>done</b> o <b>failed</b>; el adaptador sigue conectado.</p>
         </div>
         <div class="tile">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M12 4l8 8-8 8"/></svg></div>
-          <h3>Consciente del estado</h3>
-          <p>Cada entrega indica qué agentes están en línea ahora mismo. El ruteo es real, no adivinado.</p>
+          <h3>Ruteo autorizado</h3>
+          <p>Origen y destino requieren membresía activa y una ACL dirigida con <b>allow_route</b>; el default es negar.</p>
         </div>
         <div class="tile">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v16"/></svg></div>
           <h3>Recuperable</h3>
-          <p>Los eventos que no cierran caen a una <b>dead-letter queue</b> para inspección y re-proceso idempotente.</p>
+          <p>Las entregas terminales fallidas conservan causa y evidencia en DLQ; el replay exige controles explícitos.</p>
         </div>
         <div class="tile">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 019-9 9 9 0 019 9M12 3v9l6 3"/></svg></div>
-          <h3>Cadencia sin bucles</h3>
-          <p>Los trabajos recurrentes se disparan con schedulers y heartbeats — no con <span class="note">while&nbsp;true</span>. Durable, no frágil.</p>
+          <h3>Recuperación cercada</h3>
+          <p>El dispatcher vence claims rancios. El <b>epoch</b> impide que un consumidor viejo confirme después del reemplazo.</p>
         </div>
       </div>
     </div>
@@ -567,13 +749,13 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
       <div class="split">
         <div>
           <h2>Aislamiento<br><span class="grad">por diseño</span></h2>
-          <p class="lead">Cada cliente vive en su propio <b>pod</b>: agentes con workspace, credenciales, historial de sesiones y sandbox <b>separados</b>. La separación no es una convención — está <b>reforzada a nivel de datos</b>.</p>
+          <p class="lead">Cada cliente es un <b>tenant</b> con salas, membresías y ACL propias. El gateway y PostgreSQL aplican la frontera; la ubicación física se gestiona aparte y puede compartir contenedor dentro del mismo tenant.</p>
           <ul class="clean check" style="margin-top:20px">
-            <li><b>Un agente = un cerebro completo</b>: sus archivos, su auth, sus sesiones.</li>
-            <li><b>Sin canal directo entre clientes</b>: un constraint en la base lo impide, no es solo una regla.</li>
-            <li><b>Hub-and-spoke</b>: si un tenant necesita algo de otro, pasa por el operador — nunca de forma lateral.</li>
-            <li><b>Sandbox + política de tools por agente</b>: se limita qué puede tocar cada uno a nivel del gateway.</li>
-            <li><b>Datos propios</b>: todo self-hosted; nada depende de un SaaS de terceros.</li>
+            <li><b>Identidad no editable</b>: tenant y alias salen del principal autenticado.</li>
+            <li><b>Default-deny</b>: sin membresía y ACL dirigida no hay ruteo ni lectura.</li>
+            <li><b>Visibilidad mínima</b>: compartir un hub no concede acceso a mensajes ajenos.</li>
+            <li><b>Gobierno por agente</b>: rol, workspace, contexto nativo y permisos se mantienen por alias.</li>
+            <li><b>Credenciales fuera del mensaje</b>: se vinculan al runtime autorizado, no viajan en entregas.</li>
           </ul>
         </div>
         <div>
@@ -585,8 +767,8 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
               </style></defs>
               <!-- hub -->
               <circle cx="230" cy="200" r="52" stroke-width="2" style="fill:var(--surface);stroke:var(--cauce-2)"/>
-              <text x="230" y="197" text-anchor="middle" class="h">Operador</text>
-              <text x="230" y="213" text-anchor="middle" class="hs">HUB</text>
+              <text x="230" y="197" text-anchor="middle" class="h">Tenant hub</text>
+              <text x="230" y="213" text-anchor="middle" class="hs">configurado como datos</text>
               <!-- spokes -->
               <g stroke-width="1.8" style="stroke:var(--green)">
                 <line x1="230" y1="148" x2="230" y2="70"/>
@@ -612,7 +794,7 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
               <g font-size="13" font-weight="700" text-anchor="middle" style="fill:var(--rose);font-family:var(--mono)">
                 <text x="330" y="130">✕</text><text x="330" y="278">✕</text><text x="130" y="278">✕</text><text x="130" y="130">✕</text>
               </g>
-              <text x="230" y="392" text-anchor="middle" class="hs" style="fill:var(--rose)">✕ = sin canal directo entre clientes</text>
+              <text x="230" y="392" text-anchor="middle" class="hs" style="fill:var(--rose)">✕ = bloqueado salvo ACL dirigida explícita</text>
             </svg>
           </div>
         </div>
@@ -620,31 +802,31 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
     </div>
   </section>
 
-  <!-- 5 · ORQUESTACIÓN + QA -->
-  <section class="slide" data-title="Orquestación y QA">
+  <!-- 5 · GOBIERNO Y OBSERVABILIDAD -->
+  <section class="slide" data-title="Gobierno y observabilidad">
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">05 · Cómo se gobierna</span>
-        <h2>Orquestación y QA continuo</h2>
-        <p class="lead">La flota no es un enjambre caótico. Tiene <b>roles claros</b>, memoria de lo que delega, y una capa de <b>control de calidad adversarial</b> que revisa lo que producen los demás antes de darlo por bueno.</p>
+        <h2>Gobierno visible, no magia</h2>
+        <p class="lead">La flota se opera desde datos durables: roles, agentes, cuentas, rutas, colas y cambios quedan visibles. La consola no inventa estado; consulta las fachadas filtradas del gateway.</p>
       </div>
       <div class="grid g2" style="gap:20px">
         <div class="card pad-lg">
-          <span class="pill" style="margin-bottom:14px"><span class="d" style="background:var(--cauce-2)"></span>Orquestación</span>
-          <div class="kv"><span class="n">infra</span><span class="t"><b>Orquestador residente</b><span>Dueño de la infraestructura y del bus. Destraba lo que deja a un agente sin poder trabajar: harness, credenciales, red, colas.</span></span></div>
-          <div class="kv"><span class="n">coord</span><span class="t"><b>Hub de coordinación</b><span>Rutea el trabajo entre agentes y mantiene el panorama. El punto de escalado para lo que no es infra.</span></span></div>
-          <div class="kv"><span class="n">deleg</span><span class="t"><b>Delegación con memoria</b><span>Cada tarea delegada va a un ledger (qué, a quién, estado). No se re-manda lo abierto ni se olvida lo pendiente.</span></span></div>
+          <span class="pill" style="margin-bottom:14px"><span class="d" style="background:var(--cauce-2)"></span>Control operacional</span>
+          <div class="kv"><span class="n">live</span><span class="t"><b>Flota y entregas en vivo</b><span>Estado por alias, mensajes, colas, reintentos, DLQ y último error accionable.</span></span></div>
+          <div class="kv"><span class="n">term</span><span class="t"><b>Terminal segura</b><span>Acceso web a PTY y ficheros de gobierno mediante relay con fencing y mTLS.</span></span></div>
+          <div class="kv"><span class="n">fanin</span><span class="t"><b>Delegación que vuelve</b><span>El fan-in materializa respuestas de cadenas A→B→C antes de devolverlas al origen.</span></span></div>
         </div>
         <div class="card pad-lg">
-          <span class="pill" style="margin-bottom:14px"><span class="d" style="background:var(--amber)"></span>QA adversarial</span>
-          <div class="kv"><span class="n a">sweep</span><span class="t"><b>Barridos periódicos</b><span>En cada ciclo se refresca el panorama, se revisa lo abierto y se actualiza un tablero vivo de pendientes, riesgos y huecos.</span></span></div>
-          <div class="kv"><span class="n a">≥2</span><span class="t"><b>Dos lentes independientes</b><span>Ningún hallazgo se marca confirmado con una sola mirada: se cruza con al menos dos modelos/enfoques distintos.</span></span></div>
-          <div class="kv"><span class="n a">evid</span><span class="t"><b>Evidencia antes de afirmar</b><span>Se corre el test o se lee el log — no se concluye de memoria. Adversarial, no confirmatorio: se busca lo que rompe.</span></span></div>
+          <span class="pill" style="margin-bottom:14px"><span class="d" style="background:var(--amber)"></span>Configuración durable</span>
+          <div class="kv"><span class="n a">OCC</span><span class="t"><b>Cambios versionados</b><span>Mutaciones con revisión esperada evitan que dos operadores se pisen en silencio.</span></span></div>
+          <div class="kv"><span class="n a">RBAC</span><span class="t"><b>Permisos explícitos</b><span>Ruteo, lectura y control nacen en false; cada capacidad se concede por política.</span></span></div>
+          <div class="kv"><span class="n a">audit</span><span class="t"><b>Auditoría</b><span>Las decisiones del borde y las mutaciones quedan registradas para reconstruir qué ocurrió.</span></span></div>
         </div>
       </div>
       <div class="card" style="margin-top:20px;display:flex;gap:18px;align-items:center;flex-wrap:wrap">
-        <span class="pill"><span class="d"></span>gate de seguridad</span>
-        <p style="margin:0;color:var(--text-soft);flex:1;min-width:260px">QA es la <b>puerta previa</b>: revisa calidad y seguridad antes de aprobar. Lo irreversible — desplegar a producción, tocar secretos, gastar dinero — <b>siempre requiere luz verde humana</b>, nunca un mensaje del bus.</p>
+        <span class="pill"><span class="d"></span>control humano</span>
+        <p style="margin:0;color:var(--text-soft);flex:1;min-width:260px">Cauce coordina y deja evidencia; no reemplaza la autoridad. Las acciones sensibles conservan <b>gates humanos</b> definidos por cada organización.</p>
       </div>
     </div>
   </section>
@@ -655,48 +837,48 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
       <div class="section-head">
         <span class="eyebrow">06 · Capacidades</span>
         <h2>Qué trae listo</h2>
-        <p class="lead">Todo corre sobre <b>OpenClaw</b>, un gateway self-hosted para agentes. Cauce V3 lo compone en una flota operable.</p>
+        <p class="lead">Cauce V3 es la capa común entre canales, almacenamiento, agentes y operación. No depende de un solo CLI ni de un solo proveedor de IA.</p>
       </div>
       <div class="grid g4">
         <div class="tile">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.2L4 18z"/></svg></div>
-          <h3>Multi-canal</h3>
-          <p>Telegram, Slack, WhatsApp, Discord, Signal y más, desde un solo gateway.</p>
+          <h3>Entradas reales</h3>
+          <p>Telegram, consola web y CLI de operador publican por la misma frontera autenticada.</p>
         </div>
         <div class="tile v">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v6a3 3 0 003 3h6"/></svg></div>
-          <h3>Multi-proveedor</h3>
-          <p>Claude, Codex, Gemini y MiniMax con ruteo calidad-primero y failover por cuota.</p>
+          <h3>Multi-harness</h3>
+          <p>Claude Code, Codex y OpenClaw hablan el mismo contrato durable mediante adaptadores.</p>
         </div>
         <div class="tile g">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div>
-          <h3>Aislamiento</h3>
-          <p>Un pod por tenant: workspace, auth, sesiones y sandbox separados.</p>
+          <h3>Multi-tenant</h3>
+          <p>Membresías, ACL, visibilidad y configuración se aplican por tenant con default-deny.</p>
         </div>
         <div class="tile">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5M5 8v8l7 5 7-5V8"/></svg></div>
-          <h3>Memoria persistente</h3>
-          <p>Cada agente recuerda entre sesiones: notas diarias, memoria curada y búsqueda.</p>
+          <h3>Entrega durable</h3>
+          <p>Mensajes, ACK, reintentos, fan-in y DLQ sobreviven reinicios y desconexiones.</p>
         </div>
         <div class="tile a">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-          <h3>Automatización</h3>
-          <p>Cron, heartbeat, TaskFlow, hooks y standing orders para trabajo en background.</p>
+          <h3>Flota como datos</h3>
+          <p>Altas, bajas, harnesses, roles y ubicación se derivan de un inventario canónico.</p>
         </div>
         <div class="tile g">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <h3>Sandbox + tool policy</h3>
-          <p>Se limita a nivel de gateway qué puede ejecutar cada agente, aunque se lo pidan.</p>
+          <h3>Fencing</h3>
+          <p>Epoch y claim tokens impiden que una conexión vieja confirme trabajo ajeno o repetido.</p>
         </div>
         <div class="tile v">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
-          <h3>Delegado con identidad</h3>
-          <p>Cada agente actúa "en nombre de" su humano, con su propia identidad — nunca lo suplanta.</p>
+          <h3>Cuentas gobernadas</h3>
+          <p>Suscripciones, límites de ruteo y fallback son configuración durable y auditable.</p>
         </div>
         <div class="tile">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div>
-          <h3>Malla privada</h3>
-          <p>Nodos e infra sobre una red WireGuard con plano de control self-hosted.</p>
+          <h3>Observabilidad</h3>
+          <p>Consola, auditoría, métricas y terminal muestran el estado que realmente existe.</p>
         </div>
       </div>
     </div>
@@ -722,12 +904,12 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
         <div class="card pad-lg">
           <h3 style="color:var(--green);margin-bottom:16px">Lo que lo hace distinto</h3>
           <ul class="clean check">
-            <li><b>Durable + event-driven</b>: cero coste ocioso, nada se pierde.</li>
-            <li><b>Identidad verificada</b> por certificado: sin suplantación entre agentes.</li>
+            <li><b>Durable + event-driven</b>: el trabajo nace de una entrega registrada.</li>
+            <li><b>Identidad derivada</b>: el payload no puede elegir quién dice ser.</li>
             <li><b>Aislamiento reforzado a nivel de datos</b>, no solo por convención.</li>
-            <li><b>QA adversarial continuo</b> con doble lente antes de aprobar.</li>
-            <li><b>Calidad-primero multi-modelo</b>: el mejor modelo por tarea, con failover.</li>
-            <li><b>Self-hosted</b>: control total de datos, red y credenciales.</li>
+            <li><b>Claims cercados</b>: un consumidor reemplazado no puede cerrar trabajo.</li>
+            <li><b>Interoperabilidad</b>: tres harnesses bajo un contrato común.</li>
+            <li><b>Self-hosted</b>: control operativo sobre datos, red y credenciales.</li>
           </ul>
         </div>
       </div>
@@ -738,16 +920,75 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
   <section class="slide closing" data-title="Cierre">
     <div class="wrap">
       <span class="eyebrow" style="justify-content:center;display:inline-flex">08 · En una frase</span>
-      <h2>Una flota de agentes que <span class="grad">coordina, recuerda y se revisa</span> — sobre un cauce durable y propio.</h2>
-      <p class="lead" style="margin:22px auto 0;text-align:center">Multi-tenant, multi-canal, multi-modelo. Aislada por diseño. Orquestada y auditada. Construida sobre <b>OpenClaw</b> y operada por la flota.</p>
+      <h2>Una flota de agentes que <span class="grad">recibe, ejecuta y responde con evidencia</span> — sobre un cauce durable y propio.</h2>
+      <p class="lead" style="margin:22px auto 0;text-align:center">Multi-tenant y multi-harness. Con identidad derivada, claims cercados, operación visible y control humano.</p>
       <div class="cta-row">
         <span class="chip">Bus durable event-driven</span>
         <span class="chip">Aislamiento por cliente</span>
-        <span class="chip">Orquestación + QA continuo</span>
-        <span class="chip">Enrutado multi-proveedor</span>
+        <span class="chip">Claims + ACK cercados</span>
+        <span class="chip">Claude Code · Codex · OpenClaw</span>
         <span class="chip">Self-hosted</span>
       </div>
       <p class="note" style="margin-top:40px;text-align:center">Cauce&nbsp;V3 · flota multi-agente · presentación</p>
+    </div>
+  </section>
+
+  <!-- 9 · CONTACTO -->
+  <section class="slide closing" id="contacto" data-title="Contacto">
+    <div class="wrap">
+      <span class="eyebrow" style="justify-content:center;display:inline-flex">09 · Siguiente paso</span>
+      <h2>Conectemos Cauce con <span class="grad">tu operación real</span>.</h2>
+      <p class="lead" style="margin:20px auto 0;text-align:center">Hablá directamente con Steven, reservá una reunión de 30 minutos o revisá el catálogo completo de sistemas Humanizar.</p>
+      <div class="cta-row" aria-label="Opciones de contacto">
+        <a class="action-link primary" href="https://wa.me/573046374368?text=Hola%20Steven%2C%20quiero%20conocer%20Cauce%20V3">Escribir por WhatsApp</a>
+        <a class="action-link" href="https://agenda.humanizar.tech/?producto=Cauce%20V3">Agendar una reunión</a>
+        <a class="action-link" href="https://catalogo.humanizar.tech/">Ver todos los sistemas</a>
+      </div>
+      <div class="card pad-lg brief-card">
+        <h3>Empezá con un brief útil</h3>
+        <p>Las mismas seis preguntas prácticas que ya traía la versión anterior, ajustadas a Cauce V3. Sirven para llegar a la primera reunión con el caso delimitado y un orden de magnitud estimado. El brief se copia a tu portapapeles: no se envía a ningún servicio.</p>
+        <div class="brief-actions">
+          <button class="action-link" id="copy-brief" type="button">Copiar brief inicial</button>
+          <a class="action-link" href="https://agenda.humanizar.tech/?producto=Cauce%20V3&origen=presentacion">Agendar con ese brief listo</a>
+        </div>
+        <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+        <textarea class="brief-fallback" id="brief-fallback" aria-label="Brief inicial de Cauce V3" readonly hidden></textarea>
+      </div>
+      <div class="systems-grid" aria-label="Sistemas Humanizar enlazados">
+        <a class="system-tile" href="https://catalogo.humanizar.tech/" rel="noopener">
+          <div class="system-name">Catálogo</div>
+          <div class="system-desc">Todos los sistemas de la suite.</div>
+        </a>
+        <a class="system-tile" href="https://agenda.humanizar.tech/" rel="noopener">
+          <div class="system-name">Agenda</div>
+          <div class="system-desc">Reuniones y disponibilidad.</div>
+        </a>
+        <a class="system-tile" href="https://xenia.stevenvallejo.com/" rel="noopener">
+          <div class="system-name">CRM Xenia</div>
+          <div class="system-desc">Contactos, empresas y embudos.</div>
+        </a>
+        <a class="system-tile" href="https://sigre.elenxos.com/" rel="noopener">
+          <div class="system-name">SIGRE-CO</div>
+          <div class="system-desc">Registro de medicamentos donados.</div>
+        </a>
+        <a class="system-tile" href="https://devkits.humanizar.tech/" rel="noopener">
+          <div class="system-name">DevKits</div>
+          <div class="system-desc">Horas, proyectos y sprints.</div>
+        </a>
+        <a class="system-tile" href="https://aletheia.humanizar.tech/" rel="noopener">
+          <div class="system-name">Aletheia</div>
+          <div class="system-desc">Trazabilidad y verificación.</div>
+        </a>
+        <a class="system-tile" href="https://humanizar-dev.cloud/" rel="noopener">
+          <div class="system-name">Humanizar Cloud</div>
+          <div class="system-desc">Documentación y operación.</div>
+        </a>
+        <a class="system-tile" href="https://humanizar.tech/" rel="noopener">
+          <div class="system-name">Humanizar</div>
+          <div class="system-desc">Inicio y marca.</div>
+        </a>
+      </div>
+      <p class="note" style="margin-top:26px;text-align:center"><a href="https://humanizar.tech/" style="color:inherit">Humanizar</a> · <a href="https://catalogo.humanizar.tech/" style="color:inherit">Catálogo</a> · <a href="https://agenda.humanizar.tech/" style="color:inherit">Agenda</a> · <a href="https://wa.me/573046374368" style="color:inherit">WhatsApp</a></p>
     </div>
   </section>
 
@@ -777,14 +1018,14 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
 
   function goTo(i){
     i = Math.max(0, Math.min(slides.length-1, i));
-    slides[i].scrollIntoView({behavior:'smooth', block:'start'});
+    deck.scrollTo({top:slides[i].offsetTop, behavior:'smooth'});
   }
 
   function update(){
     var st = deck.scrollTop;
-    var h = deck.clientHeight;
-    var idx = Math.round(st / h);
-    idx = Math.max(0, Math.min(slides.length-1, idx));
+    var idx = slides.reduce(function(best, slide, i){
+      return Math.abs(slide.offsetTop-st) < Math.abs(slides[best].offsetTop-st) ? i : best;
+    }, 0);
     if(idx !== current){
       current = idx;
       dots.forEach(function(d,j){ d.classList.toggle('active', j===idx); });
@@ -798,7 +1039,7 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
 
   // keyboard nav
   document.addEventListener('keydown', function(e){
-    if(e.target && /input|textarea|select/i.test(e.target.tagName)) return;
+    if(e.target && /input|textarea|select|button|a/i.test(e.target.tagName)) return;
     switch(e.key){
       case 'ArrowDown': case 'ArrowRight': case 'PageDown': case ' ':
         e.preventDefault(); goTo(current+1); break;
@@ -830,6 +1071,58 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
     applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   });
 
+  // brief comercial: se copia localmente y nunca se envía a un servicio
+  var copyButton = document.getElementById('copy-brief');
+  var copyStatus = document.getElementById('copy-status');
+  var briefFallback = document.getElementById('brief-fallback');
+  var brief = [
+    'BRIEF INICIAL · CAUCE V3',
+    '',
+    '— Responder en una línea cada uno. Sirve para llegar a la reunión con el caso delimitado. —',
+    '',
+    '1. ¿Qué decisión, mensaje o traspaso hoy depende de pegar texto entre terminales, chats o correos?',
+    '2. ¿Cuántos agentes, roles o equipos intervienen en ese flujo y en qué canales aparece cada uno?',
+    '3. ¿Qué sistemas (CRM, agenda, catálogo, repositorios, hojas, ERPs) tienen que quedar conectados por ese mismo flujo?',
+    '4. ¿Qué proveedores y cuentas de IA ya pagan (Anthropic, OpenAI, Google, Antigravity, local) y bajo qué límite de gasto?',
+    '5. ¿Qué acciones de ese flujo deben conservar un gate humano explícito (publicar, gastar, borrar, contactar)?',
+    '6. ¿Cómo se mide hoy el resultado y qué evidencia querés poder mostrar después (mensajes cerrados, reintentos, coste, auditoría)?',
+    '',
+    '— Datos de contexto que ayudan: tenant o cliente, cantidad de usuarios y de mensajes/mes, fecha deseada de piloto. —'
+  ].join('\n');
+
+  copyButton.addEventListener('click', async function(){
+    var copied = false;
+    try{
+      await navigator.clipboard.writeText(brief);
+      copied = true;
+    }catch(_){}
+    if(!copied){
+      briefFallback.hidden = false;
+      briefFallback.value = brief;
+      briefFallback.focus();
+      briefFallback.select();
+      try{ copied = document.execCommand('copy'); }catch(_){}
+    }
+    if(copied){
+      briefFallback.hidden = true;
+      copyStatus.textContent = 'Brief copiado. Pegalo en WhatsApp, correo o tu documento de trabajo.';
+    }else{
+      copyStatus.textContent = 'El navegador bloqueó el portapapeles. El brief quedó seleccionado para copiarlo manualmente.';
+    }
+  });
+
+  function followHash(){
+    if(!location.hash) return;
+    try{
+      var target = document.querySelector(location.hash);
+      if(target && target.classList.contains('slide')){
+        deck.scrollTop = target.offsetTop;
+        update();
+      }
+    }catch(_){}
+  }
+  window.addEventListener('hashchange', followHash);
+  followHash();
   update();
 })();
 </script>

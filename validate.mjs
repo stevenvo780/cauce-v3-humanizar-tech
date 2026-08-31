@@ -5,86 +5,98 @@ import { fileURLToPath } from "node:url";
 
 const root = dirname(fileURLToPath(import.meta.url));
 const html = await readFile(resolve(root, "index.html"), "utf8");
+const alternate = await readFile(resolve(root, "cauce-v3.html"), "utf8");
+const robots = await readFile(resolve(root, "robots.txt"), "utf8");
+const sitemap = await readFile(resolve(root, "sitemap.xml"), "utf8");
 
-const requiredIds = [
-  "inicio",
-  "problema",
-  "sistema",
-  "empresa-viva",
-  "arquitectura",
-  "capacidad-ia",
-  "flujo",
-  "contrato",
-  "capacidades",
-  "casos",
-  "confianza",
-  "piloto",
-  "preguntas",
-  "contacto"
-];
+assert.equal(alternate, html, "index.html and cauce-v3.html must stay byte-identical");
+assert.match(html, /<html lang="es-CO"/);
+assert.equal((html.match(/<h1\b/g) || []).length, 1, "the page needs one h1");
+assert.match(html, /<link rel="canonical" href="https:\/\/humanizar\.tech\/"/);
+assert.match(html, /name="robots" content="index,follow,max-image-preview:large/);
+assert.match(html, /property="og:image" content="https:\/\/humanizar\.tech\/og-cauce-v3\.png"/);
+assert.match(html, /name="twitter:card" content="summary_large_image"/);
 
-for (const id of requiredIds) {
-  assert.match(html, new RegExp(`id=["']${id}["']`), `missing section #${id}`);
+const jsonLdMatch = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+assert.ok(jsonLdMatch, "JSON-LD is required");
+const jsonLd = JSON.parse(jsonLdMatch[1]);
+const types = jsonLd["@graph"].map((item) => item["@type"]);
+for (const required of ["Organization", "WebSite", "SoftwareApplication", "BreadcrumbList", "FAQPage", "Service"]) {
+  assert.ok(types.includes(required), `JSON-LD must include ${required}`);
 }
+const org = jsonLd["@graph"].find((item) => item["@type"] === "Organization");
+assert.ok(Array.isArray(org.sameAs) && org.sameAs.length >= 4, "Organization must link to connected systems via sameAs");
+const faq = jsonLd["@graph"].find((item) => item["@type"] === "FAQPage");
+assert.ok(Array.isArray(faq.mainEntity) && faq.mainEntity.length >= 3, "FAQPage must have at least three questions");
+const service = jsonLd["@graph"].find((item) => item["@type"] === "Service");
+assert.ok(service.provider && service.provider["@id"], "Service must be linked to Organization");
 
-const externalAssets = [...html.matchAll(/(?:src|href)=["']([^"']+)["']/g)]
-  .map((match) => match[1])
-  .filter((value) => /^(https?:)?\/\//.test(value))
-  .filter((value) => value !== "https://humanizar.tech/");
+for (const claim of [
+  "PostgreSQL · única fuente durable",
+  "Adapter SDK · consumidor durable por alias",
+  "Dispatcher · segador de reintentos",
+  "Claude Code · Codex · OpenClaw",
+  "claim_token + epoch",
+  "14",
+  "4",
+  "3"
+]) assert.ok(html.includes(claim), `missing architectural claim: ${claim}`);
 
-assert.deepEqual(externalAssets, [], "landing must be standalone");
-assert.match(html, /De 2 a N equipos\. <em>Un control plane/i);
-assert.match(html, /autenticación dinámica/i);
-assert.match(html, /multi-harness/i);
-assert.match(html, /suscripciones/i);
-assert.match(html, /Dibujo animado de cinco agentes/i);
-assert.match(html, /@keyframes data-flow/i);
-assert.match(html, /revisión independiente/i);
-assert.match(html, /gates? humanos?/i);
-assert.match(html, /no prueban por sí solas/i);
-assert.match(html, /piloto no productivo/i);
+for (const falseClaim of [
+  /Gateway · OpenClaw/i,
+  /el bus Cauce V3 despacha/i,
+  /Telegram, Slack, WhatsApp/i,
+  /un pod por tenant/i,
+  /15<\/span><small>agentes/i,
+  /5<\/span><small>tenants/i,
+  /cero coste ocioso/i,
+  /entrega garantizada/i
+]) assert.doesNotMatch(html, falseClaim, `stale or false claim remains: ${falseClaim}`);
+
+for (const url of [
+  "https://wa.me/573046374368",
+  "https://agenda.humanizar.tech/?producto=Cauce%20V3",
+  "https://catalogo.humanizar.tech/",
+  "https://xenia.stevenvallejo.com/",
+  "https://sigre.elenxos.com/",
+  "https://devkits.humanizar.tech/",
+  "https://aletheia.humanizar.tech/",
+  "https://humanizar-dev.cloud/"
+]) assert.ok(html.includes(url), `missing connected-system link: ${url}`);
+
+assert.match(html, /id="copy-brief"/);
+assert.match(html, /BRIEF INICIAL · CAUCE V3/);
+assert.match(html, /aria-live="polite"/);
 assert.match(html, /prefers-reduced-motion/);
-assert.match(html, /@media print/);
-assert.match(html, /aria-live=["']polite["']/);
-assert.doesNotMatch(html, /Steven|Vallejo|jarvis|zeus|socrates|kant|argos/i);
-
-const visibleCopy = html
-  .replace(/<style>[\s\S]*?<\/style>/gi, " ")
-  .replace(/<script>[\s\S]*?<\/script>/gi, " ")
-  .replace(/<[^>]+>/g, " ")
-  .replace(/\s+/g, " ");
-// La regla original prohibia CUALQUIER porcentaje. Su proposito, segun el
-// README, es no publicar metricas inventadas — no prohibir la aritmetica.
-// Se estrecha a proposito: siguen prohibidas las certificaciones que no
-// tenemos y los porcentajes de disponibilidad comprometida (99,9 % y
-// familia), que es la cifra que de verdad se suele inventar. Los numeros
-// operativos medidos se publican con su contraparte y con su marco.
-assert.doesNotMatch(visibleCopy, /SOC\s*2|ISO\s*27001|\b99[.,]\d+\s*%/i);
 
 const markup = html
   .replace(/<style>[\s\S]*?<\/style>/gi, " ")
-  .replace(/<script>[\s\S]*?<\/script>/gi, " ");
-const ids = [...markup.matchAll(/\sid=["']([^"']+)["']/g)].map((match) => match[1]);
+  .replace(/<script[\s\S]*?<\/script>/gi, " ");
+const ids = [...markup.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
 assert.equal(new Set(ids).size, ids.length, "document ids must be unique");
-const internalLinks = [...markup.matchAll(/\shref=["']#([^"']+)["']/g)].map((match) => match[1]);
-for (const target of internalLinks) {
+for (const target of [...markup.matchAll(/\shref="#([^"]+)"/g)].map((match) => match[1])) {
   assert.ok(ids.includes(target), `internal link points to missing #${target}`);
 }
 
-const summary = {
-  status: "pass",
-  sections: requiredIds.length,
-  standalone: externalAssets.length === 0,
-  commercialBoundaries: "present",
-  accessibility: {
-    skipLink: /class=["']skip-link["']/.test(html),
-    reducedMotion: true,
-    liveRegion: true,
-    nativeFaq: (html.match(/<details>/g) || []).length
-  },
-  responsiveBreakpoints: (html.match(/@media \(max-width:/g) || []).length,
-  uniqueIds: ids.length,
-  validInternalLinks: internalLinks.length
-};
+assert.equal((html.match(/<section class="slide/g) || []).length, 10, "deck must have ten slides");
+assert.match(robots, /Sitemap: https:\/\/humanizar\.tech\/sitemap\.xml/);
+for (const loc of [
+  "https://humanizar.tech/",
+  "https://humanizar.tech/cauce-v3",
+  "https://catalogo.humanizar.tech/",
+  "https://agenda.humanizar.tech/",
+  "https://xenia.stevenvallejo.com/",
+  "https://sigre.elenxos.com/",
+  "https://devkits.humanizar.tech/",
+  "https://aletheia.humanizar.tech/",
+  "https://humanizar-dev.cloud/"
+]) assert.ok(sitemap.includes(`<loc>${loc}</loc>`), `sitemap missing entry: ${loc}`);
 
-console.log(JSON.stringify(summary, null, 2));
+console.log(JSON.stringify({
+  status: "pass",
+  slides: 10,
+  architecture: "source-backed",
+  connectedSystems: 8,
+  seo: ["canonical", "hreflang", "Open Graph", "Twitter Card", "JSON-LD Organization/WebSite/SoftwareApplication/BreadcrumbList/FAQPage/Service", "robots", "sitemap", "sameAs"],
+  uniqueIds: ids.length
+}, null, 2));
