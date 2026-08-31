@@ -68,3 +68,5 @@ diff <(curl -s https://raw.githubusercontent.com/stevenvo780/cauce-v3-humanizar-
 ```
 
 Sin salida = producción coincide con `main`.
+
+_Última build: 2026-08-31T00:42:27Z para refrescar Vercel._
