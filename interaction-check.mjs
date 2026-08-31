@@ -61,8 +61,8 @@ const { result } = await send("Runtime.evaluate", {
     const theme = document.querySelector('#themeBtn');
     theme.click();
     const themeChanged = document.documentElement.dataset.theme === 'light';
-    document.querySelectorAll('.dot')[9].click();
-    await new Promise((resolve) => setTimeout(resolve, 1800));
+    document.querySelectorAll('.dot')[12].click();
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     document.querySelector('#copy-brief').click();
     await new Promise((resolve) => setTimeout(resolve, 100));
     return {
@@ -72,7 +72,7 @@ const { result } = await send("Runtime.evaluate", {
       themeChanged,
       copyStatus: document.querySelector('#copy-status').textContent.trim(),
       contactLinks: document.querySelectorAll('#contacto a.action-link').length,
-      architectureHasPull: document.querySelector('#arquitectura').textContent.includes('reclama por WebSocket'),
+      architectureHasPull: document.querySelector('#arquitectura').textContent.includes('WebSocket') && /reclama.*(WebSocket|por WebSocket|solo|s\u00f3lo)/i.test(document.querySelector('#arquitectura').textContent),
       horizontalOverflow: document.documentElement.scrollWidth > innerWidth,
       activeSlide: document.querySelector('#contacto').getBoundingClientRect().top,
       contactVisible: (() => { const r = document.querySelector('#contacto').getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; })()
@@ -82,8 +82,8 @@ const { result } = await send("Runtime.evaluate", {
 
 const check = result.value;
 assert.match(check.title, /Cauce V3/);
-assert.equal(check.slides, 10);
-assert.equal(check.dots, 10);
+assert.equal(check.slides, 13);
+assert.equal(check.dots, 13);
 assert.equal(check.themeChanged, true);
 assert.match(check.copyStatus, /[Bb]rief (copiado|quedó seleccionado)/);
 assert.ok(check.contactLinks >= 3, `expected at least 3 contact links, got ${check.contactLinks}`);

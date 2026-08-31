@@ -1,13 +1,12 @@
-# Landing comercial Cauce V3
+# Presentación comercial Cauce V3
 
-Landing estática y autocontenida para presentar Cauce V3 como un sistema de
-empresas de desarrollo hechas con agentes: de 2 a N equipos, con protocolos,
-autenticación dinámica, suscripciones de IA, operación multi-harness,
-observabilidad y gobierno desde un mismo control plane.
+Deck estático y autocontenido para explicar Cauce V3 con la arquitectura real
+del sistema: gateway HTTP/WS, PostgreSQL como fuente durable, adaptadores que
+reclaman entregas con fencing, tres harnesses interoperables y plano de terminal.
 
-Incluye una escena animada y responsive con cinco agentes colaborando en un
-flujo de objetivo, construcción, integración, revisión y entrega. La animación
-respeta `prefers-reduced-motion` y no carga recursos externos.
+Incluye CTA directo a WhatsApp, agenda y catálogo; también recupera el brief
+copiable de la versión anterior. La interacción respeta
+`prefers-reduced-motion` y no carga scripts externos.
 
 ## Abrir
 
@@ -20,15 +19,11 @@ python3 -m http.server 4173
 
 ## Alcance comercial
 
-- No contiene precios, logos ni casos de éxito inventados.
-- Las métricas publicadas están **medidas contra la base de producción**, se
-  presentan con su contraparte (entregas completadas junto a entregas muertas)
-  y se declara explícitamente que son de la flota propia y no de una base de
-  clientes. No se publican disponibilidad comprometida, número de clientes,
-  horas ahorradas ni comparaciones contra hacerlo a mano.
-- No promete compatibilidad universal, niveles de servicio ni certificaciones.
-- El CTA copia un brief inicial; no envía información a ningún servicio.
-- No usa dependencias, tipografías, scripts ni imágenes externas.
+- No contiene precios, logos, certificaciones ni casos de éxito inventados.
+- Los conteos de flota salen del inventario canónico documentado en `cauce-v3`.
+- No presenta como activos canales o proveedores que el bus no integra hoy.
+- El CTA copia un brief inicial localmente; no envía información a un servicio.
+- SEO: canonical, hreflang, Open Graph, Twitter Card, JSON-LD, robots y sitemap.
 - Despliegue público autorizado el 2026-08-05 en `https://humanizar.tech/` y
   `https://www.humanizar.tech/`.
 - `vercel.json` aplica cabeceras de seguridad para la publicación estática.

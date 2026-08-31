@@ -57,6 +57,8 @@ for (const url of [
   "https://wa.me/573046374368",
   "https://agenda.humanizar.tech/?producto=Cauce%20V3",
   "https://catalogo.humanizar.tech/",
+  "https://stevenvallejo.com/",
+  "https://praxis.stevenvallejo.com/",
   "https://xenia.stevenvallejo.com/",
   "https://sigre.elenxos.com/",
   "https://devkits.humanizar.tech/",
@@ -78,11 +80,16 @@ for (const target of [...markup.matchAll(/\shref="#([^"]+)"/g)].map((match) => m
   assert.ok(ids.includes(target), `internal link points to missing #${target}`);
 }
 
-assert.equal((html.match(/<section class="slide/g) || []).length, 10, "deck must have ten slides");
+assert.equal((html.match(/<section class="slide/g) || []).length, 13, "deck must have thirteen slides");
+assert.match(html, /id="protocolo"/, "deck must include a Protocolo slide");
+assert.match(html, /data-title="Casos de uso"/, "deck must include a Casos de uso slide");
+assert.match(html, /data-title="C\u00f3mo empezar"/, "deck must include a C\u00f3mo empezar slide");
 assert.match(robots, /Sitemap: https:\/\/humanizar\.tech\/sitemap\.xml/);
 for (const loc of [
   "https://humanizar.tech/",
   "https://humanizar.tech/cauce-v3",
+  "https://praxis.stevenvallejo.com/",
+  "https://stevenvallejo.com/",
   "https://catalogo.humanizar.tech/",
   "https://agenda.humanizar.tech/",
   "https://xenia.stevenvallejo.com/",
@@ -94,9 +101,13 @@ for (const loc of [
 
 console.log(JSON.stringify({
   status: "pass",
-  slides: 10,
-  architecture: "source-backed",
-  connectedSystems: 8,
+  slides: 13,
+  architecture: "source-backed (HTTP in, WebSocket pull, dispatcher only sweeps abandoned claims)",
+  hasProtocolo: /id="protocolo"/.test(html),
+  hasCasos: /data-title="Casos de uso"/.test(html),
+  hasOferta: /data-title="C\u00f3mo empezar"/.test(html),
+  hasArquitecturaCorregida: /HTTP entra, PostgreSQL persiste/.test(html),
+  connectedSystems: 10,
   seo: ["canonical", "hreflang", "Open Graph", "Twitter Card", "JSON-LD Organization/WebSite/SoftwareApplication/BreadcrumbList/FAQPage/Service", "robots", "sitemap", "sameAs"],
   uniqueIds: ids.length
 }, null, 2));

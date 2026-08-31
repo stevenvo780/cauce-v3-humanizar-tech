@@ -494,6 +494,49 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto!important;transition:none!important}
 }
+
+/* protocolo · codigo contrato */
+.contract-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:26px;align-items:start;max-width:1100px;margin:0 auto}
+.code-card{background:var(--surface);border:1px solid var(--stroke);border-radius:16px;overflow:hidden;box-shadow:0 18px 38px -28px rgba(0,0,0,.6)}
+.code-top{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--stroke);background:rgba(255,255,255,.02);font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.code-dots{display:inline-flex;gap:5px}
+.code-dots i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--stroke)}
+.code-card pre{margin:0;padding:18px 18px 20px;font-family:var(--mono);font-size:.84rem;line-height:1.55;color:var(--text);overflow:auto;background:rgba(0,0,0,.18)}
+.code-key{color:var(--cauce)}
+.code-string{color:var(--green)}
+.code-bool{color:var(--violet)}
+.contract-list{display:grid;gap:14px}
+.contract-item{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--stroke);border-radius:14px;padding:14px 16px}
+.contract-item code{font-family:var(--mono);font-size:.84rem;color:var(--cauce);background:rgba(47,214,230,.08);padding:2px 8px;border-radius:6px;white-space:nowrap;flex-shrink:0;margin-top:1px}
+.contract-item span strong{display:block;font-size:.98rem;color:var(--text);margin-bottom:3px}
+.contract-item span span:last-child{display:block;color:var(--muted);font-size:.86rem;line-height:1.45}
+@media (max-width:880px){.contract-grid{grid-template-columns:1fr}}
+
+/* casos de uso */
+.cases{display:grid;gap:22px;max-width:1100px;margin:0 auto}
+.case-feature{background:var(--surface);border:1px solid var(--stroke);border-radius:16px;padding:22px 26px}
+.case-feature .case-number{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.6px;color:var(--cauce);text-transform:uppercase;margin-bottom:10px}
+.case-feature blockquote{margin:0 0 10px;font-size:1.18rem;color:var(--text);font-weight:600;line-height:1.35}
+.case-feature p{margin:0;color:var(--muted);line-height:1.55}
+.case-stack{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.case-card{background:var(--surface);border:1px solid var(--stroke);border-radius:14px;padding:18px 22px}
+.case-card .case-number{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.6px;color:var(--violet);text-transform:uppercase;margin-bottom:8px}
+.case-card h3{margin:0 0 8px;font-size:1.05rem;color:var(--text)}
+.case-card p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.5}
+@media (max-width:760px){.case-stack{grid-template-columns:1fr}}
+
+/* como empezar · ofertas */
+.offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1080px;margin:0 auto}
+.offer-card{background:var(--surface);border:1px solid var(--stroke);border-radius:16px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px}
+.offer-card.featured{border-color:var(--cauce);box-shadow:0 0 0 1px rgba(47,214,230,.25),0 22px 44px -32px rgba(47,214,230,.5)}
+.offer-label{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.7px;color:var(--cauce);text-transform:uppercase;padding:3px 8px;border-radius:999px;background:rgba(47,214,230,.08);width:max-content}
+.offer-card h3{margin:0;font-size:1.12rem;color:var(--text)}
+.offer-card p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.5}
+.offer-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.offer-list li{position:relative;padding-left:18px;color:var(--text-soft);font-size:.92rem;line-height:1.45}
+.offer-list li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--cauce);opacity:.85}
+.offer-foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--stroke);font-size:.84rem;color:var(--muted);font-style:italic}
+@media (max-width:920px){.offer-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -586,11 +629,11 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
       <div class="section-head">
         <span class="eyebrow">02 · Arquitectura</span>
         <h2>Del mensaje al agente, por capas</h2>
-        <p class="lead">Telegram, la consola y el CLI publican en el <b>gateway</b>. PostgreSQL conserva mensajes y entregas; cada <b>adaptador reclama por WebSocket</b> sólo su trabajo con fencing. El dispatcher no reparte: recupera entregas vencidas.</p>
+        <p class="lead">Canales externos publican por <b>HTTP</b> al gateway. PostgreSQL conserva el trabajo. Cada agente, vía su <b>Adapter SDK</b>, sostiene una conexión <b>WebSocket</b> por la que reclama sólo lo suyo, con <b>claim token + epoch</b>. El agente responde por el mismo bus. La identidad, la membresía y el aislamiento atraviesan todas las capas.</p>
       </div>
       <div class="diagram arch">
         <!-- ARQUITECTURA SVG -->
-        <svg viewBox="0 0 1000 560" role="img" aria-label="Arquitectura real de Cauce V3: ingreso, gateway, PostgreSQL, adaptadores, harnesses y plano de terminal">
+        <svg viewBox="0 0 1000 600" role="img" aria-label="Arquitectura real de Cauce V3: ingreso HTTP, gateway, PostgreSQL, adaptadores WebSocket, harnesses y plano de terminal">
           <defs>
             <linearGradient id="busg" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0" stop-color="#2fd6e6" stop-opacity=".35"/>
@@ -603,6 +646,9 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
             <marker id="arrc" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
               <path d="M0 0l6 3-6 3z" fill="#2fd6e6"/>
             </marker>
+            <marker id="arrb" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+              <path d="M0 0l6 3-6 3z" fill="#ffb454"/>
+            </marker>
             <style>
               .lbl{font-family:var(--mono);font-size:12.5px;fill:var(--text-soft);font-weight:600}
               .lbl-s{font-family:var(--mono);font-size:10.5px;fill:var(--muted)}
@@ -612,27 +658,30 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
             </style>
           </defs>
 
-          <!-- Ingreso real -->
-          <text x="50" y="19" class="lbl-s">INGRESO</text>
+          <!-- Ingreso real (canales externos) -->
+          <text x="50" y="19" class="lbl-s">INGRESO · HTTP PUBLICO</text>
           <rect x="50" y="28" width="145" height="38" rx="10" class="node"/><text x="122" y="52" text-anchor="middle" class="lbl">Telegram bridge</text>
-          <rect x="210" y="28" width="145" height="38" rx="10" class="node"/><text x="282" y="52" text-anchor="middle" class="lbl">Consola web</text>
-          <rect x="370" y="28" width="145" height="38" rx="10" class="node"/><text x="442" y="52" text-anchor="middle" class="lbl">CLI operador</text>
+          <rect x="210" y="28" width="145" height="38" rx="10" class="node"/><text x="282" y="52" text-anchor="middle" class="lbl">CLI operador</text>
+          <rect x="370" y="28" width="145" height="38" rx="10" class="node"/><text x="442" y="52" text-anchor="middle" class="lbl">API de cliente</text>
+          <text x="525" y="52" class="lbl-s">la consola web</text>
+          <text x="525" y="66" class="lbl-s">lee y configura,</text>
+          <text x="525" y="80" class="lbl-s">no publica trabajo</text>
           <path class="con" d="M122 66 V94 M282 66 V94 M442 66 V94"/>
 
-          <!-- Borde y almacenamiento -->
+          <!-- Borde HTTP y almacenamiento -->
           <rect x="50" y="94" width="465" height="62" rx="14" fill="url(#busg)" style="stroke:var(--cauce)"/>
-          <text x="70" y="119" class="lbl-t">Gateway HTTP + WebSocket</text>
-          <text x="70" y="139" class="lbl-s">autentica principal · deriva identidad · aplica membresía/ACL · publica y confirma ACK</text>
+          <text x="70" y="119" class="lbl-t">Gateway HTTP</text>
+          <text x="70" y="139" class="lbl-s">autentica principal · deriva identidad · aplica membresía/ACL · valida payload · publica</text>
           <path d="M282 156 V190" stroke="#4f9bff" stroke-width="2" marker-end="url(#arr)"/>
           <rect x="50" y="192" width="465" height="64" rx="14" class="node" style="stroke:var(--green)"/>
           <text x="70" y="218" class="lbl-t">PostgreSQL · única fuente durable</text>
           <text x="70" y="238" class="lbl-s">mensajes · deliveries · outbox · DLQ · fan-in · agentes · configuración · auditoría</text>
 
-          <!-- Pull del adaptador -->
+          <!-- Adapter SDK con WebSocket -->
           <path d="M220 292 V260" stroke="#2fd6e6" stroke-width="2" marker-end="url(#arrc)"/>
-          <text x="72" y="279" class="lbl-s">claim + ACK (claim_token + epoch)</text>
+          <text x="72" y="279" class="lbl-s">pull: claim + ACK (claim_token + epoch)</text>
           <path d="M350 258 V292" stroke="#4f9bff" stroke-width="2" marker-end="url(#arr)"/>
-          <text x="362" y="279" class="lbl-s">entrega disponible</text>
+          <text x="362" y="279" class="lbl-s">push: respuesta del agente</text>
           <rect x="50" y="294" width="465" height="62" rx="14" class="node" style="stroke:var(--cauce)"/>
           <text x="70" y="319" class="lbl-t">Adapter SDK · consumidor durable por alias</text>
           <text x="70" y="339" class="lbl-s">WebSocket de larga vida · reclama sólo su cola · fencing evita dos consumidores activos</text>
@@ -643,35 +692,37 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
           <path d="M282 444 V472" stroke="#4f9bff" stroke-width="2" marker-end="url(#arr)"/>
           <rect x="50" y="474" width="465" height="56" rx="14" class="node" style="stroke:var(--violet)"/>
           <text x="70" y="498" class="lbl-t">Agente especializado</text>
-          <text x="70" y="517" class="lbl-s">rol + workspace + contexto nativo + herramientas · emite reply/messages estructurados</text>
+          <text x="70" y="517" class="lbl-s">rol + workspace + contexto nativo + herramientas · emite {reply, messages, artifacts, notify}</text>
 
-          <!-- Servicios laterales, sin fingir que despachan -->
-          <rect x="585" y="28" width="365" height="128" rx="16" class="node" style="stroke:var(--amber)"/>
+          <!-- Publicacion del reply al canal original -->
+          <path d="M515 502 H560 V138 H515" stroke="#ffb454" stroke-width="1.8" fill="none" marker-end="url(#arrb)"/>
+          <text x="525" y="345" class="lbl-s" style="fill:#ffb454">publicar al canal original</text>
+
+          <!-- Lado derecho: Servicios que sí pasan -->
+          <rect x="585" y="28" width="365" height="118" rx="16" class="node" style="stroke:var(--amber)"/>
           <text x="607" y="55" class="lbl-t">Dispatcher · segador de reintentos</text>
           <text x="607" y="78" class="lbl-s">• NO distribuye mensajes ni elige agentes</text>
-          <text x="607" y="98" class="lbl-s">• recupera claims vencidos y poda observabilidad</text>
-          <text x="607" y="118" class="lbl-s">• ejecuta el probe interno de base de datos</text>
-          <path d="M585 118 C550 118 552 215 518 215" stroke="#ffb454" stroke-width="1.7" fill="none" marker-end="url(#arr)"/>
+          <text x="607" y="98" class="lbl-s">• recupera claims vencidos y libera trabajo abandonado</text>
+          <text x="607" y="118" class="lbl-s">• corre el probe de salud de PostgreSQL</text>
+          <path d="M585 100 C550 100 552 215 518 215" stroke="#ffb454" stroke-width="1.7" fill="none" marker-end="url(#arrb)"/>
 
-          <rect x="585" y="184" width="365" height="214" rx="16" class="node" style="stroke:var(--violet)"/>
-          <text x="607" y="211" class="lbl-t">Plano de terminal independiente</text>
-          <rect x="607" y="232" width="120" height="38" rx="9" class="node"/><text x="667" y="256" text-anchor="middle" class="lbl-s">navegador</text>
-          <path d="M727 251 H768" stroke="#8a6cff" stroke-width="1.8" marker-end="url(#arr)"/>
-          <rect x="770" y="232" width="152" height="38" rx="9" class="node"/><text x="846" y="256" text-anchor="middle" class="lbl-s">terminal-relay</text>
-          <path d="M846 270 V305" stroke="#8a6cff" stroke-width="1.8" marker-end="url(#arr)"/>
-          <rect x="770" y="307" width="152" height="38" rx="9" class="node"/><text x="846" y="331" text-anchor="middle" class="lbl-s">pty-agent (mTLS)</text>
-          <path d="M770 326 H729" stroke="#8a6cff" stroke-width="1.8" marker-end="url(#arr)"/>
-          <rect x="607" y="307" width="120" height="38" rx="9" class="node"/><text x="667" y="331" text-anchor="middle" class="lbl-s">PTY / ficheros</text>
-          <text x="607" y="374" class="lbl-s">El agente PTY conecta hacia afuera; nunca expone un puerto en su contenedor.</text>
+          <rect x="585" y="174" width="365" height="156" rx="16" class="node" style="stroke:var(--violet)"/>
+          <text x="607" y="201" class="lbl-t">Plano de terminal (operador)</text>
+          <text x="607" y="223" class="lbl-s">El agente abre una conexión saliente mTLS hacia el relay.</text>
+          <text x="607" y="240" class="lbl-s">El navegador ve la terminal; nunca expone un puerto en el</text>
+          <text x="607" y="255" class="lbl-s">contenedor del agente.</text>
+          <rect x="607" y="278" width="120" height="36" rx="9" class="node"/><text x="667" y="300" text-anchor="middle" class="lbl-s">navegador</text>
+          <path d="M727 296 H768" stroke="#8a6cff" stroke-width="1.6" marker-end="url(#arr)"/>
+          <rect x="770" y="278" width="160" height="36" rx="9" class="node"/><text x="850" y="300" text-anchor="middle" class="lbl-s">terminal-relay</text>
+          <text x="770" y="328" class="lbl-s">Cauce opera este plano de terminal;</text>
+          <text x="770" y="343" class="lbl-s">los harnesses sólo tienen sesión PTY.</text>
 
-          <rect x="585" y="426" width="365" height="104" rx="16" class="node" style="stroke:var(--green)"/>
-          <text x="607" y="453" class="lbl-t">Aislamiento y gobierno</text>
-          <text x="607" y="476" class="lbl-s">tenant + room + membresía + ACL dirigida default-deny</text>
-          <text x="607" y="496" class="lbl-s">roles, cuentas, harnesses y políticas son datos versionados</text>
-          <text x="607" y="516" class="lbl-s">credenciales fuera del payload · auditoría de mutaciones</text>
+          <!-- Capa transversal: gobierno + aislamiento -->
+          <rect x="50" y="552" width="900" height="34" rx="10" fill="none" style="stroke:var(--green);stroke-dasharray:4 4"/>
+          <text x="70" y="572" class="lbl-t" style="font-size:11.5px">CAPA TRANSVERSAL · identidad, membresía, ACL default-deny, secretos por referencia, auditoría de mutaciones</text>
         </svg>
       </div>
-      <p class="figcap">Publicar → persistir en PostgreSQL → el adaptador reclama por WebSocket → ejecuta el harness → confirma ACK. El dispatcher sólo recupera trabajo vencido.</p>
+      <p class="figcap">HTTP entra, PostgreSQL persiste, el Adapter SDK tira del trabajo por WebSocket, el harness lo ejecuta, el reply vuelve por el mismo bus y se publica en el canal original. Si un agente muere, el claim vence y el dispatcher lo libera.</p>
     </div>
   </section>
 
@@ -916,10 +967,129 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
     </div>
   </section>
 
-  <!-- 8 · CIERRE -->
+  <!-- 8 · PROTOCOLO DE ENTREGA -->
+  <section class="slide" id="protocolo" data-title="Protocolo de entrega">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">08 · Protocolo</span>
+        <h2>Cada entrega habla el mismo idioma</h2>
+        <p class="lead">El bus normaliza lo que un harness devuelve: una respuesta que vuelve (<code>reply</code>), los traspasos que se abren (<code>messages</code>), las intervenciones humanas (<code>notify</code>) y los artefactos que localizan la evidencia.</p>
+      </div>
+      <div class="contract-grid">
+        <div class="code-card">
+          <div class="code-top"><span>resultado.cauce</span><span class="code-dots"><i></i><i></i><i></i></span></div>
+          <pre><code>{
+  <span class="code-key">"reply"</span>: <span class="code-string">"Entrega lista para revisión."</span>,
+  <span class="code-key">"messages"</span>: [],
+  <span class="code-key">"notify"</span>: [],
+  <span class="code-key">"status"</span>: <span class="code-string">"done"</span>,
+  <span class="code-key">"retryable"</span>: <span class="code-bool">false</span>,
+  <span class="code-key">"artifacts"</span>: [
+    {
+      <span class="code-key">"name"</span>: <span class="code-string">"aplicacion-verificada"</span>,
+      <span class="code-key">"uri"</span>: <span class="code-string">"/entregas/producto"</span>,
+      <span class="code-key">"sha256"</span>: <span class="code-string">"evidencia…"</span>
+    }
+  ]
+}</code></pre>
+        </div>
+        <div class="contract-list">
+          <div class="contract-item"><code>reply</code><span><strong>La respuesta que vuelve</strong><span>Qué se hizo, qué se encontró y qué sigue abierto.</span></span></div>
+          <div class="contract-item"><code>messages</code><span><strong>Los traspasos necesarios</strong><span>Delegaciones nuevas, explícitas y dirigidas a roles válidos.</span></span></div>
+          <div class="contract-item"><code>notify</code><span><strong>La intervención humana</strong><span>Alertas, decisiones y cierres que deben salir del flujo entre agentes.</span></span></div>
+          <div class="contract-item"><code>status</code><span><strong>El cierre declarado</strong><span>Terminado o fallido. Lo parcial no se disfraza de éxito.</span></span></div>
+          <div class="contract-item"><code>retryable</code><span><strong>La posibilidad de continuar</strong><span>El sistema aclara si un fallo admite un nuevo intento.</span></span></div>
+          <div class="contract-item"><code>artifacts</code><span><strong>La evidencia localizable</strong><span>Archivos, tipo y huella cuando corresponde.</span></span></div>
+        </div>
+      </div>
+      <p class="figcap">Tres harnesses (Claude Code, Codex, OpenClaw), el mismo contrato durable. Lo que el operador ve en la consola coincide con lo que el bus persiste.</p>
+    </div>
+  </section>
+
+  <!-- 9 · CASOS DE USO -->
+  <section class="slide" data-title="Casos de uso">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">09 · Casos de uso</span>
+        <h2>Una empresa para cada tipo de delivery</h2>
+        <p class="lead">La misma base puede operar como software factory, organización de producto, plataforma interna o red multi-cliente. La topología, los protocolos y la capacidad crecen por configuración.</p>
+      </div>
+      <div class="cases">
+        <article class="case-feature">
+          <span class="case-number">01 · Software factory</span>
+          <blockquote>Una empresa de producto completa, disponible como capacidad.</blockquote>
+          <p>Dirección, squads de frontend y backend, arquitectura, QA y operaciones trabajan con protocolos comunes sin perder ownership. Los traspasos entre células se ven en el bus y dejan evidencia.</p>
+        </article>
+        <div class="case-stack">
+          <article class="case-card">
+            <span class="case-number">02 · Platform engineering</span>
+            <h3>Una plataforma que atiende a muchos equipos</h3>
+            <p>Automatización, incidentes, seguridad, infraestructura y soporte técnico con colas y escalados explícitos. La capacidad de IA se reparte por política y se mide por consumo.</p>
+          </article>
+          <article class="case-card">
+            <span class="case-number">03 · Operación multi-cliente</span>
+            <h3>Una empresa, varios tenants</h3>
+            <p>Agencias y proveedores gestionan equipos, cuentas y protocolos separados sin mezclar contexto ni capacidad. El aislamiento está reforzado a nivel de datos, no sólo por convención.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · CÓMO EMPEZAR -->
+  <section class="slide" data-title="Cómo empezar">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">10 · Cómo empezar</span>
+        <h2>Diseñá una empresa. Escalala sin rehacerla.</h2>
+        <p class="lead">Cauce puede nacer con dos equipos o integrar una operación existente. La topología, los protocolos y la capacidad crecen por configuración — sin reescribir el bus.</p>
+      </div>
+      <div class="offer-grid">
+        <article class="offer-card">
+          <span class="offer-label">2 equipos</span>
+          <h3>Empresa inicial</h3>
+          <p>Una unidad completa para validar el modelo con un producto o flujo real.</p>
+          <ul class="offer-list">
+            <li>Producto + plataforma o calidad</li>
+            <li>Responsabilidades y protocolos</li>
+            <li>Cuentas y harnesses asignados</li>
+            <li>Entrega y fallos observables</li>
+          </ul>
+          <div class="offer-foot">Salida: una operación funcional con criterios para escalar.</div>
+        </article>
+        <article class="offer-card featured">
+          <span class="offer-label">3 → N equipos</span>
+          <h3>Empresa multi-equipo</h3>
+          <p>Varios squads y servicios compartidos bajo un único control plane.</p>
+          <ul class="offer-list">
+            <li>Topología por dominios</li>
+            <li>Matriz de protocolos y rutas</li>
+            <li>Capacity pool con fallback</li>
+            <li>Observabilidad y gobierno</li>
+          </ul>
+          <div class="offer-foot">Salida: capacidad recurrente que crece sin improvisar coordinación.</div>
+        </article>
+        <article class="offer-card">
+          <span class="offer-label">Integrar</span>
+          <h3>Control plane gestionado</h3>
+          <p>Para organizaciones que ya tienen agentes, cuentas, herramientas o harnesses.</p>
+          <ul class="offer-list">
+            <li>Inventario e integración</li>
+            <li>Adaptadores multi-harness</li>
+            <li>Tenants y suscripciones</li>
+            <li>Soporte definido por acuerdo</li>
+          </ul>
+          <div class="offer-foot">Salida: una empresa existente gobernada desde una capa común.</div>
+        </article>
+      </div>
+      <p class="figcap">El primer paso es un brief de seis preguntas y una reunión de treinta minutos. No se instala nada hasta tener un prototipo con evidencia de efecto.</p>
+    </div>
+  </section>
+
+  <!-- 11 · CIERRE -->
   <section class="slide closing" data-title="Cierre">
     <div class="wrap">
-      <span class="eyebrow" style="justify-content:center;display:inline-flex">08 · En una frase</span>
+      <span class="eyebrow" style="justify-content:center;display:inline-flex">11 · En una frase</span>
       <h2>Una flota de agentes que <span class="grad">recibe, ejecuta y responde con evidencia</span> — sobre un cauce durable y propio.</h2>
       <p class="lead" style="margin:22px auto 0;text-align:center">Multi-tenant y multi-harness. Con identidad derivada, claims cercados, operación visible y control humano.</p>
       <div class="cta-row">
@@ -933,10 +1103,10 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
     </div>
   </section>
 
-  <!-- 9 · CONTACTO -->
+  <!-- 12 · CONTACTO -->
   <section class="slide closing" id="contacto" data-title="Contacto">
     <div class="wrap">
-      <span class="eyebrow" style="justify-content:center;display:inline-flex">09 · Siguiente paso</span>
+      <span class="eyebrow" style="justify-content:center;display:inline-flex">12 · Siguiente paso</span>
       <h2>Conectemos Cauce con <span class="grad">tu operación real</span>.</h2>
       <p class="lead" style="margin:20px auto 0;text-align:center">Hablá directamente con Steven, reservá una reunión de 30 minutos o revisá el catálogo completo de sistemas Humanizar.</p>
       <div class="cta-row" aria-label="Opciones de contacto">
@@ -954,7 +1124,15 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
         <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
         <textarea class="brief-fallback" id="brief-fallback" aria-label="Brief inicial de Cauce V3" readonly hidden></textarea>
       </div>
-      <div class="systems-grid" aria-label="Sistemas Humanizar enlazados">
+      <div class="systems-grid" aria-label="Sistemas Humanizar y Steven enlazados">
+        <a class="system-tile" href="https://praxis.stevenvallejo.com/" rel="noopener">
+          <div class="system-name">Steven · Praxis</div>
+          <div class="system-desc">Trayectoria, capacidades y servicios.</div>
+        </a>
+        <a class="system-tile" href="https://stevenvallejo.com/" rel="noopener">
+          <div class="system-name">stevenvallejo.com</div>
+          <div class="system-desc">Página principal de Steven.</div>
+        </a>
         <a class="system-tile" href="https://catalogo.humanizar.tech/" rel="noopener">
           <div class="system-name">Catálogo</div>
           <div class="system-desc">Todos los sistemas de la suite.</div>
@@ -983,12 +1161,12 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
           <div class="system-name">Humanizar Cloud</div>
           <div class="system-desc">Documentación y operación.</div>
         </a>
-        <a class="system-tile" href="https://humanizar.tech/" rel="noopener">
-          <div class="system-name">Humanizar</div>
-          <div class="system-desc">Inicio y marca.</div>
+        <a class="system-tile" href="https://humanizar.co/" rel="noopener">
+          <div class="system-name">humanizar.co</div>
+          <div class="system-desc">Hogar histórico (legacy).</div>
         </a>
       </div>
-      <p class="note" style="margin-top:26px;text-align:center"><a href="https://humanizar.tech/" style="color:inherit">Humanizar</a> · <a href="https://catalogo.humanizar.tech/" style="color:inherit">Catálogo</a> · <a href="https://agenda.humanizar.tech/" style="color:inherit">Agenda</a> · <a href="https://wa.me/573046374368" style="color:inherit">WhatsApp</a></p>
+      <p class="note" style="margin-top:26px;text-align:center"><a href="https://humanizar.tech/" style="color:inherit">Humanizar</a> · <a href="https://stevenvallejo.com/" style="color:inherit">stevenvallejo.com</a> · <a href="https://praxis.stevenvallejo.com/" style="color:inherit">Praxis</a> · <a href="https://catalogo.humanizar.tech/" style="color:inherit">Catálogo</a> · <a href="https://agenda.humanizar.tech/" style="color:inherit">Agenda</a> · <a href="https://wa.me/573046374368" style="color:inherit">WhatsApp</a></p>
     </div>
   </section>
 
