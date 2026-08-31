@@ -438,7 +438,8 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
 .diagram{width:100%;border-radius:var(--radius);border:1px solid var(--stroke);background:
   linear-gradient(180deg,rgba(255,255,255,.02),transparent);padding:8px}
 .diagram svg{width:100%;height:auto;display:block}
-.diagram.arch svg{width:auto;max-width:100%;height:auto;max-height:50vh;margin:0 auto}
+.diagram.arch{width:100%;padding:18px;border-radius:var(--radius);border:1px solid var(--stroke);background:linear-gradient(180deg,rgba(255,255,255,.02),transparent)}
+.diagram.arch svg{width:100%;max-width:1100px;height:auto;max-height:720px;margin:0 auto;display:block}
 .diagram.flow svg{width:auto;max-width:100%;height:auto;max-height:135px;margin:0 auto}
 .svg-flow{stroke-dasharray:5 6;animation:dash 1.4s linear infinite}
 @keyframes dash{to{stroke-dashoffset:-22}}
@@ -651,7 +652,7 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
             </marker>
             <style>
               .lbl{font-family:var(--mono);font-size:12.5px;fill:var(--text-soft);font-weight:600}
-              .lbl-s{font-family:var(--mono);font-size:10.5px;fill:var(--muted)}
+              .lbl-s{font-family:var(--mono);font-size:9.5px;fill:var(--muted)}
               .lbl-t{font-family:var(--font);font-size:13px;fill:var(--text);font-weight:700}
               .node{fill:var(--surface);stroke:var(--stroke-strong);stroke-width:1.2}
               .con{stroke:var(--stroke-strong);stroke-width:1.6;fill:none}
@@ -671,11 +672,11 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
           <!-- Borde HTTP y almacenamiento -->
           <rect x="50" y="94" width="465" height="62" rx="14" fill="url(#busg)" style="stroke:var(--cauce)"/>
           <text x="70" y="119" class="lbl-t">Gateway HTTP</text>
-          <text x="70" y="139" class="lbl-s">autentica principal · deriva identidad · aplica membresía/ACL · valida payload · publica</text>
+          <text x="70" y="139" class="lbl-s">autentica · deriva identidad · aplica membresía y ACL · valida y publica</text>
           <path d="M282 156 V190" stroke="#4f9bff" stroke-width="2" marker-end="url(#arr)"/>
           <rect x="50" y="192" width="465" height="64" rx="14" class="node" style="stroke:var(--green)"/>
           <text x="70" y="218" class="lbl-t">PostgreSQL · única fuente durable</text>
-          <text x="70" y="238" class="lbl-s">mensajes · deliveries · outbox · DLQ · fan-in · agentes · configuración · auditoría</text>
+          <text x="70" y="238" class="lbl-s">mensajes · deliveries · outbox · DLQ · agentes · configuración · auditoría</text>
 
           <!-- Adapter SDK con WebSocket -->
           <path d="M220 292 V260" stroke="#2fd6e6" stroke-width="2" marker-end="url(#arrc)"/>
@@ -684,15 +685,15 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
           <text x="362" y="279" class="lbl-s">push: respuesta del agente</text>
           <rect x="50" y="294" width="465" height="62" rx="14" class="node" style="stroke:var(--cauce)"/>
           <text x="70" y="319" class="lbl-t">Adapter SDK · consumidor durable por alias</text>
-          <text x="70" y="339" class="lbl-s">WebSocket de larga vida · reclama sólo su cola · fencing evita dos consumidores activos</text>
+          <text x="70" y="339" class="lbl-s">WebSocket largo · reclama sólo su cola · fencing evita dos activos</text>
           <path d="M282 356 V386" stroke="#4f9bff" stroke-width="2" marker-end="url(#arr)"/>
           <rect x="50" y="388" width="465" height="56" rx="14" class="node"/>
           <text x="70" y="412" class="lbl-t">Harness: Claude Code · Codex · OpenClaw</text>
-          <text x="70" y="431" class="lbl-s">el adaptador normaliza la entrega y la pega en la sesión tmux/API del agente</text>
+          <text x="70" y="431" class="lbl-s">normaliza la entrega · la pega en sesión tmux/API del agente</text>
           <path d="M282 444 V472" stroke="#4f9bff" stroke-width="2" marker-end="url(#arr)"/>
           <rect x="50" y="474" width="465" height="56" rx="14" class="node" style="stroke:var(--violet)"/>
           <text x="70" y="498" class="lbl-t">Agente especializado</text>
-          <text x="70" y="517" class="lbl-s">rol + workspace + contexto nativo + herramientas · emite {reply, messages, artifacts, notify}</text>
+          <text x="70" y="517" class="lbl-s">rol · workspace · contexto nativo · herramientas · emite {reply, messages, …}</text>
 
           <!-- Publicacion del reply al canal original -->
           <path d="M515 502 H560 V138 H515" stroke="#ffb454" stroke-width="1.8" fill="none" marker-end="url(#arrb)"/>
