@@ -631,6 +631,7 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
         <span class="eyebrow">02 · Arquitectura</span>
         <h2>Del mensaje al agente, por capas</h2>
         <p class="lead">Canales externos publican por <b>HTTP</b> al gateway. PostgreSQL conserva el trabajo. Cada agente, vía su <b>Adapter SDK</b>, sostiene una conexión <b>WebSocket</b> por la que reclama sólo lo suyo, con <b>claim token + epoch</b>. El agente responde por el mismo bus. La identidad, la membresía y el aislamiento atraviesan todas las capas.</p>
+        <p class="note" style="display:block;margin:6px 0 14px">La <b>consola web</b> lee y configura, no publica trabajo. Sólo la superficie HTTP (canales externos, API de cliente, CLI operador) inyecta entregas en el bus.</p>
       </div>
       <div class="diagram arch">
         <!-- ARQUITECTURA SVG -->
@@ -664,9 +665,7 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
           <rect x="50" y="28" width="145" height="38" rx="10" class="node"/><text x="122" y="52" text-anchor="middle" class="lbl">Telegram bridge</text>
           <rect x="210" y="28" width="145" height="38" rx="10" class="node"/><text x="282" y="52" text-anchor="middle" class="lbl">CLI operador</text>
           <rect x="370" y="28" width="145" height="38" rx="10" class="node"/><text x="442" y="52" text-anchor="middle" class="lbl">API de cliente</text>
-          <text x="525" y="52" class="lbl-s">la consola web</text>
-          <text x="525" y="66" class="lbl-s">lee y configura,</text>
-          <text x="525" y="80" class="lbl-s">no publica trabajo</text>
+
           <path class="con" d="M122 66 V94 M282 66 V94 M442 66 V94"/>
 
           <!-- Borde HTTP y almacenamiento -->
@@ -707,7 +706,7 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
           <text x="607" y="118" class="lbl-s">• corre el probe de salud de PostgreSQL</text>
           <path d="M585 100 C550 100 552 215 518 215" stroke="#ffb454" stroke-width="1.7" fill="none" marker-end="url(#arrb)"/>
 
-          <rect x="585" y="174" width="365" height="156" rx="16" class="node" style="stroke:var(--violet)"/>
+          <rect x="585" y="174" width="365" height="180" rx="16" class="node" style="stroke:var(--violet)"/>
           <text x="607" y="201" class="lbl-t">Plano de terminal (operador)</text>
           <text x="607" y="223" class="lbl-s">El agente abre una conexión saliente mTLS hacia el relay.</text>
           <text x="607" y="240" class="lbl-s">El navegador ve la terminal; nunca expone un puerto en el</text>
@@ -715,8 +714,8 @@ ul.check li::before{background:var(--green);box-shadow:0 0 0 4px rgba(65,214,154
           <rect x="607" y="278" width="120" height="36" rx="9" class="node"/><text x="667" y="300" text-anchor="middle" class="lbl-s">navegador</text>
           <path d="M727 296 H768" stroke="#8a6cff" stroke-width="1.6" marker-end="url(#arr)"/>
           <rect x="770" y="278" width="160" height="36" rx="9" class="node"/><text x="850" y="300" text-anchor="middle" class="lbl-s">terminal-relay</text>
-          <text x="770" y="328" class="lbl-s">Cauce opera este plano de terminal;</text>
-          <text x="770" y="343" class="lbl-s">los harnesses sólo tienen sesión PTY.</text>
+          <text x="770" y="322" class="lbl-s">Cauce opera este plano de terminal;</text>
+          <text x="770" y="336" class="lbl-s">los harnesses sólo tienen sesión PTY.</text>
 
           <!-- Capa transversal: gobierno + aislamiento -->
           <rect x="50" y="552" width="900" height="34" rx="10" fill="none" style="stroke:var(--green);stroke-dasharray:4 4"/>
