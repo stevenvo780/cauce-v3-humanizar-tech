@@ -17,16 +17,14 @@ Catálogo público de productos del ecosistema Mouseîon (stevenvallejo.com). Ca
 | **Agenda demos** | [agenda.humanizar.tech](https://agenda.humanizar.tech) | 200 (5.5 KB) | Next.js | es | `cauce-v3-humanizar-tech` | 13-ago 23:07 | `web-humanizar-agenda` | Form de booking. |
 | **Cauce V3 (root)** | [humanizar.tech](https://humanizar.tech) | 200 | Next.js | es | `cauce-v3-humanizar-tech` | 13-ago 23:07 | `cauce-v3-humanizar-tech` | "Empresas de desarrollo hechas con agentes". theme `#0B1020`. |
 | **Humanizar web** | [www.humanizar.co](https://www.humanizar.co) | 200 | Vite | es | `Humanizar` | 18-ago 15:14 | `humanizar` | Sitio corporativo. |
-| **Nómos** | [nomos.stevenvallejo.com](https://nomos.stevenvallejo.com) | 🔴 500 | FastAPI+Neon | es | `scrapekit` | 10-ago 23:54 | `scrapekit` | 🔴 **Neon quota exhausted**. Issue abierta [scrapekit#1](https://github.com/stevenvo780/scrapekit/issues/1). |
+
 | **Koinonía** | [koinonia.stevenvallejo.com](https://koinonia.stevenvallejo.com) | 200 (22 KB) | Next.js | es | `koinonia` | **HOY 16:28** | `communityos` | PWA con manifest. theme `#43b5a6`. Activa. |
 | **Preontología** | [preontologia.stevenvallejo.com](https://preontologia.stevenvallejo.com) | 200 (1.7 KB) | HTML estático | es | — | — | `estructuras-preontologicas` | Tesis doctoral. theme `#0e1219`. |
 | **Elenxos** | [www.elenxos.com](https://www.elenxos.com) | 200 (3.5 KB) | Next.js | es | `elenxos` | 20-abr (STALE) | — | "Software Académico y Sistemas Complejos". Apex `elenxos.com` falla (000). |
 | **Agora (Elenxos)** | [agora.elenxos.com](https://agora.elenxos.com) | 200 (27 KB) | Next.js | es | — | — | `visormarkdown` | "Plataforma de investigación cooperativa". theme `#0a0a0f`. |
 | **Apothḗke** | [apotheke.stevenvallejo.com](https://apotheke.stevenvallejo.com) | 200 (5.7 KB) | Next.js | es | `warehouse` (privado) | 07-ago 22:37 | `warehouse-app` | Gestión de almacén e inventario. og:image + PWA. |
 | **Servicios Oscar** | [servicios.stevenvallejo.com](https://servicios.stevenvallejo.com) | 200 (43 KB) | Next.js | es-CO | `landing-servicios-oscar` | — | `landing-servicios-oscar` | "Agentes de IA que operan tu negocio". 5 servicios. theme `#0B1020`. |
-| **Sinergia POS** | [sinergia-pos.vercel.app](https://sinergia-pos.vercel.app) | 🟡 200 (23h) | Next.js | es | `pos-back` | 29-ago 22:32 | `sinergia-pos` | POS para tiendas. |
-| **Agentes IA Novacode** | [agentes.elenxos.com](https://agentes.elenxos.com) | 🔴 000 NXDOMAIN | Next.js | es | `novacode-agentes-ia` | 23-ago | `novacode-agentes-ia` | Marketing site de Novacode. **DNS roto** — el subdominio no resuelve, el padre `www.elenxos.com` sí. Misma falla que cerró kant con `sigre.elenxos.com`: falta el CNAME en Hostinger. URL alternativa viva: `https://novacode-agentes-ia.vercel.app`. Pendiente: que kant añada el CNAME. |
-| **Natación** | [natacion-asistencia.vercel.app](https://natacion-asistencia.vercel.app) | 🟡 200 (1d) | Next.js | es | — | — | `natacion-asistencia` | App de asistencia. |
+
 | **SIGRE-CO** | [sigre.elenxos.com](https://sigre.elenxos.com) | 🟡 200 | Next.js | es | `sigre-co` | 15-ago 15:45 | `sigre-co` | Spec + Fase 0. Spec only, NO build. |
 | **Prometeo** | (interno, en repo) | — | Next.js | — | `prometeo-b2b-sales` | **HOY 18:27** | — | "Agente de ventas B2B". Repo activo. |
 | **Aletheia** | [aletheia.humanizar.tech](https://aletheia.humanizar.tech) | 🟡 200 | Next.js | es | `aletheia` | 20-ago 04:15 | `web-humanizar-mine` | "Plataforma de inteligencia de marketing". |
@@ -48,7 +46,14 @@ Estos viven en la misma cuenta de Vercel pero son de clientes — no los cuento 
 
 | Producto | URL | Estado | Acción |
 |---|---|---|---|
-| Nómos | https://nomos.stevenvallejo.com | 🔴 500 (Neon quota exhausted) | issue abierta https://github.com/stevenvo780/scrapekit/issues/1 con logs completos |
+| Nómos | https://nomos.stevenvallejo.com | 🟡 pausado (DB migrada pendiente) | Migrar `scrapekit` a `db.2-25-89-230.sslip.io:5433` (PG 18.6). Repo: `stevenvo780/scrapekit`. Issue https://github.com/stevenvo780/scrapekit/issues/1 |
+
+## Histórico (sacados del catálogo público 2026-09-01)
+
+- **Sinergia POS** (`pos-back`, deploy `sinergia-pos.vercel.app`): **borrado**. Steven rebrandea a **Saldantia POS** en su propio servidor. Jhon informado.
+- **Agentes IA Novacode** (`novacode-agentes-ia`, deploy `agentes.elenxos.com`): **borrado**. Repo archivado desde 11-ago. Pedido directo de Steven.
+- **Natación** (`natacion-asistencia.vercel.app`): **sacado**. URL caída (`DEPLOYMENT_NOT_FOUND`). Steven dice "siguen bien" pero el deploy no responde. Pendiente URL viva para re-entrada.
+- **Nómos**: sacado del catálogo público; re-entra cuando la migración a la DB nueva esté completa y `/api/health` dé 200.
 | Koinonía | https://koinonia.stevenvallejo.com | ✅ 200 OK (medido con `curl -v`) | mi medición anterior de "timeout" fue fluke; verificar visualmente |
 | Elenxos apex | https://elenxos.com (sin www) | 🔴 000 NXDOMAIN | añadir www→Vercel o apex A record |
 
