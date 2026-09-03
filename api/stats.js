@@ -14,7 +14,8 @@ export default async function handler(req, res) {
 
   if (req.method !== "GET") return res.status(405).json({ ok: false, error: "method_not_allowed" });
 
-  const recibido = req.query?.token ?? req.headers["x-panel-token"];
+  // Token solo por cabecera: por query string quedaría en logs de acceso, historial del navegador y cabeceras Referer.
+  const recibido = req.headers["x-panel-token"];
   if (!tokenValido(Array.isArray(recibido) ? recibido[0] : recibido)) {
     return res.status(401).json({ ok: false, error: "token_invalido" });
   }
