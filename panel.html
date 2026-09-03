@@ -70,8 +70,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var aviso = $("aviso");
 
-  var enUrl = new URLSearchParams(location.search).get("token");
-  if (enUrl) $("token").value = enUrl;
+  // El token no se lee de la URL a propósito: en la URL quedaría en el historial del navegador y en los logs de acceso. Escribilo en el campo.
 
   function fallo(msg) {
     aviso.textContent = msg;
