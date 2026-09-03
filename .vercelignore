@@ -2,6 +2,8 @@ README.md
 validate.mjs
 interaction-check.mjs
 *.png
+!og-cauce-v3.png
+!og-images/*.png
 db
 smoke-track.mjs
 track-browser-check.mjs
