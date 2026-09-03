@@ -1,0 +1,13 @@
+{
+  "name": "cauce-v3-humanizar-tech",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing de humanizar.tech + endpoint de métricas de uso",
+  "scripts": {
+    "validate": "node validate.mjs && node interaction-check.mjs"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
+  }
+}

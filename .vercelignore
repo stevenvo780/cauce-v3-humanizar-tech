@@ -1,3 +1,8 @@
 README.md
 validate.mjs
 interaction-check.mjs
+*.png
+db
+smoke-track.mjs
+track-browser-check.mjs
+node_modules
