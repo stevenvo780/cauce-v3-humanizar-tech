@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Humanizar — empresa (BORRADOR home)</title>
+<meta name="description" content="BORRADOR de la home de empresa de Humanizar. Humanizar diseña, construye y opera productos de software en producción con equipos de agentes de IA, gobernados desde un solo control plane.">
+<meta name="theme-color" content="#0B1020">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+/* ==========================================================================
+   TOKENS — paleta "turno nocturno".
+   La tesis: los agentes trabajan cuando el equipo duerme. Por eso la base es
+   tinta de madrugada y el acento es la luz que queda encendida.
+   Cada par texto/fondo esta calculado a WCAG 2.x AA y anotado con su ratio.
+   ========================================================================== */
+:root{
+  --ink:#0B1020;           /* base noche */
+  --ink-2:#141C33;         /* superficie elevada */
+  --ink-3:#0D1425;
+  --paper:#F1F4F9;         /* base dia (frio, no crema) */
+  --on-ink:#EEF2FA;        /* 16.9:1 sobre --ink */
+  --on-ink-mute:#A9B6D2;   /* 9.3:1  sobre --ink */
+  --on-ink-dim:#8494B6;    /* 6.2:1  sobre --ink */
+  --on-paper:#101728;      /* 16.2:1 sobre --paper */
+  --on-paper-mute:#465269; /* 7.1:1  sobre --paper */
+  --marigold:#FFB020;      /* acento: 10.3:1 sobre --ink */
+  --marigold-deep:#8A5A00; /* acento legible sobre papel: 5.4:1 */
+  --cta:#0B7A43;           /* blanco encima = 5.4:1 */
+  --cta-hover:#095F35;
+  --ok:#5FD39B;            /* 9.1:1 sobre --ink-2 */
+  --alert:#FF8A6B;
+
+  /* Dos tokens de linea, y la diferencia es normativa, no estetica:
+     --hairline separa superficies (decorativa, sin exigencia de ratio) y
+     --line-ui dibuja el borde de un control real, que si cumple el 3:1 de
+     "non-text contrast". Un solo token obligaria a subir TODAS las
+     divisiones y la pagina quedaria rayada. */
+  --hairline:#2A3654;
+  --line-ui:#67769C;       /* 4.2:1 sobre --ink */
+  --line-paper:#C9D2E1;
+
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1180px;
+}
+/* El detector del validador busca class="skip-link" EXACTO, no una lista de
+   clases: por eso lleva su propio estilo en vez de reusar .btn */
+.skip-link{position:absolute;left:-9999px;top:8px;z-index:99;background:var(--cta);color:#fff;
+  padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:700}
+.skip-link:focus{left:12px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--on-ink);font-family:var(--sans);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+svg{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--marigold);outline-offset:3px;border-radius:4px}
+
+/* La escala: display sans muy apretado; la mono queda reservada a lo que
+   REALMENTE es salida de maquina (relojes, identificadores, registro).
+   Asi la mono significa algo en vez de decorar. */
+.h-xl{font-size:clamp(36px,6.6vw,80px);line-height:1;letter-spacing:-.038em;font-weight:800;margin:0}
+.h-l{font-size:clamp(27px,4vw,48px);line-height:1.05;letter-spacing:-.03em;font-weight:800;margin:0}
+.h-m{font-size:clamp(19px,2.2vw,25px);line-height:1.22;letter-spacing:-.018em;font-weight:750;margin:0}
+.lede{font-size:clamp(17px,1.5vw,21px);line-height:1.55;margin:0}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin:0}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+section{padding:clamp(54px,7.5vw,104px) 0}
+.sec-head{display:grid;gap:14px;max-width:64ch;margin-bottom:clamp(28px,4vw,48px)}
+
+/* ---------------- barra ---------------- */
+.bar{position:sticky;top:0;z-index:60;background:rgba(11,16,32,.74);
+  backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid transparent;
+  transition:border-color .25s,background .25s}
+.bar.is-stuck{border-bottom-color:var(--hairline);background:rgba(11,16,32,.94)}
+.bar::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:var(--prog,0%);
+  background:linear-gradient(90deg,var(--marigold),#FFD98A);transition:width .1s linear}
+.bar-in{display:flex;align-items:center;gap:16px;height:66px}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:-.02em}
+.mark .dot{width:11px;height:11px;border-radius:50%;background:var(--marigold);flex:none;
+  box-shadow:0 0 0 0 rgba(255,176,32,.55);animation:beat 2.6s ease-out infinite}
+@keyframes beat{0%{box-shadow:0 0 0 0 rgba(255,176,32,.5)}
+  70%{box-shadow:0 0 0 12px rgba(255,176,32,0)}100%{box-shadow:0 0 0 0 rgba(255,176,32,0)}}
+#menu-button{margin-left:auto;background:none;border:1px solid var(--line-ui);color:var(--on-ink);
+  border-radius:9px;width:42px;height:38px;display:grid;place-items:center;cursor:pointer}
+#menu-button svg{width:19px;height:19px}
+#nav-links{display:none}
+#nav-links.is-open{display:flex;position:absolute;left:0;right:0;top:66px;flex-direction:column;
+  gap:2px;padding:12px var(--pad) 18px;background:rgba(11,16,32,.98);border-bottom:1px solid var(--hairline)}
+#nav-links a{text-decoration:none;color:var(--on-ink-mute);font-weight:600;padding:9px 0;font-size:15.5px}
+#nav-links a:hover{color:var(--marigold)}
+@media (min-width:900px){
+  #menu-button{display:none}
+  #nav-links{display:flex;margin-left:auto;gap:24px;align-items:center}
+  #nav-links a{padding:0;font-size:15px}
+}
+
+/* ---------------- botones ---------------- */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;
+  text-decoration:none;font-weight:700;font-size:16px;border:1px solid transparent;cursor:pointer;
+  font-family:inherit;transition:transform .16s cubic-bezier(.2,.9,.3,1.2),background .18s,box-shadow .18s;
+  --tx:0px;--ty:0px}
+.btn svg{width:18px;height:18px;flex:none}
+.btn.mag{transform:translate(var(--tx),var(--ty))}
+.btn-cta{background:var(--cta);color:#fff;box-shadow:0 10px 26px -12px rgba(11,122,67,.9)}
+.btn-cta:hover{background:var(--cta-hover);transform:translate(var(--tx),var(--ty)) translateY(-2px)}
+.btn-ghost{border-color:var(--line-ui);color:var(--on-ink);background:none}
+.btn-ghost:hover{border-color:var(--marigold);color:var(--marigold);transform:translate(var(--tx),var(--ty)) translateY(-2px)}
+
+/* ---------------- hero ---------------- */
+.hero{position:relative;padding:clamp(44px,6.5vw,88px) 0 clamp(28px,4.5vw,52px);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-30% -10% auto -10%;height:76%;
+  background:radial-gradient(58% 60% at 22% 26%,rgba(255,176,32,.16),transparent 62%),
+             radial-gradient(48% 52% at 82% 8%,rgba(29,78,137,.30),transparent 66%);
+  filter:blur(8px);pointer-events:none;transform:translateY(var(--py,0px));will-change:transform}
+.hero-grid{position:relative;display:grid;gap:clamp(26px,3.2vw,42px)}
+.hero .kicker{color:var(--marigold);display:flex;align-items:center;gap:10px}
+.hero .kicker .rule{height:1px;width:50px;background:var(--marigold);opacity:.6}
+.h-xl em{font-style:normal;color:var(--marigold)}
+.day .h-l em{font-style:normal;color:var(--marigold-deep)}
+.hero p.lede{color:var(--on-ink-mute);max-width:60ch}
+.actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hero-note{font-family:var(--mono);font-size:12.5px;color:var(--on-ink-dim)}
+.line{display:block;overflow:hidden}
+.line>span{display:block;transform:translateY(105%);animation:lineUp .9s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes lineUp{to{transform:none}}
+
+/* ---------------- consola en vivo ---------------- */
+.console{position:relative;border:1px solid var(--hairline);border-radius:16px;overflow:hidden;
+  background:linear-gradient(180deg,var(--ink-2),var(--ink-3));box-shadow:0 40px 80px -50px rgba(0,0,0,.95)}
+.console-head{display:flex;align-items:center;gap:12px;padding:12px 16px;
+  border-bottom:1px solid var(--hairline);background:rgba(255,255,255,.02)}
+.console-head .kicker{color:var(--on-ink-dim)}
+.live{display:flex;align-items:center;gap:7px;margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--marigold)}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--marigold);display:block;animation:blink 1.6s steps(1,end) infinite}
+@keyframes blink{50%{opacity:.25}}
+#lanes{display:block;width:100%;height:210px}
+@media (max-width:700px){#lanes{height:176px}}
+.console-log{margin:0;padding:12px 16px 16px;border-top:1px solid var(--hairline);
+  font-family:var(--mono);font-size:12.5px;line-height:1.85;color:var(--on-ink-dim);
+  height:104px;overflow:hidden;list-style:none}
+.console-log li{display:flex;gap:12px;opacity:0;transform:translateY(6px);animation:logIn .45s forwards}
+@keyframes logIn{to{opacity:1;transform:none}}
+.console-log b{color:var(--on-ink);font-weight:600}
+.console-log .t{color:var(--marigold);flex:none}
+.console-log .ok{color:var(--ok);flex:none}
+.console-foot{margin:0;padding:0 16px 14px;font-family:var(--mono);font-size:11.5px;color:var(--on-ink-dim)}
+
+/* ---------------- cinta ---------------- */
+.tape{overflow:hidden;border-block:1px solid var(--hairline);padding:13px 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.tape-run{display:flex;gap:42px;width:max-content;animation:run 34s linear infinite}
+.tape:hover .tape-run{animation-play-state:paused}
+@keyframes run{to{transform:translateX(-50%)}}
+.tape span{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--on-ink-dim);white-space:nowrap;display:flex;align-items:center;gap:11px}
+.tape span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--marigold);flex:none}
+
+/* ---------------- superficies claras ---------------- */
+.day{background:var(--paper);color:var(--on-paper)}
+.day .kicker{color:var(--marigold-deep)}
+.day .lede{color:var(--on-paper-mute)}
+
+/* ---------------- rejillas ---------------- */
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(272px,1fr))}
+.card{position:relative;background:#fff;border:1px solid var(--line-paper);border-radius:14px;
+  padding:26px 24px 28px;overflow:hidden;transition:transform .3s cubic-bezier(.2,.9,.3,1),box-shadow .3s,border-color .3s}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(220px 220px at var(--mx,50%) var(--my,50%),rgba(255,176,32,.16),transparent 70%)}
+.card:hover{transform:translateY(-4px);box-shadow:0 26px 44px -30px rgba(16,23,40,.55);border-color:#A9B7CE}
+.card:hover::after{opacity:1}
+.card .ico{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+  background:var(--ink);color:var(--marigold);margin-bottom:15px}
+.card .ico svg{width:21px;height:21px}
+.card .tag{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--marigold-deep);font-weight:700;margin:0}
+.card h3{margin:8px 0}
+.card p{margin:0;color:var(--on-paper-mute);font-size:15.5px;line-height:1.58}
+
+/* Bloque oscuro dentro de seccion clara: OJO, `color` es OBLIGATORIO.
+   Sin declararlo, los titulos heredan la tinta oscura de .day sobre este
+   fondo oscuro y quedan invisibles. Fondo y color viajan juntos. */
+.panel{background:var(--ink);color:var(--on-ink);border-radius:14px;padding:26px 24px;
+  display:grid;gap:12px;border:1px solid var(--hairline)}
+.panel h3{margin:0}
+.panel p{margin:0;color:var(--on-ink-mute);font-size:15.5px}
+
+.rows{display:grid;gap:2px;background:var(--hairline);border:1px solid var(--hairline);border-radius:14px;overflow:hidden}
+.row{background:var(--ink);color:var(--on-ink);padding:26px 24px;display:grid;gap:8px;transition:background .3s}
+.row:hover{background:var(--ink-2)}
+.row .n{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--marigold);font-weight:700;margin:0}
+.row p{margin:0;color:var(--on-ink-mute);font-size:15.5px}
+@media (min-width:820px){.rows.three{grid-template-columns:repeat(3,1fr)}}
+
+.list{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.list li{display:grid;grid-template-columns:26px 1fr;gap:13px;align-items:start;
+  padding:15px 0;border-bottom:1px solid var(--hairline)}
+.list li:last-child{border-bottom:0}
+.list .mk{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  background:var(--ink-2);color:var(--marigold)}
+.list .mk svg{width:14px;height:14px}
+.list b{display:block;font-weight:700;letter-spacing:-.01em;margin-bottom:3px}
+.list .tx{color:var(--on-ink-mute);font-size:15.5px}
+
+/* ---------------- numeros ---------------- */
+.stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(168px,1fr))}
+.stat{border:1px solid var(--line-paper);border-radius:13px;padding:22px 20px;background:#fff}
+.stat b{display:block;font-family:var(--mono);font-size:clamp(25px,3.2vw,36px);letter-spacing:-.03em;
+  color:var(--marigold-deep);font-weight:700;line-height:1.1}
+.stat span{color:var(--on-paper-mute);font-size:14.5px;display:block;margin-top:6px}
+.stat.bad b{color:#B4341A}
+
+/* ---------------- limites ---------------- */
+.limits li .mk{background:rgba(255,138,107,.13);color:var(--alert)}
+
+/* ---------------- preguntas ---------------- */
+details{border:1px solid var(--line-paper);border-radius:12px;background:#fff;margin-bottom:10px}
+details[open]{border-color:#A9B7CE}
+summary{cursor:pointer;padding:17px 20px;font-weight:700;list-style:none;display:flex;
+  align-items:center;justify-content:space-between;gap:14px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:10px;height:10px;border-right:2px solid var(--marigold-deep);
+  border-bottom:2px solid var(--marigold-deep);transform:rotate(45deg);flex:none;transition:transform .25s}
+details[open] summary::after{transform:rotate(-135deg)}
+details p{margin:0;padding:0 20px 19px;color:var(--on-paper-mute);font-size:15.5px}
+
+/* ---------------- contacto ---------------- */
+.contact{position:relative;background:var(--ink-2);border-top:1px solid var(--hairline);overflow:hidden}
+.contact::before{content:"";position:absolute;inset:auto -20% -60% -20%;height:70%;
+  background:radial-gradient(50% 60% at 50% 0%,rgba(255,176,32,.13),transparent 70%);pointer-events:none}
+.contact-in{position:relative;display:grid;gap:20px;justify-items:start;max-width:60ch}
+#copy-status{font-family:var(--mono);font-size:13px;color:var(--ok);min-height:1.4em;margin:0}
+footer{border-top:1px solid var(--hairline);padding:24px 0 38px;color:var(--on-ink-dim);font-size:14px}
+
+/* ---------------- empresa viva: cinco agentes ---------------- */
+.stage{position:relative;border:1px solid var(--hairline);border-radius:16px;background:var(--ink-2);
+  padding:26px 20px 22px;overflow:hidden}
+.workflow{position:relative;height:212px}
+@media (max-width:700px){.workflow{height:270px}}
+.workflow-lines{position:absolute;inset:0;width:100%;height:100%}
+.workflow-lines path{fill:none;stroke:var(--line-ui);stroke-width:1.6;stroke-dasharray:5 7;
+  animation:data-flow 2.6s linear infinite}
+@keyframes data-flow{to{stroke-dashoffset:-24}}
+.agents{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;height:100%;align-content:center}
+@media (max-width:700px){.agents{grid-template-columns:repeat(2,1fr);align-content:start;gap:12px}}
+.work-agent{display:grid;gap:7px;justify-items:center;text-align:center;padding:14px 8px;
+  border:1px solid var(--hairline);border-radius:12px;background:rgba(11,16,32,.72);
+  animation:agent-pulse 4.8s ease-in-out infinite}
+.work-agent:nth-child(2){animation-delay:.5s}
+.work-agent:nth-child(3){animation-delay:1s}
+.work-agent:nth-child(4){animation-delay:1.5s}
+.work-agent:nth-child(5){animation-delay:2s}
+@keyframes agent-pulse{0%,100%{border-color:var(--hairline)}45%{border-color:var(--marigold)}}
+.work-agent .av{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  background:var(--ink);color:var(--marigold)}
+.work-agent .av svg{width:17px;height:17px}
+.work-agent b{font-size:14px;letter-spacing:-.01em}
+.work-agent .rol{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-ink-dim)}
+
+/* ---------------- revelado ---------------- */
+.rise{opacity:0;transform:translateY(22px);
+  transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rise.seen{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important}
+  .rise{opacity:1;transform:none}
+  .line>span{transform:none;animation:none}
+  .tape-run{animation:none}
+  .bar::after{display:none}
+}
+@media print{
+  body{background:#fff;color:#000}
+  .bar,.tape,.console,.stage,#menu-button,.btn{display:none!important}
+  section{padding:18px 0;break-inside:avoid}
+  .card,.panel,.row,.stat{border:1px solid #999;background:#fff;color:#000}
+}
+</style>
+<style>
+/* --- añadidos SOLO del borrador: banner de estado + huecos TODO visibles --- */
+.draft{position:sticky;top:0;z-index:100;background:var(--marigold);color:#1a1200;
+  text-align:center;padding:10px 16px;font:600 13px/1.45 var(--sans)}
+.draft b{font-weight:800}
+.todo{background:var(--ink-2);border:2px dashed var(--marigold);border-radius:12px;
+  padding:16px 18px;margin:18px 0;color:var(--on-ink)}
+.todo .lbl{display:block;margin-bottom:6px;color:var(--marigold);
+  font:700 12px/1.3 var(--mono);letter-spacing:.05em;text-transform:uppercase}
+.todo p{margin:.35em 0 0;color:var(--on-ink-mute)}
+.src{display:block;margin-top:10px;font:500 12px/1.5 var(--mono);color:var(--on-ink-dim)}
+.day .todo{color:var(--on-ink)}
+/* helpers usados por el borrador que no están en el sistema base */
+.lead{font:400 clamp(17px,2.2vw,21px)/1.6 var(--sans);color:var(--on-ink-mute);max-width:62ch;margin:1em 0}
+.day .lead{color:var(--on-paper-mute)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin:1.4em 0}
+.brand{font:800 20px/1 var(--sans);color:var(--on-ink);text-decoration:none;letter-spacing:-.01em}
+.brand strong{color:var(--marigold)}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#inicio">Saltar al contenido</a>
+
+<div class="draft" role="note">
+  <b>BORRADOR</b> — home de empresa de Humanizar (rebanada 2). No es el sitio vivo: la home publicada sigue en
+  <a href="https://humanizar.tech/" style="color:#1a1200">humanizar.tech</a>. Los bloques
+  <b>TODO — Steven</b> marcan lo que falta confirmar; el resto está derivado de material ya publicado.
+</div>
+
+<header class="bar" id="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="#inicio" aria-label="Humanizar, inicio"><strong>Humanizar</strong></a>
+    <nav id="nav-links" aria-label="Secciones">
+      <a href="#que-hacemos">Qué hacemos</a>
+      <a href="#como">Cómo</a>
+      <a href="#construido">Qué construimos</a>
+      <a href="#filosofia">Por qué</a>
+      <a class="btn btn-cta" href="https://agenda.humanizar.tech/">Agendar</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="n">HUMANIZAR</p>
+        <h1 class="h-xl"><span class="line"><span>Software real,</span></span><span class="line"><span>operado por <em>agentes</em>.</span></span></h1>
+        <p class="lead">Humanizar diseña, construye y mantiene productos de software en producción con equipos de agentes de IA, gobernados desde un solo control plane. <strong>Empresas de desarrollo hechas con agentes.</strong></p>
+        <div class="cta-row">
+          <a class="btn btn-cta" href="https://agenda.humanizar.tech/">Agendar una demo</a>
+          <a class="btn btn-ghost" href="https://cauce.humanizar.tech">Ver Cauce, nuestro control plane</a>
+        </div>
+        <p class="hero-note">Los productos y números que mostramos están medidos en vivo, no estimados.</p>
+        <div class="todo">
+          <span class="lbl">TODO — Steven</span>
+          <p>Una frase de posicionamiento: ¿Humanizar es un <em>estudio</em> que construye a medida para clientes, una <em>casa de productos</em> propios, o una <em>plataforma</em> (Cauce)? El catálogo hoy mezcla productos propios y de clientes, así que no lo afirmo por vos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="que-hacemos">
+    <div class="wrap">
+      <p class="n">QUÉ HACEMOS</p>
+      <h2 class="h-l">Construimos y operamos software, con equipos de agentes.</h2>
+      <div class="grid rise">
+        <article class="card">
+          <h3 class="h-m">Construimos productos</h3>
+          <p>CRM multi-inquilino, punto de venta, tableros analíticos, inteligencia de marketing, software académico y de investigación. Productos reales, no demos.</p>
+        </article>
+        <article class="card">
+          <h3 class="h-m">Los operamos con agentes</h3>
+          <p>Equipos de agentes de IA especializados por rol —no scripts sueltos— que reflejan cómo trabaja el negocio y responden por su resultado.</p>
+        </article>
+        <article class="card">
+          <h3 class="h-m">Con gobierno humano donde importa</h3>
+          <p>Identidad derivada, aislamiento entre inquilinos y compuertas humanas en los puntos críticos. La autonomía llega hasta donde el riesgo lo permite.</p>
+        </article>
+      </div>
+      <div class="todo">
+        <span class="lbl">TODO — Steven</span>
+        <p>La oferta en una línea, para un cliente no técnico: “Humanizar te entrega ______”. Lo de arriba está derivado del catálogo y del sitio de Cauce; falta tu formulación.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="day" id="como">
+    <div class="wrap">
+      <p class="n">CÓMO LO HACEMOS</p>
+      <h2 class="h-l">Cauce V3: <em>un control plane</em> para muchos agentes.</h2>
+      <p class="lead">Cauce convierte agentes, cuentas de IA, protocolos, canales y harnesses distintos en una empresa operable: de 2 a N equipos especializados, gobernados desde un solo lugar. Es la pieza con la que construimos y operamos todo lo demás.</p>
+      <p><a class="btn btn-ghost" href="https://cauce.humanizar.tech">Conocé Cauce V3 →</a></p>
+      <p class="src">Derivado del sitio ya publicado de Cauce V3 (hoy en el ápex; se muda a cauce.humanizar.tech).</p>
+    </div>
+  </section>
+
+  <section id="construido">
+    <div class="wrap">
+      <p class="n">QUÉ HEMOS CONSTRUIDO</p>
+      <h2 class="h-l">Una flota de productos en producción.</h2>
+      <div class="grid rise">
+        <article class="card"><h3 class="h-m">Xenia · CRM</h3><p>CRM multi-inquilino para operar ventas y prospección. En producción.</p></article>
+        <article class="card"><h3 class="h-m">Sinergia · POS</h3><p>Punto de venta para tiendas.</p></article>
+        <article class="card"><h3 class="h-m">Aletheia</h3><p>Plataforma de inteligencia de marketing.</p></article>
+        <article class="card"><h3 class="h-m">Demeter · Graf</h3><p>Tableros analíticos y CRM de administración.</p></article>
+        <article class="card"><h3 class="h-m">Elenxos · Ágora</h3><p>Software académico y plataforma de investigación cooperativa.</p></article>
+        <article class="card"><h3 class="h-m">Apothḗke</h3><p>Gestión de almacén e inventario.</p></article>
+      </div>
+      <p><a class="btn btn-ghost" href="https://catalogo.humanizar.tech/">Ver el catálogo completo →</a></p>
+      <p class="src">Derivado del catálogo medido en vivo. Mostramos estado y stack medidos; no publicamos revenue ni clientes sin tu permiso.</p>
+      <div class="todo">
+        <span class="lbl">TODO — Steven</span>
+        <p>¿Cuáles destacamos como insignia y podemos nombrar clientes o mostrar logos? ¿Hay métricas de impacto (no técnicas) que quieras exhibir?</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="day" id="a-quien">
+    <div class="wrap">
+      <p class="n">A QUIÉN SERVIMOS</p>
+      <h2 class="h-l">Negocios que quieren software operado, no solo entregado.</h2>
+      <div class="todo">
+        <span class="lbl">TODO — Steven</span>
+        <p>Definí el cliente ideal: ¿PYMEs, startups, un vertical concreto (educación, retail, servicios)? No lo invento; hoy el catálogo abarca demasiados rubros para deducirlo con honestidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="filosofia">
+    <div class="wrap">
+      <p class="n">POR QUÉ HUMANIZAR</p>
+      <h2 class="h-l">La tesis del turno nocturno.</h2>
+      <p class="lead">Los agentes trabajan cuando el equipo duerme. La marca ya lo dice en su propia paleta: base de tinta de madrugada, y el acento es la luz que queda encendida. Humanizar pone a las personas donde importan y a los agentes donde escalan.</p>
+      <div class="todo">
+        <span class="lbl">TODO — Steven (el que destraba la rebanada)</span>
+        <p>Las cinco líneas de la filosofía de empresa: qué significa “humanizar” la tecnología para vos, qué prometés y qué no. Lo de arriba lo derivé del comentario de diseño del propio sitio; es un andamio, no tu voz. Con estas 5 líneas, esta home deja de ser borrador.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="day" id="contacto">
+    <div class="wrap">
+      <p class="n">HABLEMOS</p>
+      <h2 class="h-l">Contanos qué querés operar.</h2>
+      <div class="cta-row">
+        <a class="btn btn-cta" href="https://agenda.humanizar.tech/">Agendar una demo</a>
+        <a class="btn btn-ghost" href="https://wa.me/573046374368?text=Hola%20Steven%2C%20quiero%20conocer%20Humanizar">WhatsApp</a>
+      </div>
+      <div class="todo">
+        <span class="lbl">TODO — Steven</span>
+        <p>¿Canal de contacto primario para la empresa (no para Cauce): agenda, WhatsApp, o un correo de empresa? El WhatsApp de arriba es el que ya usa el sitio de Cauce.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Humanizar · <strong>borrador</strong> de home de empresa · el sitio vivo sigue en <a href="https://humanizar.tech/" style="color:var(--on-ink-mute)">humanizar.tech</a> · el producto en <a href="https://cauce.humanizar.tech" style="color:var(--on-ink-mute)">cauce.humanizar.tech</a></div>
+</footer>
+</body>
+</html>
