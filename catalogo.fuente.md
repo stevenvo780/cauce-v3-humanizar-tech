@@ -50,9 +50,18 @@ Estos viven en la misma cuenta de Vercel pero son de clientes — no los cuento 
 
 ## Histórico (sacados del catálogo público 2026-09-01)
 
+- **Humanizar web** (`https://www.humanizar.co`): **marcado `stale` el 2026-09-10, y no por
+  desactualización sino porque el dominio no es nuestro.** Devuelve `200` con 114 B y la ruta
+  inventada da el mismo md5 (`e89f75f9`): página de aparcamiento. `/lander` redirige a
+  `forsale.godaddy.com/forsale/www.humanizar.co` — **está a la venta**. NS en `afternic.com`,
+  IPs de aparcamiento de Amazon, y la API de Hostinger responde *«Domain is not registered at
+  Hostinger»*. La ficha se deja en el catálogo, marcada, porque **sacarla del público es decisión
+  de catálogo y no mía**; lo que sí está medido es que hoy publica un enlace a una página de venta
+  con el nombre de la empresa.
+
 - **Sinergia POS** (`pos-back`, deploy `sinergia-pos.vercel.app`): **borrado**. Steven rebrandea a **Saldantia POS** en su propio servidor. Jhon informado.
-- **Agentes IA Novacode** (`novacode-agentes-ia`, deploy `agentes.elenxos.com`): **borrado**. Repo archivado desde 11-ago. Pedido directo de Steven.
-- **Natación** (`natacion-asistencia.vercel.app`): **sacado**. URL caída (`DEPLOYMENT_NOT_FOUND`). Steven dice "siguen bien" pero el deploy no responde. Pendiente URL viva para re-entrada.
+- **Agentes IA Novacode** (`novacode-agentes-ia`, deploy `agentes.elenxos.com`): **borrado**. Repo archivado desde el 2026-08-11. Re-medido el 2026-09-10: `agentes.elenxos.com` da `000` (no completa TLS) y la URL alternativa `novacode-agentes-ia.vercel.app` da `404`. **No falta un CNAME: falta el sitio.** Si alguien lee una nota vieja que dice que falta el DNS, que no cree el registro — apuntaría un nombre a la nada.
+- **Natación** (`natacion-asistencia.vercel.app`): **sacado**. Re-medido el 2026-09-10 y es peor que "URL caída": el **repo no existe** (`404` en la API de GitHub), el proyecto de Vercel tampoco, y la URL da `404`. No es que falte un despliegue vivo: no hay nada que desplegar. Si Steven dice que "siguen bien", el software estará en otro sitio que no conocemos — la re-entrada necesita que él diga dónde, no una URL nueva.
 - **Nómos**: sacado del catálogo público; re-entra cuando la migración a la DB nueva esté completa y `/api/health` dé 200.
 | Koinonía | https://koinonia.stevenvallejo.com | ✅ 200 OK (medido con `curl -v`) | mi medición anterior de "timeout" fue fluke; verificar visualmente |
 | Elenxos apex | https://elenxos.com (sin www) | 🔴 000 NXDOMAIN | añadir www→Vercel o apex A record |
