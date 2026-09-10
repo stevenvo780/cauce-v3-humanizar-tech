@@ -1,5 +1,16 @@
 # Catálogo Mouseîon — Steven Vallejo (enriquecido, 2026-08-30 22:40Z)
 
+> **ESTA COPIA DE `catalogo.json` NO SE PUBLICA** (nota de kant, 2026-09-10).
+> `catalogo.humanizar.tech` lo sirve el proyecto de Vercel **`humanizar-catalogo`**, repo
+> `stevenvo780/humanizar-catalogo`. Leido de `GET /v9/projects/<id>/domains`, que es la unica
+> fuente fiable: el nombre del proyecto NO se deduce del dominio, y el array `alias` de un
+> despliegue es metadato historico, no ruteo vivo.
+> El `catalogo.json` de ESTE repo solo es alcanzable en `cauce.humanizar.tech/catalogo.json`, que
+> nada enlaza. **Editar aqui no cambia el sitio.** El 2026-09-10 paso exactamente eso.
+> Mientras las dos copias existan, un cambio de datos se aplica a las dos en el mismo movimiento.
+
+
+
 Catálogo público de productos del ecosistema Mouseîon (stevenvallejo.com). Cada producto tiene metadata medida en vivo (HTTP, HTML, Vercel, GitHub).
 
 ## Leyenda de estado
